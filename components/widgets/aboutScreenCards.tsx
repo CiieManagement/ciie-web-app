@@ -29,13 +29,9 @@ function SpeechCard(props: professorProp) {
       <div className=" max-h-sm p-3 " >
         <Image
           src={props.image}
-          // layout="responsive"
-          // width={500}
-          // height={200}
-          // width={200}
-          alt={""}
+          alt=""
           className=" shadow-md mx-auto w-auto md:max-w-[300px] rounded-2xl max-h-[300px] md:max-h-none 3xl"
-        ></Image>
+        />
       </div>
 
       <div className=" flex-col flex rounded-xl md:mt-3 px-4 pb-2 max-w-lg">
@@ -66,44 +62,50 @@ function VisionCard(props: visionProp) {
     </div>
   );
 }
+
 function TeamMemberCard(props: teamMember) {
   return (
-    <div className=" flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
-      <div className= "flex place-content-center">
+    <div className="relative flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
+      <div className="flex place-content-center">
         <Image
-          className=" max-w-[150px] md:max-w-[100px] md:max-h-[200px] ml-auto rounded-3xl"
+          className="max-w-[150px] md:max-w-[100px] md:max-h-[200px] ml-auto rounded-3xl"
           src={props.image}
           loading="lazy"
           alt="img"
         />
       </div>
 
-      <div className=" flex flex-col">
-        <h1 className=" mt-5 md:text-xl text-lg font-bold">{props.name}</h1>
-        <h1 className="md:text-md text-sm text-[#8800ff]">{props.domain}</h1>
-        <h1 className=" mt-2 md:text-md text-sm text-left">{props.description}</h1>
+      <div className="flex flex-col">
+        <h1 className="mt-5 md:text-xl text-lg font-bold">{props.name}</h1>
+        <h1 className="md:text-md text-sm text-[#4ce5eb]">{props.domain}</h1>
+        <h1 className="mt-2 md:text-md text-sm text-left">{props.description}</h1>
+      </div>
 
-        <div className="flex mt-3 ml-auto">
-          {props.github && (
-            <a href={props.github} target="_blank" rel="noopener noreferrer" title="image">
-              <Image src="/icons/github.svg" alt="GitHub" className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60" />
-            </a>
-          )}
-          {props.linkedin && (
-            <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="image">
-              <Image
-                src="/icons/linkedin.png"
-                alt="LinkedIn"
-                className="w-6 h-6 ml-2 hover:scale-125 transition-all duration-300 ease-in-out"
-              />
-            </a>
-          )}
-        </div>
+      <br />
+
+      <div className="absolute bottom-3 right-3 flex space-x-2 ">
+        {props.github && (
+          <a href={props.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+            <Image
+              src="/icons/github.svg"
+              alt="GitHub"
+              className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
+            />
+          </a>
+        )}
+        {props.linkedin && (
+          <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
+            <Image
+              src="/icons/linkedin.png"
+              alt="LinkedIn"
+              className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
+            />
+          </a>
+        )}
       </div>
     </div>
   );
 }
-
 
 export { SpeechCard };
 export { VisionCard };

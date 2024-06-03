@@ -51,18 +51,27 @@ const AdminPage = () => {
           </div>
         </Link>
 
-
+        <Link href="/addMember" passHref>
           <div className="bg-gray-800 shadow-md rounded-lg p-6">
             <h2 className="text-2xl font-semibold">Add Member Manually</h2>
             <p className="text-gray-300 mb-4">You have rights to add any new member in CIIE. </p>
             <button className="bg-green-500 text-white px-5 py-2 mt-10 rounded">Add Member</button>
           </div>
+        </Link>
 
         <Link href="/requests" passHref>
           <div className="bg-gray-800 shadow-md rounded-lg p-6">
             <h2 className="text-2xl font-semibold mb-4">Internal Faculty</h2>
             <p className="text-gray-300 mb-4">View and manage internal faculty involved in the CIIE.</p>
             <button className="bg-purple-500 text-white px-4 py-2 rounded">View Faculty</button>
+          </div>
+        </Link>
+
+        <Link href="/core-members" passHref>
+          <div className="bg-gray-800 shadow-md rounded-lg p-6">
+            <h2 className="text-2xl font-semibold mb-4">Core Members</h2>
+            <p className="text-gray-300 mb-4">View and manage internal members involved in the CIIE.</p>
+            <button className="bg-emerald-500 text-white px-4 py-2 rounded">Manage Members</button>
           </div>
         </Link>
 

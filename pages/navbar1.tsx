@@ -14,9 +14,10 @@ import {
 import Image from "next/image";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
 import { auth } from "../components/firebaseConfig";
- 
+
 export default function App() {
   const [username, setUsername] = useState('');
+  const [activeLink, setActiveLink] = useState('');
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -38,29 +39,42 @@ export default function App() {
     }
   };
 
+  const handleNavClick = (link) => {
+    setActiveLink(link);
+  };
+
+
   return (
     <Navbar className="flex flex-row w-full  justify-around ">
 
 
       <div className="flex flex-row items-center gap-20">
+        
+       <Link href="./">
         <NavbarBrand className="flex flex-row gap-4 items-center">
           <Image
+            
             src={"/ciie_logo.png"}
             height={40}
             width={40}
             alt="ciie_logo"
+            
           />
           <p className="font-bold text-inherit text-3xl">CIIE</p>
-        </NavbarBrand>
+        </NavbarBrand></Link> 
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <Link color="foreground" href="#">
+            <Link 
+              color="primary"
+              href="/admin"
+              onClick={() => handleNavClick('home')}
+              >
               Home
             </Link>
           </NavbarItem>
-          <NavbarItem isActive>
-            <Link href="/admin-report" aria-current="page" color="secondary">
+          <NavbarItem >
+            <Link href="/admin-report" >
               Reports
             </Link>
           </NavbarItem>

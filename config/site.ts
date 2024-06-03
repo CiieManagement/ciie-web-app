@@ -15,7 +15,7 @@ export const siteConfig = {
     },
     
     {
-      label: "Projects",
+      label: "Reports",
       href: "/projects",
     },
     {
@@ -69,6 +69,14 @@ export const siteConfig = {
     {
  
       href: "/requests",
+    },
+    {
+ 
+      href: "/core-members",
+    },
+    {
+ 
+      href: "/addMember",
     },
   ],
 
