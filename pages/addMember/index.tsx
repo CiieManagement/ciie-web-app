@@ -18,7 +18,7 @@ function AddMemberForm() {
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: { target: { name: any; value: any; }; }) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -26,7 +26,7 @@ function AddMemberForm() {
     });
   };
 
-  const handleImageChange = (e) => {
+  const handleImageChange = (e: { target: { files: any[]; }; }) => {
     const file = e.target.files[0];
     setImageFile(file);
     setFormData({
@@ -35,7 +35,7 @@ function AddMemberForm() {
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -76,6 +76,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Name</label>
           <input
+          title="name"
             type="text"
             name="name"
             value={formData.name}
@@ -87,6 +88,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Domain</label>
           <input
+          title="domain"
             type="text"
             name="domain"
             value={formData.domain}
@@ -98,6 +100,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Image</label>
           <input
+          title="image"
             type="file"
             name="image"
             accept="image/*"
@@ -120,6 +123,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Description</label>
           <textarea
+          title="decription"
             name="description"
             value={formData.description}
             onChange={handleChange}
@@ -130,6 +134,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Gender</label>
           <select
+          title="gender"
             name="gender"
             value={formData.gender}
             onChange={handleChange}
@@ -144,6 +149,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">LinkedIn URL</label>
           <input
+          title="linkedin"
             type="text"
             name="linkedin"
             value={formData.linkedin}
@@ -155,6 +161,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">GitHub URL</label>
           <input
+          title="github"
             type="text"
             name="github"
             value={formData.github}
@@ -166,6 +173,7 @@ function AddMemberForm() {
         <div>
           <label className="block text-sm font-medium">Year</label>
           <select
+          title="year"
             name="year"
             value={formData.year}
             onChange={handleChange}

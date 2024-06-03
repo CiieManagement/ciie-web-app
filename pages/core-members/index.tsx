@@ -7,7 +7,7 @@ import BackdropAnimation from '@/components/utils/backdrop_animation';
 const Index = () => {
   const [activeTab, setActiveTab] = useState('Third Year');
 
-  const renderTeamMembers = (members) => {
+  const renderTeamMembers = (members: any[]) => {
     return members.map((member) => (
       <TeamMemberCard
         key={member.name}
