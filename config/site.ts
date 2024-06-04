@@ -78,6 +78,14 @@ export const siteConfig = {
  
       href: "/addMember",
     },
+    {
+ 
+      href: "/feedbacks",
+    },
+    {
+ 
+      href: "/resetPassword",
+    },
   ],
 
   navMenuItems: [
