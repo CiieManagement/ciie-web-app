@@ -26,8 +26,7 @@ import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "./firebaseConfig"; // Ensure this import is correct
 import { Menu } from "@headlessui/react";
 import adminData from './admins.json';
-
-export const Navbar = () => {
+ export const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>('');
@@ -200,7 +199,7 @@ export const Navbar = () => {
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
+              <Link href="/login"
                 color={
                   index === 0
                     ? "primary"
@@ -208,7 +207,7 @@ export const Navbar = () => {
                     ? "danger"
                     : "foreground"
                 }
-                href={item.href}
+                
                 size="lg"
               >
                 {item.label}

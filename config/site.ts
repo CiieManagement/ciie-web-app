@@ -113,17 +113,17 @@ export const siteConfig = {
       label: "Timeline",
       href: "/timeline",
     },
-    // {
-    //   label: "Settings",
-    //   href: "/settings",
-    // },
-    // {
-    //   label: "Help & Feedback",
-    //   href: "/help-feedback",
-    // },
     {
-      label: "Logout",
-      href: "/logout",
+      label: "Settings",
+      href: "/settings",
+    },
+    {
+      label: "Help & Feedback",
+      href: "/help-feedback",
+    },
+    {
+      label: "Login",
+      href: "/Login",
     },
   ],
   links: {
