@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { auth } from './firebaseConfig';
+import adminData from '../components/admins.json'; // Adjust the path as needed
+import userData from '../components/users.json';
 
 const withAdminAuth = (WrappedComponent) => {
   const WithAdminAuth = (props) => {
@@ -11,7 +13,7 @@ const withAdminAuth = (WrappedComponent) => {
 
     useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged((user) => {
-        if (user && user.email === 'prasantshukla89@gmail.com') {
+        if (user && adminData.admins.includes(user.email)) {
           setUser(user);
         } else {
           router.replace('/login');

@@ -10,6 +10,7 @@ import { UsersData, AdminData } from '@/interfaces'; // Import interfaces
 // Load JSON data
 import usersData from '@/components/users.json';
 import adminData from '@/components/admins.json';
+import { ThemeSwitch } from '@/components/theme-switch';
 
 const users: UsersData = usersData;
 const admin: AdminData = adminData;
@@ -65,8 +66,9 @@ const LoginPage = () => {
   };
   
   return (
-    <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-      <ToastContainer />
+       <>
+          <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
+       <ToastContainer />
       <div className="relative py-3 sm:max-w-xl sm:mx-auto">
         <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-yellow-400 shadow-lg transform -skew-y-15 sm:skew-y-0 sm:-rotate-15 sm:rounded-3xl"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -75,12 +77,14 @@ const LoginPage = () => {
             <div>
               <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 CIIE
+                 
               </h1>
             </div>
             <form className="divide-y divide-gray-200">
               <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                 <div className="flex flex-wrap">
                   <div className="w-full">
+     
                     <label
                       htmlFor="username"
                       className="block text-sm font-medium text-gray-700"
@@ -148,6 +152,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 
