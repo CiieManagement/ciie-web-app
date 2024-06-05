@@ -5,29 +5,25 @@ const Strings1 = {
       ahamadSir: {
         name: "Dr. Md Ahamad Mohiddon",
         speech:
-          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
-        designation: "HOD Physics, Coordinator CIIE",
+          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    ",
         image: "/prof_image_1.png",
       },
       mohanSir: {
         name: "Dr. M Mohan",
         speech:
-          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
-        designation: "HOD Computer Science | Dean student welfare",
+          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    ",
         image: "/prof_image_2.jpeg",
       },
       RaviSir: {
         name: "Dr. Ravi",
         speech:
-          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
-        designation: "HOD Computer Science | Dean student welfare",
+          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.  ",
         image: "/prof_image_2.jpeg",
       },
       AtifSir: {
         name: "Dr. Atif",
         speech:
-          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
-        designation: "HOD Computer Science | Dean student welfare",
+          "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.  ",
         image: "/prof_image_2.jpeg",
       },
 

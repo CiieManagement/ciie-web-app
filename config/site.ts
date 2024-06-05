@@ -1,3 +1,5 @@
+import { AuthErrorCodes } from "@firebase/auth";
+
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
@@ -120,6 +122,7 @@ export const siteConfig = {
     {
       label: "Help & Feedback",
       href: "/help-feedback",
+      
     },
     {
       label: "Login",

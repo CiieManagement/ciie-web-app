@@ -5,7 +5,7 @@ import Navbar from '../../pages/navbar1';
 import BackdropAnimation from '@/components/utils/backdrop_animation';
 
 const Index = () => {
-  const [activeTab, setActiveTab] = useState('Third Year');
+  const [activeTab, setActiveTab] = useState('First Year');
 
   const renderTeamMembers = (members: any[]) => {
     return members.map((member) => (
