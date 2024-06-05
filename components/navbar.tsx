@@ -78,7 +78,7 @@ import adminData from './admins.json';
   return (
     <NextUINavbar maxWidth="xl" position="sticky" className="">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-        <NavbarBrand className="gap-3 max-w-fit mr-3">
+        <NavbarBrand className="gap-3 max-w-fit mr-20">
           <NextLink className="flex justify-start items-center gap-1" href="/">
             <Image
               src="/ciie_logo.png"

@@ -1,5 +1,5 @@
 // pages/docs.js
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import {
   Button,
   Input,

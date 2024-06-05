@@ -6,6 +6,8 @@ import toast, { Toaster } from 'react-hot-toast';
 import App from '../navbar1'
 import BackdropAnimation from '@/components/utils/backdrop_animation';
 import withAdminAuth from '@/components/withAdminAuth';
+
+
 const FeedbackDisplay = () => {
   const [feedbackData, setFeedbackData] = useState([]);
   const [selectedFeedback, setSelectedFeedback] = useState(null);
