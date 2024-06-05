@@ -16,9 +16,10 @@ import { Button } from "@nextui-org/react";
 import { IoMdExit } from "react-icons/io";
 import Image from "next/image";
 import App from '../../pages/navbar1';
+import withAdminAuth from "@/components/withAdminAuth";
 
 
-export default function DocsPage() {
+ function DocsPage() {
   
 
  
@@ -81,3 +82,5 @@ export default function DocsPage() {
     
   );
 }
+
+export default withAdminAuth(DocsPage);

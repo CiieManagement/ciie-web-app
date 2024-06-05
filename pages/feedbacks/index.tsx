@@ -3,7 +3,9 @@ import { db } from '../../components/firebaseConfig';
 import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import Modal from '@/components/Model';
 import toast, { Toaster } from 'react-hot-toast';
-
+import App from '../navbar1'
+import BackdropAnimation from '@/components/utils/backdrop_animation';
+import withAdminAuth from '@/components/withAdminAuth';
 const FeedbackDisplay = () => {
   const [feedbackData, setFeedbackData] = useState([]);
   const [selectedFeedback, setSelectedFeedback] = useState(null);
@@ -16,7 +18,7 @@ const FeedbackDisplay = () => {
     setSelectedFeedback(null);
   };
 
-  const handleReject = async (feedbackId) => {
+  const handleReject = async (feedbackId: string) => {
     try {
       await deleteDoc(doc(db, 'feedback', feedbackId));
       setFeedbackData((prevData) => prevData.filter((feedback) => feedback.id !== feedbackId));
@@ -25,7 +27,7 @@ const FeedbackDisplay = () => {
       console.error('Error deleting document: ', error);
     }
   };
-  const handleAccept = async (feedbackId) => {
+  const handleAccept = async (feedbackId: string) => {
     try {
       await deleteDoc(doc(db, 'feedback', feedbackId));
       setFeedbackData((prevData) => prevData.filter((feedback) => feedback.id !== feedbackId));
@@ -50,6 +52,9 @@ const FeedbackDisplay = () => {
   }, []);
 
   return (
+    <>
+    <App/>
+    <BackdropAnimation/>
     <div className="bg-black min-h-screen text-white flex items-center justify-center p-6">
       <div className="w-full max-w-5xl">
         <h1 className="text-3xl font-bold mb-8 text-center">Feedback</h1>
@@ -105,7 +110,8 @@ const FeedbackDisplay = () => {
       )}
       <Toaster/>
     </div>
+    </>
   );
 };
 
-export default FeedbackDisplay;
+export default withAdminAuth(FeedbackDisplay);

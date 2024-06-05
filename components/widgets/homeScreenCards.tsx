@@ -41,7 +41,7 @@ function AllAboutLearningCard() {
     return (
         <div className='flex flex-col lg:w-[90%] text-center lg:flex-row rounded-2xl bg-transparent py-2 px-4 lg:p-10 mt-10 lg:mt-20 z-20 transition-all duration-500 backdrop-blur-sm '>
             <div className='m-10 max-w-sm'>
-                <Image src={'/learning.svg'} layout='responsive' width={100} height={100} alt={''} className='' />
+                <Image src={'/public/learning.svg'} layout='responsive' width={100} height={100} alt={''} className='' />
             </div>
             <div className='flex flex-col max-w-md mb-5'>
                 <h1 className='text-3xl lg:text-4xl font-bold text-[#8800ff]'> And..It&apos;s all about Learning </h1>

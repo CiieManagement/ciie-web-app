@@ -116,13 +116,14 @@ export default function App() {
             <DropdownItem key="settings">My Settings</DropdownItem>
             <DropdownItem key="team_settings">Team Settings</DropdownItem>
             <DropdownItem key="analytics">Analytics</DropdownItem>
-            <Link href="/helpAndFeedback"><DropdownItem key="system">Help & Feedback</DropdownItem></Link>
+            <DropdownItem key="system">System</DropdownItem>
        
             <DropdownItem key="configurations" href="/">Ciie Page</DropdownItem>
       
             <DropdownItem key="help_and_feedback">
-                System
-            
+              <Link color="foreground" href="/helpAndFeedback">
+                Help & Feedback
+              </Link>
             </DropdownItem>
             <DropdownItem key="logout" color="danger" onClick={handleLogout}>
               Log Out

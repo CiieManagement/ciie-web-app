@@ -22,7 +22,7 @@ import Image from "next/image";
 import { ChangeEvent } from "react";
 import { User } from 'firebase/auth';
 
-export default function DocsPage() {
+function DocsPage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true); // Initially loading
   const [name, setName] = useState("");
@@ -58,7 +58,6 @@ export default function DocsPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Validate minimum word count for project description
     const wordCount = project.trim().split(/\s+/).length;
     if (wordCount < 100) {
       toast.error("Please provide a minimum of 100 words for the project description.");
@@ -71,12 +70,10 @@ export default function DocsPage() {
         return;
       }
 
-      // Upload file to Firebase Storage
       const storageRef = ref(storage, `files/${file.name}`);
       await uploadBytes(storageRef, file);
       const url = await getDownloadURL(storageRef);
 
-      // Save data to Firestore
       const docRef = doc(db, "submissions", name);
       await setDoc(docRef, {
         name,
@@ -88,7 +85,6 @@ export default function DocsPage() {
         uploadedAt: Timestamp.now(),
       });
 
-      // Clear form after submission
       setName("");
       setEmail("");
       setYear("");
@@ -104,7 +100,11 @@ export default function DocsPage() {
     }
   };
 
-  if (!user && !loading) {
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!user) {
     return (
       <DefaultLayout>
         <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10 h-screen overflow-hidden">
@@ -160,14 +160,14 @@ export default function DocsPage() {
             <Input
               label="Name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e: { target: { value: SetStateAction<string>; }; }) => setName(e.target.value)}
               required
             />
 
             <Input
               label="Email"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e: { target: { value: SetStateAction<string>; }; }) => setEmail(e.target.value)}
               type="email"
               required
             />
@@ -175,21 +175,21 @@ export default function DocsPage() {
             <Input
               label="Year"
               value={year}
-              onChange={(e) => setYear(e.target.value)}
+              onChange={(e: { target: { value: SetStateAction<string>; }; }) => setYear(e.target.value)}
               required
             />
 
             <Input
               label="Registration Number"
               value={regNo}
-              onChange={(e) => setRegNo(e.target.value)}
+              onChange={(e: { target: { value: SetStateAction<string>; }; }) => setRegNo(e.target.value)}
               required
             />
 
             <Textarea
               label="About Your Project"
               value={project}
-              onChange={(e) => setProject(e.target.value)}
+              onChange={(e: { target: { value: SetStateAction<string>; }; }) => setProject(e.target.value)}
               className="h-32 overflow-y-hidden"
               required
             />
@@ -224,3 +224,5 @@ export default function DocsPage() {
     </DefaultLayout>
   );
 }
+
+export default DocsPage;
