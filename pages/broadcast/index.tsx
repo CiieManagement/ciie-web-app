@@ -1,66 +1,115 @@
-const expressAsyncHandler = require('express-async-handler');
-const dotenv = require('dotenv');
-const nodemailer = require('nodemailer');
-const mongoose = require('mongoose');
-const User = require('../models/User'); // Ensure you have the correct path
+// frontend/pages/success.js
 
-dotenv.config();
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import { auth } from '../../components/firebaseConfig'; // Assuming auth is exported from your Firebase config
+import toast, { Toaster } from 'react-hot-toast';
+import BackdropAnimation from '@/components/utils/backdrop_animation';
+import App from '../../pages/navbar1';
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+const SuccessPage = () => {
+    const router = useRouter();
+    const [user, setUser] = useState(null);
+    const [subject, setSubject] = useState('');
+    const [emailIds, setEmailIds] = useState('');
+    const [message, setMessage] = useState('');
 
-let transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  secure: false, // true for 465, false for other ports
-  auth: {
-    user: process.env.SMTP_MAIL,
-    pass: process.env.SMTP_PASSWORD,
-  },
-});
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            if (!user) {
+                router.push('/login'); // Redirect to login page if not logged in
+            } else {
+                setUser(user);
+            }
+        });
 
-const sendEmail = expressAsyncHandler(async (req, res) => {
-  let { emails, subject, message } = req.body;
+        return () => unsubscribe();
+    }, []);
 
-  if (!emails) {
-    return res.status(400).send("emails is required");
-  }
+    const baseUrl = "https://ciie-request-backend.onrender.com";
 
-  if (!Array.isArray(emails)) {
-    emails = [emails]; // Convert to array if it's a single email
-  }
+    const handleEmailChange = (e) => {
+        const { value } = e.target;
 
-  // Efficiently handle "everyone@stu.srmuniversity.ac.in" case
-  const studentEmails = emails.includes('everyone@stu.srmuniversity.ac.in') ?
-    await User.find({ email: /@stu\.srmuniversity\.ac\.in$/ }).select('email -_id') : [];
+        // Split input by commas or spaces, trim whitespace, and filter out empty strings
+        const emails = value.split(/[ ,]+/)
+            .map(email => email.trim())
+            .filter(email => email !== "");
 
-  const studentEmailList = studentEmails.map(user => user.email);
-
-  // Combine student emails with other specified emails (if any)
-  const finalEmails = emails.filter(email => email !== 'everyone@stu.srmuniversity.ac.in');
-  finalEmails.push(...studentEmailList);
-
-  if (finalEmails.length === 0) {
-    return res.status(404).send("No email addresses provided");
-  }
-
-  finalEmails.forEach(email => {
-    const mailOptions = {
-      from: process.env.SMTP_MAIL,
-      to: email,
-      subject: subject,
-      text: message,
+        setEmailIds(emails.join(', '));
     };
 
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(`Error sending email to ${email}: `, error);
-      } else {
-        console.log(`Email sent successfully to ${email}!`);
-      }
-    });
-  });
+    const sendEmail = async () => {
+        try {
+            const emails = emailIds.split(',').map(email => email.trim());
 
-  res.status(200).send("Emails sent successfully!");
-});
+            const dataSend = {
+                emails: emails,
+                subject: subject,
+                message: message,
+            };
 
-module.exports = { sendEmail };
+            const res = await fetch(`${baseUrl}/email/sendEmail`, {
+                method: "POST",
+                body: JSON.stringify(dataSend),
+                headers: {
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (res.ok) {
+                toast.success("Message sent successfully!");
+            } else {
+                toast.error("Failed to send message");
+            }
+        } catch (error) {
+            console.error('Error sending email: ', error);
+            toast.error("An error occurred while sending the message");
+        }
+    };
+
+    return (
+        <>
+            <App />
+            <BackdropAnimation />
+            <div className="container mx-auto">
+                <div className="overflow-x-auto">
+                    <div className="flex flex-col space-y-4 p-4">
+                        <input
+                            type="text"
+                            placeholder="Subject"
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}
+                            className="p-2 border border-gray-300 rounded"
+                        />
+                        <textarea
+                            placeholder="Enter multiple email IDs separated by commas"
+                            value={emailIds}
+                            onChange={handleEmailChange}
+                            onBlur={handleEmailChange}
+                            className="p-2 border border-gray-300 rounded"
+                            rows="4"
+                        />
+                        <textarea
+                            placeholder="Message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                            className="p-2 border border-gray-300 rounded"
+                            rows="4"
+                        />
+                        <button
+                            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+                            onClick={sendEmail}
+                        >
+                            Send
+                        </button>
+                    </div>
+                </div>
+                <Toaster position='bottom-center' />
+            </div>
+        </>
+    );
+};
+
+export default SuccessPage;
