@@ -88,6 +88,14 @@ export const siteConfig = {
  
       href: "/resetPassword",
     },
+    {
+ 
+      href: "/setting",
+    },
+    {
+ 
+      href: "/broadcast",
+    },
   ],
 
   navMenuItems: [

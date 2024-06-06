@@ -115,7 +115,10 @@ export default function App() {
             </DropdownItem>
             <DropdownItem key="settings">My Settings</DropdownItem>
             <DropdownItem key="team_settings">Team Settings</DropdownItem>
-            <DropdownItem key="analytics">Analytics</DropdownItem>
+            <DropdownItem key="analytics">
+              <Link color="foreground" href="/broadcast">
+                Broadcast
+              </Link></DropdownItem>
             <DropdownItem key="system">System</DropdownItem>
        
             <DropdownItem key="configurations" href="/">Ciie Page</DropdownItem>
