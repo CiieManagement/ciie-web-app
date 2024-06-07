@@ -99,7 +99,7 @@ const SuccessPage = () => {
                             rows="4"
                         />
                         <button
-                            className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+                            className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-600"
                             onClick={sendEmail}
                         >
                             Send

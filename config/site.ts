@@ -134,7 +134,7 @@ export const siteConfig = {
     },
     {
       label: "Login",
-      href: "/Login",
+      href: "/login",
     },
   ],
   links: {
