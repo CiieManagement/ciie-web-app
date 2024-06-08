@@ -24,17 +24,17 @@ const SuccessPage = () => {
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [router]);
 
     const baseUrl = "https://ciie-request-backend.onrender.com";
 
-    const handleEmailChange = (e) => {
+    const handleEmailChange = (e: { target: { value: any; }; }) => {
         const { value } = e.target;
 
         // Split input by commas or spaces, trim whitespace, and filter out empty strings
         const emails = value.split(/[ ,]+/)
-            .map(email => email.trim())
-            .filter(email => email !== "");
+            .map((email: string) => email.trim())
+            .filter((email: string) => email !== "");
 
         setEmailIds(emails.join(', '));
     };
@@ -80,7 +80,7 @@ const SuccessPage = () => {
                             type="text"
                             placeholder="Subject"
                             value={subject}
-                            onChange={(e) => setSubject(e.target.value)}
+                            onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setSubject(e.target.value)}
                             className="p-2 border border-gray-300 rounded"
                         />
                         <textarea
