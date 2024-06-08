@@ -136,6 +136,7 @@ export const siteConfig = {
       label: "Login",
       href: "/login",
     },
+     
   ],
   links: {
     github: "https://github.com/nextui-org/nextui",
