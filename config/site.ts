@@ -1,4 +1,5 @@
 import { AuthErrorCodes } from "@firebase/auth";
+import { Label } from "@headlessui/react";
 
 export type SiteConfig = typeof siteConfig;
 
@@ -33,7 +34,7 @@ export const siteConfig = {
       href: "/about",
     },
     {
- 
+       
       href: "/admin",
     },
     {

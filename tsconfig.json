@@ -22,6 +22,6 @@
       "@/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/sendAcceptanceEmail.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/api/sendAcceptanceEmail.js", "pages/certifications/model.js"],
   "exclude": ["node_modules"]
 }
