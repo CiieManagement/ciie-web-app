@@ -23,6 +23,16 @@ const Strings2 = {
         github: "",
       },
       3: {
+        name: "Shivansh Shukla",
+        domain: "Full Stack Developer",
+        image: "../CoreMembersImages/shivansh.jpg",
+        description:
+          "As a full stack development enthusiast, I am passionate about crafting engaging user experiences. With expertise in HTML, CSS, JavaScript, Python, and Django, I excel in creating intuitive interfaces that captivate users. My strong problem-solving skills and commitment to developing scalable applications drive me to deliver secure and maintainable web solutions. Leveraging practical experience with front-end frameworks like React.js and backed by proficiency in MySQL, PostgreSQL, Node.js, and Django, I am poised to create dynamic, responsive, and high-quality web applications. ",
+        gender: "male",
+        linkedin: "https://www.linkedin.com/in/samarth-pal-9701ba235/",
+        github: "",
+      },
+      4: {
         name: "Sumit Kumar",
         domain: "Data Science, ML",
         image: "../CoreMembersImages/sumit.jpg",
@@ -39,7 +49,7 @@ const Strings2 = {
       1: {
         name: "shashwat kapoor",
         domain: "IOT and robotics",
-        image: "../CoreMembersImages/shashwat.jpg",
+        image: "",
         description:
           ".I specialize in designing and implementing innovative solutions in IoT and robotics, leveraging cutting-edge technologies to drive efficiency and performance. My focus is on pushing the boundaries of technology in dynamic environments and contributing significantly to impactful projects.",
         gender: "male",
