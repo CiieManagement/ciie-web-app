@@ -24,6 +24,7 @@ export default function DocsPage() {
     { label: 'Core Student Members', link: '/core_student_members' },
     { label: 'Alumni', link: '/allumni' },
     { label: 'Certifications', link: '/certifications' },
+    { label: 'Internal Faculty', link: '/internalFaculty' },
   ];
 
   return (
