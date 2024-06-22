@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
 import { title, subtitle } from "@/components/primitives";
 import DefaultLayout from "@/layouts/default";
 import Image from "next/image";
@@ -11,20 +11,17 @@ import {
 import { AllAboutLearningCard } from "@/components/widgets/homeScreenCards";
 import { TeamCardForHome } from "@/components/widgets/TeamCard";
 import { Strings } from "@/public/values/strings";
-import { auth } from '../components/firebaseConfig';
+import { auth } from "../components/firebaseConfig";
 
 export default function IndexPage() {
-  const [username, setUsername] = useState('');
-
- 
-  
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsername(user.displayName || user.email); // Use displayName or email as fallback
+        setUsername(user.displayName! || user.email!); // Use displayName or email as fallback
       } else {
-        setUsername('');
+        setUsername("");
       }
     });
 
@@ -34,7 +31,7 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <BackdropAnimation />
-    
+
       <section className="flex flex-col items-center justify-center gap-4 py-2 md:py-10 duration-400 transition-all">
         {/* WELCOME CARD */}
         <div className="flex flex-col sm:mx-10 lg:flex-row text-center">
