@@ -105,7 +105,7 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Projects",
+      label: "Reports",
       href: "/projects",
     },
     {
@@ -119,23 +119,6 @@ export const siteConfig = {
     {
       label: "About Us",
       href: "/about",
-    },
-    {
-      label: "Timeline",
-      href: "/timeline",
-    },
-    {
-      label: "Settings",
-      href: "/settings",
-    },
-    {
-      label: "Help & Feedback",
-      href: "/help-feedback",
-      
-    },
-    {
-      label: "Login",
-      href: "/login",
     },
      
   ],

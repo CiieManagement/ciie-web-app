@@ -11,7 +11,7 @@ import {
   NavbarMenuItem,
   Dropdown,
   DropdownItem,
-  DropdownMenu
+  DropdownMenu,
 } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import { siteConfig } from "@/config/site";
@@ -25,20 +25,20 @@ import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
 import { auth } from "./firebaseConfig"; // Ensure this import is correct
 import { Menu } from "@headlessui/react";
-import adminData from './admins.json';
- export const Navbar = () => {
+import adminData from "./admins.json";
+export const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState<User | null>(null);
-  const [username, setUsername] = useState<string>('');
+  const [username, setUsername] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsername(user.displayName || user.email || ''); // Use displayName, email or fallback to empty string
-        setIsAdmin(adminData.admins.includes(user.email || ''));
+        setUsername(user.displayName || user.email || ""); // Use displayName, email or fallback to empty string
+        setIsAdmin(adminData.admins.includes(user.email || ""));
       } else {
-        setUsername('');
+        setUsername("");
         setIsAdmin(false);
       }
     });
@@ -113,7 +113,10 @@ import adminData from './admins.json';
         </div>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
@@ -142,11 +145,20 @@ import adminData from './admins.json';
                         <p className="font-semibold">Signed in as</p>
                         <p className="font-semibold">{username}</p>
                       </DropdownItem>
-                      <DropdownItem key="settings"> <Link color="foreground" href="/setting">My Settings</Link></DropdownItem>
-                      <DropdownItem key="team_settings">Team Settings</DropdownItem>
+                      <DropdownItem key="settings">
+                        {" "}
+                        <Link color="foreground" href="/setting">
+                          My Settings
+                        </Link>
+                      </DropdownItem>
+                      <DropdownItem key="team_settings">
+                        Team Settings
+                      </DropdownItem>
                       <DropdownItem key="analytics">Analytics</DropdownItem>
                       <DropdownItem key="system">System</DropdownItem>
-                      <DropdownItem key="configurations">Configurations</DropdownItem>
+                      <DropdownItem key="configurations">
+                        Configurations
+                      </DropdownItem>
                       {isAdmin ? (
                         <DropdownItem key="admin_section">
                           <Link color="foreground" href="/admin">
@@ -199,15 +211,9 @@ import adminData from './admins.json';
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
-              <Link href="/"
-                color={
-                  index === 0
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "danger"
-                    : "foreground"
-                }
-                
+              <Link
+                href={item.href}
+                color={index === 0 ? "primary" : "foreground"}
                 size="lg"
               >
                 {item.label}
