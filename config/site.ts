@@ -1,9 +1,10 @@
-import { AuthErrorCodes } from "@firebase/auth";
-import { Label } from "@headlessui/react";
 
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
+
+
+
   name: "CIIE - SRM University",
   description:
     "Welcome to the Center of Innovation, Incubation and Entrepreneurship",
@@ -109,8 +110,16 @@ export const siteConfig = {
       href: "/projects",
     },
     {
+      label: "My Setting",
+      href: "/setting",
+    },
+    {
       label: "Verge",
       href: "/verge",
+    },
+    {
+      label: "Admin Section",
+      href: "/admin",
     },
     {
       label: "Events",
