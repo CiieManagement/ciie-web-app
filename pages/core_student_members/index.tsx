@@ -31,8 +31,8 @@ const Index = () => {
     <div>
       <Navbar />
       <BackdropAnimation />
-      <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-gray-900 bg-opacity-80 rounded-lg max-w-6xl mx-auto">
-        <h1 className="mt-4 text-3xl font-bold mb-10 text-white md:text-4xl">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-opacity-80 rounded-lg max-w-6xl mx-auto">
+        <h1 className="mt-4 text-3xl font-bold mb-10 md:text-4xl">
           Team Members
         </h1>
         <div className="flex space-x-4 mb-8">
@@ -52,17 +52,17 @@ const Index = () => {
         </div>
         <div className="transition-all duration-300 max-w-4xl mx-auto">
           {activeTab === 'Third Year' && (
-            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-3 sm:grid-cols-2">
+            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-2 sm:grid-cols-2">
               {renderTeamMembers(Object.values(Strings2.Third_Year))}
             </div>
           )}
           {activeTab === 'Second Year' && (
-            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-3 sm:grid-cols-2">
+            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-2 sm:grid-cols-2">
               {renderTeamMembers(Object.values(Strings2.Second_Year))}
             </div>
           )}
           {activeTab === 'First Year' && (
-            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-3 sm:grid-cols-2">
+            <div className="grid gap-y-10 gap-x-5 sm:gap-y-4 md:grid-cols-2 sm:grid-cols-2">
               {renderTeamMembers(Object.values(Strings2.First_Year))}
             </div>
           )}

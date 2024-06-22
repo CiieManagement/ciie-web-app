@@ -1,6 +1,5 @@
 import React from "react";
-import { Image } from "@nextui-org/image";
-
+import Image from "next/image";
 interface professorProp {
   name: string;
   designation: string;
@@ -51,7 +50,10 @@ function SpeechCard(props: professorProp) {
         <Image
           src={props.image}
           alt=""
-          className=" shadow-md mx-auto w-auto md:max-w-[300px] rounded-2xl max-h-[300px] md:max-h-none 3xl"
+          layout="responsive"
+          width={0}
+          height={0}
+          className=" shadow-md mx-auto w-full rounded-2xl md:max-h-none"
         />
       </div>
 
@@ -89,8 +91,11 @@ function TeamMemberCard(props: teamMember) {
     <div className="relative flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
       <div className="flex place-content-center">
         <Image
-          className="max-w-[150px] md:max-w-[100px] md:max-h-[200px] ml-auto rounded-3xl"
+          className=" mx-auto ml-auto rounded-3xl"
           src={props.image}
+          width={0}
+          height={100}
+          layout="responsive"
           loading="lazy"
           alt="img"
         />
@@ -98,7 +103,7 @@ function TeamMemberCard(props: teamMember) {
 
       <div className="flex flex-col">
         <h1 className="mt-5 md:text-xl text-lg font-bold">{props.name}</h1>
-        <h1 className="md:text-md text-sm text-[#4ce5eb]">{props.domain}</h1>
+        <h1 className="md:text-md text-sm text-secondary">{props.domain}</h1>
         <h1 className="mt-2 md:text-md text-sm text-left">{props.description}</h1>
       </div>
 
@@ -110,6 +115,8 @@ function TeamMemberCard(props: teamMember) {
             <Image
               src="/icons/github.svg"
               alt="GitHub"
+              width={0}
+              height={0}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
             />
           </a>
@@ -119,6 +126,8 @@ function TeamMemberCard(props: teamMember) {
             <Image
               src="/icons/linkedin.png"
               alt="LinkedIn"
+              width={0}
+              height={0}
               className="w-5 h-5 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>

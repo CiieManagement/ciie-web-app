@@ -5,7 +5,7 @@ const Strings2 = {
       1: {
         name: "Prashansha Erica Prakash",
         domain: "Full Stack Developer",
-        image: "../CoreMembersImages/ercia.jpg",
+        image: "/CoreMembersImages/ercia.jpg",
         description:
           "As a full stack development enthusiast, I am passionate about crafting engaging user experiences. With expertise in HTML, CSS, JavaScript, Python, and Django, I excel in creating intuitive interfaces that captivate users. My strong problem-solving skills and commitment to developing scalable applications drive me to deliver secure and maintainable web solutions. Leveraging practical experience with front-end frameworks like React.js and backed by proficiency in MySQL, PostgreSQL, Node.js, and Django, I am poised to create dynamic, responsive, and high-quality web applications.",
         gender: "Female",
@@ -15,7 +15,7 @@ const Strings2 = {
       2: {
         name: "Samarth Pal",
         domain: "Cloud and Java Dev",
-        image: "../CoreMembersImages/samarth.png",
+        image: "/CoreMembersImages/samarth.png",
         description:
           "I am a Cloud and Java Developer with extensive experience in developing and deploying cloud-based applications using AWS and Azure. My expertise includes working with various AWS services such as EC2, S3, Lambda Functions, Elastic Beanstalk, and CloudFormation. I am also proficient in utilizing Azure services like Azure Functions and Virtual Machines. I have a strong background in cloud architecture, microservices, Kubernetes, Docker, and serverless computing. ",
         gender: "male",
@@ -25,7 +25,7 @@ const Strings2 = {
       3: {
         name: "Shivansh Shukla",
         domain: "Full Stack Developer",
-        image: "../CoreMembersImages/shivansh.jpg",
+        image: "/CoreMembersImages/shivansh.jpg",
         description:
           "As a full stack development enthusiast, I am passionate about crafting engaging user experiences. With expertise in HTML, CSS, JavaScript, Python, and Django, I excel in creating intuitive interfaces that captivate users. My strong problem-solving skills and commitment to developing scalable applications drive me to deliver secure and maintainable web solutions. Leveraging practical experience with front-end frameworks like React.js and backed by proficiency in MySQL, PostgreSQL, Node.js, and Django, I am poised to create dynamic, responsive, and high-quality web applications. ",
         gender: "male",
@@ -35,7 +35,7 @@ const Strings2 = {
       4: {
         name: "Sumit Kumar",
         domain: "Data Science, ML",
-        image: "../CoreMembersImages/sumit.jpg",
+        image: "/CoreMembersImages/sumit.jpg",
         description:
           "oriented with over 2 years of experience in data manipulation, visualization, and reporting. Proficient in Python (Pandas), Jupyter Notebook, SQL (Server and Workbench), and Microsoft Office Suite (Excel, Power BI). Demonstrated leadership and mentorship abilities through active involvement in hackathons and workshops as a mentor at CIIE-SRMUH. Adept at translating complex data into actionable insights, fostering innovative problem-solving approaches, and guiding teams to achieve goals efficiently.",
         gender: "male",
@@ -70,7 +70,7 @@ const Strings2 = {
       3: {
         name: " Mokksh Kapur",
         domain: "Ai ML and Python",
-        image: "../CoreMembersImages/moksh.jpg",
+        image: "/CoreMembersImages/moksh.jpg",
         description:
           "I'm Mokksh Kapur, a dedicated and enthusiastic individual who values innovation and personal growth. My Area of Work includes Machine Learning and Python. My background includes leadership roles, such as serving as the Leading member of CIIE and GDSC, where I've organized successful events that fostered an environment of creativity and forward thinking Am Associated with CIIE as Innovation Head and Core member of CIIE Tech Team In it I Organize Workshops , Hackathons and Build many Projects in Ml and Analytics Also Recently finished as IOT Lead in GDSC.",
         gender: "Male",
@@ -84,7 +84,7 @@ const Strings2 = {
       1: {
         name: "Angel Gupta",
         domain: "Web Development | DSA",
-        image: "../CoreMembersImages/angel.jpg",
+        image: "/CoreMembersImages/angel.jpg",
         description:
           "Engineering student specializing in Data Structures and Algorithms (DSA) in C and web development. Skilled in building efficient algorithms and dynamic web applications. Proficient in C and C++, HTML, CSS, and JavaScript, with hands-on experience in competitive programming and responsive design. Passionate about problem-solving and eager to apply technical skills in real-world projects. Committed to continuous learning and professional growth in the tech industry. Let's connect to explore opportunities in software development and engineering.",
         gender: "Female",
@@ -94,7 +94,7 @@ const Strings2 = {
       2: {
         name: "Alvia fatima",
         domain: "Medical Robotics Equipments Dev",
-        image: "../CoreMembersImages/alvia.jpg",
+        image: "/CoreMembersImages/alvia.jpg",
         description:
           "As a first-year biomedical engineering student, I am  embarking on an exciting journey at the intersection of biology, medicine, and engineering. I am passionate about using technology and innovation to solve complex medical challenges and improve healthcare outcomes. My coursework includes foundational subjects such as biology, chemistry, physics, and mathematics, alongside introductory engineering principles and programming.",
         gender: "Female",
@@ -134,7 +134,7 @@ const Strings2 = {
       6: {
         name: "Aayush Mishra",
         domain: "IOT and AUTOMATION",
-        image: "../CoreMembersImages/ayush.jpg",
+        image: "/CoreMembersImages/ayush.jpg",
         description:
           "I am a new lerner with old experiences that help me build new technologies a better way. I've worked in the field of automation for around 3 years and done few local as well as professional projects. I can confidently say that I'm reliable for my domain feild when it comes to do an assigned project. Other than this, i have some knowledge about fields like web dev and one thing more which you'll find me good is ideation.",
         gender: "male",
@@ -144,7 +144,7 @@ const Strings2 = {
       7: {
         name: "Shivam Jaiswal",
         domain: "Web Development (Full-Stack)",
-        image: "../CoreMembersImages/shivam.jpg",
+        image: "/CoreMembersImages/shivam.jpg",
         description:
           "Hii! Myself Shivam, Computer Science Student, passionate about leveraging technology to drive innovation and solve real-world problems. Eager to learn and apply theoretical concepts to practical scenarios. Interested in exploring various facets of computer science, including programming, algorithms, and system design. Enthusiastic about staying updated with the latest advancements in the tech industry, attending workshops, and engaging in coding challenges.",
         gender: "male",

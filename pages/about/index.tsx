@@ -29,11 +29,11 @@ export default function DocsPage() {
 
   return (
     <DefaultLayout>
-      <div className="relative   bg-black flex items-center justify-center py-12">
+      <div className="relative  flex items-center justify-center py-12">
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-gray-900 bg-opacity-80 rounded-lg">
-          <h1 className="text-4xl font-bold text-white mb-4">Learn More About Us</h1>
-          <p className="text-lg text-gray-300 mb-8 max-w-2xl">
+        <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-gray-400/20 bg-opacity-80 rounded-lg">
+          <h1 className="text-4xl font-bold mb-4">Learn More About Us</h1>
+          <p className="text-lg opacity-65 mb-8 max-w-2xl">
             Discover our mission, vision, the mentors guiding us, core student members, alumni who have moved on to great things, and the certifications we have. Click on any button below to explore more.
           </p>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
