@@ -51,8 +51,8 @@ function SpeechCard(props: professorProp) {
           src={props.image}
           alt=""
           layout="responsive"
-          width={0}
-          height={0}
+          width={100}
+          height={100}
           className=" shadow-md mx-auto w-full rounded-2xl md:max-h-none"
         />
       </div>
@@ -75,7 +75,7 @@ function SpeechCard(props: professorProp) {
 function VisionCard(props: visionProp) {
   return props.fixedflex ? (
     <div className=" border-2 border-gray-400/20 bg-gray-300/20 flex flex-col rounded-2xl backdrop-blur-sm p-5">
-      <Image src={props.image} alt="img"/>
+      <Image src={props.image} layout="responsive" width={0} height={0} alt="img"/>
       <h1 className=" mt-5 text-md">{props.visionText}</h1>
     </div>
   ) : (
