@@ -27,7 +27,7 @@ function SearchingForInnovationCard() {
                     <Link href="/connect">
                         <button className='mt-auto mb-2 w-fit rounded-full py-2 mx-auto shadow-sm text-white font-bold hover:scale-110 transition-all duration-300 px-4 bg-gradient-to-l from-purple-500 to-blue-400'> Join and Innovate with us</button>
                     </Link>
-                    <button className='mb-10 w-fit rounded-full py-2 mx-auto shadow-sm text-white font-bold px-4 bg-gradient-to-l hover:scale-110 transition-all duration-300 from-purple-500 to-blue-400'> Or independently contribute your ideas</button>
+                    <button className='mb-auto w-fit rounded-full py-2 mx-auto shadow-sm text-white font-bold px-4 bg-gradient-to-l hover:scale-110 transition-all duration-300 from-purple-500 to-blue-400'> Or independently contribute your ideas</button>
                 </div>
                 <div className='m-10 max-w-[300px]'>
                     <Image src={'/telescope.svg'} layout='responsive' width={100} height={100} alt={''} className='' />
