@@ -72,16 +72,6 @@ const Strings = {
       linkedin: "",
       github: "",
     },
-    3: {
-      name: "Arjun Rai",
-      domain: "UI/UX Developer",
-      image: "",
-      description:
-        "I am a UI/UX Developer with experience in designing and developing user interfaces for web and mobile applications. I am proficient in using design tools such as Figma and Adobe XD.",
-      gender: "male",
-      linkedin: "https://www.linkedin.com/in/arjun-rai-aa8235299/",
-      github: "https://github.com/raiarjun2005",
-    },
     4: {
       name: "Manan Kashyap",
       domain: "UI/UX Dev | Python Dev",
@@ -92,7 +82,7 @@ const Strings = {
       linkedin: "http://www.linkedin.com/in/manan-kashyap-294706264",
       github: "https://github.com/manankashyap134",
     },
-    5: {
+    3: {
       name: "Sahil Tiwari",
       domain: "App Dev | Web App Dev",
       image: "",
@@ -101,6 +91,16 @@ const Strings = {
       gender: "male",
       linkedin: "",
       github: "",
+    },
+    5: {
+      name: "Arjun Rai",
+      domain: "UI/UX Developer",
+      image: "",
+      description:
+        "I am a UI/UX Developer with experience in designing and developing user interfaces for web and mobile applications. I am proficient in using design tools such as Figma and Adobe XD.",
+      gender: "male",
+      linkedin: "https://www.linkedin.com/in/arjun-rai-aa8235299/",
+      github: "https://github.com/raiarjun2005",
     },
   },
   alumni: {
