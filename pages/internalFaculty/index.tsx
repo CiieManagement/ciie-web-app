@@ -31,7 +31,7 @@ const DocsPage = () => {
                 linkedin={member.linkedin}
                 github={member.github}
                 twitter = {member.twitter}   
-                google_scholar={member.google_scholar}        />
+                google_scholar={member.google_scholar}/>
             ))}
           </div>
         </div>

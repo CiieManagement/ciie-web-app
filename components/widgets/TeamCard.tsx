@@ -87,8 +87,8 @@ function TeamCardForHome({ teamMembers }: TeamListingProps) {
             </div>
 
 
-            {/* Mobile view */}
-            {/* <div className=' flex flex-col lg:hidden lg:flex-row mx-auto mt-20'>
+            Mobile view
+            <div className=' flex flex-col lg:hidden lg:flex-row mx-auto mt-20'>
 
                 <div className=' flex mx-auto mt-5 flex-col max-w-lg lg:mr-10 z-20 backdrop-blur-sm'>
                     <h1 className=' font-bold text-3xl lg:text-5xl text-[#8800ff] text-center mt-5 lg:mt-0 max-w-lg'>
@@ -127,7 +127,7 @@ function TeamCardForHome({ teamMembers }: TeamListingProps) {
 
                 <button className=' mt-5 mb-auto w-fit rounded-full py-2 mx-auto shadow-sm text-white font-bold hover:scale-110 transition-all duration-300 px-4 bg-gradient-to-l from-purple-500 to-blue-400'> View the whole team</button>
 
-            </div> */}
+            </div>
 
         </div>
 

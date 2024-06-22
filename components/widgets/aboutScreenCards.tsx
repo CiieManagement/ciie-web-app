@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { px } from "framer-motion";
 interface professorProp {
   name: string;
   designation: string;
@@ -146,6 +147,8 @@ function AllumniCard(props: allumni) {
           src={props.image}
           loading="lazy"
           alt="img"
+          width={100}
+          height={100}
         />
       </div>
 
@@ -164,6 +167,8 @@ function AllumniCard(props: allumni) {
             <Image
               src="/icons/github.svg"
               alt="GitHub"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
             />
           </a>
@@ -173,6 +178,8 @@ function AllumniCard(props: allumni) {
             <Image
               src="/icons/linkedin.png"
               alt="LinkedIn"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
@@ -182,6 +189,8 @@ function AllumniCard(props: allumni) {
             <Image
               src="/icons/twitter.png"
               alt="Twitter"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
@@ -190,25 +199,25 @@ function AllumniCard(props: allumni) {
     </div>
   );
 }
-
-
-function InternalFaculty(props:InternalFaculty) {
+function InternalFaculty(props: InternalFaculty) {
   return (
-    <div className="relative flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
-      <div className="flex place-content-center">
+    <div className="relative flex flex-col items-center md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
+      <div className="flex justify-center w-full">
         <Image
-          className="max-w-[150px] md:max-w-[100px] md:max-h-[200px] ml-auto rounded-3xl"
+          className="max-w-[150px] md:max-w-[100px] md:max-h-[200px] rounded-3xl"
           src={props.image}
           loading="lazy"
           alt="img"
+          width={100}
+          height={100}
         />
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center text-center">
         <h1 className="mt-5 md:text-xl text-lg font-bold">{props.name}</h1>
         <h1 className="md:text-xs text-small font-bold">{props.position}</h1>
         <h1 className="md:text-md text-sm text-[#4ce5eb]">{props.domain}</h1>
-        <h1 className="mt-2 md:text-md text-sm text-left">{props.description}</h1>
+        <h1 className="mt-2 md:text-md text-sm">{props.description}</h1>
       </div>
 
       <br />
@@ -219,6 +228,8 @@ function InternalFaculty(props:InternalFaculty) {
             <Image
               src="/icons/github.svg"
               alt="GitHub"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
             />
           </a>
@@ -228,6 +239,8 @@ function InternalFaculty(props:InternalFaculty) {
             <Image
               src="/icons/linkedin.png"
               alt="LinkedIn"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
@@ -237,6 +250,8 @@ function InternalFaculty(props:InternalFaculty) {
             <Image
               src="/icons/twitter.png"
               alt="Twitter"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
@@ -246,6 +261,8 @@ function InternalFaculty(props:InternalFaculty) {
             <Image
               src="/icons/Google Scholar.png"
               alt="Google Scholar"
+              width={0}
+              height={100}
               className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
@@ -254,6 +271,7 @@ function InternalFaculty(props:InternalFaculty) {
     </div>
   );
 }
+
 
 export { SpeechCard };
 export { VisionCard };
