@@ -27,11 +27,9 @@ export default function DefaultLayout({
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">
-                Shivansh Bhaiya ka Title
-              </ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Title</ModalHeader>
               <ModalBody>
-				Shivansh Bhaiya ki body <br></br>
+                body <br></br>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   Nullam pulvinar risus non risus hendrerit venenatis.
@@ -74,7 +72,7 @@ export default function DefaultLayout({
             className=" cursor-pointer flex items-center gap-1 text-current"
             // href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
             onClick={onOpen}
-			title="nextui.org homepage"
+            title="nextui.org homepage"
           >
             <span className="text-default-600">Created by </span>
             <p className="text-[#8800ff]">CIIE Core Team</p>
