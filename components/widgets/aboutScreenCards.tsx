@@ -81,7 +81,7 @@ function VisionCard(props: visionProp) {
     </div>
   ) : (
     <div className=" flex flex-col sm:flex-row md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm py-2 px-3">
-      <Image className=" max-h-[300]" src={props.image} loading="lazy" alt="img"/>
+      <Image className=" max-h-[300]" src={props.image} loading="lazy" alt="img" width={300} height={40}/>
       <h1 className=" mt-5 md:text-xl text-lg">{props.visionText}</h1>
     </div>
   );

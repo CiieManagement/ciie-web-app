@@ -9,11 +9,7 @@ import DefaultLayout from '@/layouts/default';
 const Index = () => {
   return (
     <DefaultLayout>
-          <Link href="/about">
-            <Button color="danger" variant="bordered" startContent={<IoMdExit className="transform rotate-180 size-7" />}>
-              About Page
-            </Button>
-          </Link>
+        
       <div className="relative min-h-screen mt-5">
        
         {/* Admin Button */}

@@ -8,22 +8,10 @@ import DefaultLayout from '@/layouts/default';
 
 const Index = () => {
   return (
-    <DefaultLayout>
-      <div className="relative min-h-screen py-12">
-        {/* Navigation Button */}
-        <Link href="/about">
-          <Button
-            color="danger"
-            variant="bordered"
-            startContent={<IoMdExit className="transform rotate-180 size-7" />}
-            className="ml-10 absolute top-0"
-          >
-            Admin Page
-          </Button>
-        </Link>
+    <DefaultLayout>        
         
         {/* Main Content */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 py-8  bg-opacity-80 rounded-lg max-w-6xl mx-auto">
+        <div className="relative z-10 flex flex-col items-center text-center px-4   bg-opacity-80 rounded-lg max-w-6xl mx-auto">
           <h1 className="mt-4 text-left text-3xl font-bold mb-10 md:text-4xl">
             Some Golden Words...
           </h1>
@@ -39,8 +27,7 @@ const Index = () => {
             ))}
           </div>
         </div>
-      </div>
-    </DefaultLayout>
+     </DefaultLayout>
   );
 };
 
