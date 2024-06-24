@@ -27,7 +27,7 @@ const Strings2 = {
         domain: "Full Stack Developer",
         image: "",
         description:
-          "As a full stack development enthusiast, I am passionate about crafting engaging user experiences. With expertise in HTML, CSS, JavaScript, Python, and Django, I excel in creating intuitive interfaces that captivate users. My strong problem-solving skills and commitment to developing scalable applications drive me to deliver secure and maintainable web solutions. Leveraging practical experience with front-end frameworks like React.js and backed by proficiency in MySQL, PostgreSQL, Node.js, and Django, I am poised to create dynamic, responsive, and high-quality web applications. ",
+          "I am a passionate full stack developer who excels in crafting engaging user experiences. My expertise in HTML, CSS, JavaScript, Python, React and Next allows me to create intuitive interfaces that captivate users. With strong problem-solving skills and a commitment to developing scalable applications, I consistently deliver secure and maintainable web solutions. My practical experience with front-end frameworks like React.js, combined with proficiency in MySQL, PostgreSQL, Node.js, and Django, positions me to create dynamic, responsive, and high-quality web applications.",
         gender: "male",
         linkedin: "https://www.linkedin.com/in/samarth-pal-9701ba235/",
         github: "",
@@ -45,7 +45,7 @@ const Strings2 = {
       5: {
         name: "Karan Singh",
         domain: "AI & ML",
-        image: " ",
+        image: "",
         description:
         "I am a Machine Learning Enthusiast passionate about leveraging artificial intelligence and data science to solve complex problems and create innovative solutions. My experience lies in concepts like natural language processing (NLP), deep learning, search algorithms, and probabilistic models. I am a continuous learner, actively expanding my knowledge through online courses, conferences, research papers, and contributions to open-source projects.",
         gender: "male",
