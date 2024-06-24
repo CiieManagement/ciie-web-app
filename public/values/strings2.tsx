@@ -3,7 +3,7 @@ const Strings2 = {
    
     Third_Year: {
       1: {
-        name: "Prashansha Erica Prakash",
+        name: "Prashansa Erica Prakash",
         domain: "Full Stack Developer",
         image: "/CoreMembersImages/ercia.jpg",
         description:
@@ -42,9 +42,37 @@ const Strings2 = {
         linkedin: "https://www.linkedin.com/in/sumit-kumar-2a5873222",
         github: "https://github.com/gsumithub",
       },
-    
+      5: {
+        name: "Karan Singh",
+        domain: "AI & ML",
+        image: " ",
+        description:
+        "I am a Machine Learning Enthusiast passionate about leveraging artificial intelligence and data science to solve complex problems and create innovative solutions. My experience lies in concepts like natural language processing (NLP), deep learning, search algorithms, and probabilistic models. I am a continuous learner, actively expanding my knowledge through online courses, conferences, research papers, and contributions to open-source projects.",
+        gender: "male",
+        linkedin: "http://www.linkedin.com/in/karan-singh-7864332b6",
+      },
+      6: {
+        name: "Aryan Gupta",
+        domain: "AI & ML and microcontroller programmer",
+        image: "/CoreMembersImages/aryan.jpg",
+        description:
+        " Aspiring AI & ML engineer with a passion for building intelligent systems. Proven experience in microcontroller programming, swarm robotics, and automation lays a strong foundation for developing practical applications of AI and machine learning. Eager to contribute to a team tackling real-world challenges with innovative solutions.",
+        gender: "male",
+        linkedin: "https://www.linkedin.com/in/aryan-gupta-299a80235?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      },
+      7: {
+        name: "Rahul Soral",
+        domain: "Data Analyst",
+        image: "/CoreMembersImages/rahul.jpg",
+        description:
+        "My time at CIIE - SRM University sharpened my skills in data analysis, innovation, teamwork, and collaborative problem-solving. I excel in building strong relationships and driving business growth through effective data analysis and a customer-centric approach. I aim to leverage my experiences to make a tangible impact in the tech industry, focusing on data analysis excellence and business development strategies.",
+        gender: "male",
+        linkedin: "https://www.linkedin.com/in/rahul-soral",
+        github: "https://github.com/Rahul-Soral",
+      },
+      
     },
-   
+    
     Second_Year: {
       1: {
         name: "shashwat kapoor",
