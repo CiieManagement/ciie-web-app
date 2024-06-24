@@ -25,7 +25,7 @@ const Strings2 = {
       3: {
         name: "Shivansh Shukla",
         domain: "Full Stack Developer",
-        image: "#",
+        image: "",
         description:
           "As a full stack development enthusiast, I am passionate about crafting engaging user experiences. With expertise in HTML, CSS, JavaScript, Python, and Django, I excel in creating intuitive interfaces that captivate users. My strong problem-solving skills and commitment to developing scalable applications drive me to deliver secure and maintainable web solutions. Leveraging practical experience with front-end frameworks like React.js and backed by proficiency in MySQL, PostgreSQL, Node.js, and Django, I am poised to create dynamic, responsive, and high-quality web applications. ",
         gender: "male",

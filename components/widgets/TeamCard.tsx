@@ -87,7 +87,7 @@ function TeamCardForHome({ teamMembers }: TeamListingProps) {
             </div>
 
 
-            Mobile view
+       
             <div className=' flex flex-col lg:hidden lg:flex-row mx-auto mt-20'>
 
                 <div className=' flex mx-auto mt-5 flex-col max-w-lg lg:mr-10 z-20 backdrop-blur-sm'>
@@ -107,7 +107,7 @@ function TeamCardForHome({ teamMembers }: TeamListingProps) {
                         {teamMembers.map((member) => (
                             <div key={member.name} className=' flex w-full p-3 rounded-2xl bg-gray-400/20 backdrop-blur-sm mt-2'>
                                 <div className=' max-w-[100px] mr-5'>
-                                    <Image src={member.imageUrl} layout='responsive' width={50} height={20} alt={''} className=' rounded-2xl' />
+                                    <Image src={member.image} layout='responsive' width={50} height={20} alt={''} className=' rounded-2xl' />
                                 </div>
 
                                 <div>
@@ -115,7 +115,7 @@ function TeamCardForHome({ teamMembers }: TeamListingProps) {
                                         {member.name}
                                     </h1>
                                     <h1 className='text-sm opacity-70 text-left'>
-                                        {member.branch}
+                                        {member.domain}
                                     </h1>
                                 </div>
                             </div>

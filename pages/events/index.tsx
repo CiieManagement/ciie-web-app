@@ -1,14 +1,14 @@
 "use client"
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Image, Chip, Button } from '@nextui-org/react';
 import { Toaster, toast } from 'react-hot-toast';
 import Countdown from 'react-countdown';
 import DefaultLayout from '@/layouts/default';
 import { Strings } from '@/public/values/strings';
 import BackdropAnimation from '@/components/utils/backdrop_animation';
-import { Breadcrumbs } from '@nextui-org/react';
-import { BreadcrumbItem } from '@nextui-org/react';
+import { Breadcrumbs, BreadcrumbItem } from '@nextui-org/react';
+
 export default function DocsPage() {
   useEffect(() => {
     toast.success('Please scroll below to register for summer training program', {
@@ -16,14 +16,28 @@ export default function DocsPage() {
     });
   }, []);
 
+  const verify_forwar = (workshop) => {
+    const fileUrl = '/ci.pdf'; // URL of the file to download
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'rules_and_regulation.pdf'; // The name of the downloaded file
+    link.click();
+
+    const userConfirmed = confirm("Please read our terms and condition document which has already downloaded. Click ok if you are agree with us?");
+
+    if (userConfirmed) {
+      window.open(workshop.link, '_blank'); // Open the link in a new tab
+    } else {
+      toast.error('Registration canceled');
+    }
+  };
+
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
         <div className="pb-10 max-w-7xl text-center items-center justify-center place-content-center">
-          {/* Backdrop Animation */}
           <BackdropAnimation />
 
-          {/* SRM Logo */}
           <Image
             src="/srm_logo.png"
             width={100}
@@ -32,7 +46,6 @@ export default function DocsPage() {
             className="border-4 border-violet-300/50 md:hidden rounded-full mx-auto mb-3"
           />
 
-          {/* Breadcrumbs */}
           <Breadcrumbs className="md:hidden mr:auto">
             <BreadcrumbItem onClick={() => location.replace('/')}>
               CIIE Web App
@@ -42,7 +55,6 @@ export default function DocsPage() {
             </BreadcrumbItem>
           </Breadcrumbs>
 
-          {/* Header */}
           <div className="max-w-5xl w-fit mt-10 mx-auto">
             <Image
               src="/events.svg"
@@ -59,7 +71,6 @@ export default function DocsPage() {
             relaxed and inclusive environment.
           </h1>
 
-          {/* Chip container */}
           <div className="flex flex-row gap-2 mr-auto p-2 w-fit rounded-full">
             <Chip
               variant="shadow"
@@ -81,7 +92,6 @@ export default function DocsPage() {
             </Chip>
           </div>
 
-          {/* Events container */}
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
             {Object.values(Strings.events.current.workshops).map((workshop) => {
               const startDate = new Date(workshop.start_date);
@@ -93,7 +103,7 @@ export default function DocsPage() {
                 <div
                   key={workshop.name}
                   className="flex flex-col rounded-2xl max-w-md backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20 transform transition-all duration-300 hover:scale-105 hover:animate-shake"
-                  onClick={() => window.open(workshop.link, '_blank')}
+                  onClick={() => verify_forwar(workshop)}
                 >
                   <div className="flex place-content-center rounded-xl mb-2 px-2">
                     <Image
@@ -125,7 +135,6 @@ export default function DocsPage() {
                       </h1>
                     </div>
 
-                    {/* Countdown Timer */}
                     {now <= registrationDate && now <= startDate && (
                       <div className="mt-10 bg-gray-400/20 p-2 w-fit mx-auto transition-all duration-300 rounded-xl">
                         <h1 className="mr-1 font-bold mb-1">
@@ -160,7 +169,6 @@ export default function DocsPage() {
                       </div>
                     )}
 
-                    {/* Register Now Button */}
                     {now < registrationDate && (
                       <Button
                         className="mt-4 w-[90%] mx-auto"
@@ -181,7 +189,7 @@ export default function DocsPage() {
           </div>
         </div>
       </section>
-      <Toaster />
+      <Toaster position='bottom-center'/>
     </DefaultLayout>
   );
 }
