@@ -203,36 +203,40 @@ const Strings = {
       workshops: {
         1: {
           name: "App Development Workshop",
-          image: "/machine_learning.svg",
+          image: "/app.jpg",
           description:
             "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
           registration_date: "2024-05-18T10:00:00",
           start_date: "20 May 2024",
           end_date: "22 May 2024",
+          link:"https://omnidev-courses.vercel.app/app"
         },
         2: {
-          name: "Machine Learning Workshop",
-          image: "/machine_learning.svg",
-          description: "",
+          name: "Cloud Learning Workshop",
+          image: "/cloud.jpg",
+          description: "In this workshop, we dive deep into cloud technologies that are emerging nowadays",
           registration_date: "2024-05-18T12:00:00",
           start_date: "22 May 2024",
           end_date: "24 May 2024",
+          link:"https://omnidev-courses.vercel.app/cloud"
         },
         3: {
           name: "Web Development Workshop",
-          image: "/machine_learning.svg",
-          description: "",
+          image: "/web.jpg",
+          description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
           registration_date: "2024-05-18T14:00:00",
           start_date: "25 May 2024",
           end_date: "27 May 2024",
+          link: "https://omnidev-courses.vercel.app/web"
         },
         4: {
-          name: "Python Development Workshop",
-          image: "/machine_learning.svg",
-          description: "",
+          name: "Dsa Workshop",
+          image: "/dsa.jpg",
+          description: "In this workshop, we dive deep into data structures that are emerging nowadays",
           registration_date: "2024-05-18T16:00:00",
           start_date: "28 May 2024",
           end_date: "30 May 2024",
+          link:"https://omnidev-courses.vercel.app/dsa"
         },
       },
     },

@@ -117,10 +117,7 @@ export const siteConfig = {
       label: "Verge",
       href: "/verge",
     },
-    {
-      label: "Admin Section",
-      href: "/admin",
-    },
+    
     {
       label: "Events",
       href: "/events",
@@ -129,7 +126,7 @@ export const siteConfig = {
       label: "About Us",
       href: "/about",
     },
-     
+   
   ],
   links: {
     github: "https://github.com/nextui-org/nextui",

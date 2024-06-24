@@ -10,6 +10,8 @@ module.exports = {
   ],
   theme: {
     extend: {
+
+
       spacing: {
         '128': '32rem',  // 512px
         '144': '36rem',  // 576px
@@ -25,14 +27,25 @@ module.exports = {
           '0%': { transform: 'scale(0.5)', opacity: '0' },
           '100%': { transform: 'scale(1)', opacity: '1' },
         },
+        shake: {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '20%, 60%': { transform: 'translateX(-10px)' },
+          '40%, 80%': { transform: 'translateX(10px)' },
+        },
       },
       animation: {
         modalOpen: 'modalOpen 0.3s ease-out',
+        shake: 'shake 0.5s ease-in-out',
       },
    
       colors: {
         "primary" : "#8800ff"
       }
+    },
+  },
+  variants: {
+    extend: {
+      animation: ['hover'],
     },
   },
   darkMode: "class",
