@@ -138,10 +138,11 @@ function TeamMemberCard(props: teamMember) {
   );
 }
 
+ 
 function AllumniCard(props: allumni) {
   return (
-    <div className="relative flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
-      <div className="flex place-content-center">
+    <div className="relative flex flex-col items-center rounded-2xl max-w-sm mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
+      <div className="flex justify-center">
         <Image
           className="max-w-[150px] md:max-w-[100px] md:max-h-[200px] ml-auto rounded-3xl"
           src={props.image}

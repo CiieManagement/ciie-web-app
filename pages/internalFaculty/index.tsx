@@ -40,4 +40,4 @@ const DocsPage = () => {
   );
 };
 
-export default withAdminAuth(DocsPage);
+export default DocsPage;
