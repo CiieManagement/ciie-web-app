@@ -63,7 +63,7 @@ const Strings2 = {
       7: {
         name: "Rahul Soral",
         domain: "Data Analyst",
-        image: "/CoreMembersImages/rahul.jpg",
+        image: "/CoreMembersImages/Rahul.jpg",
         description:
         "My time at CIIE - SRM University sharpened my skills in data analysis, innovation, teamwork, and collaborative problem-solving. I excel in building strong relationships and driving business growth through effective data analysis and a customer-centric approach. I aim to leverage my experiences to make a tangible impact in the tech industry, focusing on data analysis excellence and business development strategies.",
         gender: "male",
