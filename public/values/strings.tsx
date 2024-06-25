@@ -6,7 +6,7 @@ const Strings = {
       speech:
         "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
       designation: "Vice Chancellor",
-      image: "/vc.jpg",
+      image: "/CoreMembersImages/vc.jpg",
     },
 
     Registrar_sir: {
@@ -14,7 +14,7 @@ const Strings = {
       speech:
         "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
       designation: "Registrar & Member Secretaryr",
-      image: "/Reg.jpg",
+      image: "/CoreMembersImages/Reg.jpg",
     },
 
     ahamadSir: {
