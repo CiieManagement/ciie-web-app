@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import {
   Button,
   Link,
@@ -21,21 +22,42 @@ import { Modal } from "@nextui-org/react";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
-import { auth } from "./firebaseConfig"; // Ensure this import is correct
+import { auth } from "./firebaseConfig";
 import { Menu } from "@headlessui/react";
 import adminData from "./admins.json";
+import { allumni } from "../public/values/allumni";
+import { InternalFacultyData } from "../public/values/InternalFaculty";
+import { Strings2 } from "../public/values/strings2";
+
+const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
+  return (
+    <ul className="absolute bg-black shadow-lg max-h-48 overflow-y-auto z-50">
+      {suggestions.map((suggestion, index) => (
+        <li
+          key={index}
+          className="px-4 py-2 cursor-pointer hover:border-2 border-gray-200"
+          onClick={() => onSuggestionClick(suggestion)}
+        >
+          {suggestion}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 export const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsername(user.displayName || user.email || ""); // Use displayName, email or fallback to empty string
+        setUsername(user.displayName || user.email || "");
         setIsAdmin(adminData.admins.includes(user.email || ""));
       } else {
         setUsername("");
@@ -59,20 +81,89 @@ export const Navbar = () => {
     window.location.href = "./";
   };
 
-  const searchInput = (
-    <Input
-      aria-label="Search"
-      classNames={{
-        inputWrapper: "bg-default-100",
-        input: "text-sm",
-      }}
-      labelPlacement="outside"
-      placeholder="Search..."
-      startContent={
-        <SearchIcon className="text-base text-default-400   pointer-events-none flex-shrink-0" />
+  const handleSearchChange = (e) => {
+    const query = e.target.value;
+    setSearchQuery(query);
+    setSuggestions(getSearchSuggestions(query));
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    if (suggestion) {
+      const source = getSuggestionSource(suggestion);
+      if (source) {
+        window.location.href = source;
       }
-      type="search"
-    />
+      setSearchQuery(suggestion);
+      setSuggestions([]);
+    }
+  };
+
+  const getSuggestionSource = (suggestion) => {
+    const alumniNames = Object.values(allumni.alumni).map((person) => person.name);
+    const facultyNames = Object.values(InternalFacultyData.InternalFacultyData).map(
+      (person) => person.name
+    );
+    const firstYearMembers = Object.values(Strings2.First_Year).map(
+      (person) => person.name
+    );
+    const secondYearMembers = Object.values(Strings2.Second_Year).map(
+      (person) => person.name
+    );
+    const thirdYearMembers = Object.values(Strings2.Third_Year).map(
+      (person) => person.name
+    );
+
+    if (alumniNames.includes(suggestion)) {
+      return "/allumni";
+    } else if (facultyNames.includes(suggestion)) {
+      return "/internalFaculty";
+    }else if(firstYearMembers.includes(suggestion) || secondYearMembers.includes(suggestion) || thirdYearMembers.includes(suggestion)){
+      return "/core_student_members"
+    }
+    
+    return null;
+  };
+
+  const getSearchSuggestions = (query) => {
+    const alumniNames = Object.values(allumni.alumni).map((person) => person.name);
+    const facultyNames = Object.values(InternalFacultyData.InternalFacultyData).map(
+      (person) => person.name
+    );
+    const firstYearMembers = Object.values(Strings2.First_Year || {}).map((person) => person.name);
+    const secondYearMembers = Object.values(Strings2.Second_Year || {}).map((person) => person.name);
+    const thirdYearMembers = Object.values(Strings2.Third_Year|| {}).map((person) => person.name);
+  
+    const allNames = [...alumniNames, ...facultyNames, ...firstYearMembers, ...secondYearMembers, ...thirdYearMembers];
+  
+    if (!query) return [];
+    return allNames.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
+  };
+  
+
+  const searchInput = (
+    <div className="relative">
+      <Input
+        aria-label="Search"
+        classNames={{
+          inputWrapper: "bg-default-100",
+          input: "text-sm",
+        }}
+        labelPlacement="outside"
+        placeholder="Search..."
+        startContent={
+          <SearchIcon className="text-base text-default-400 pointer-events-none flex-shrink-0" />
+        }
+        type="search"
+        value={searchQuery}
+        onChange={handleSearchChange}
+      />
+      {suggestions.length > 0 && (
+        <SearchSuggestions
+          suggestions={suggestions}
+          onSuggestionClick={handleSuggestionClick}
+        />
+      )}
+    </div>
   );
 
   return (
@@ -113,10 +204,7 @@ export const Navbar = () => {
         </div>
       </NavbarContent>
 
-      <NavbarContent
-        className="hidden sm:flex basis-1/5 sm:basis-full"
-        justify="end"
-      >
+      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
@@ -125,7 +213,7 @@ export const Navbar = () => {
 
         {user ? (
           <Menu as="div" className="relative">
-            <Menu.Button className="flex flex-row items-center content-center  bg-gray-300/20 rounded-xl ">
+            <Menu.Button className="flex flex-row items-center content-center bg-gray-300/20 rounded-xl">
               <Image
                 src={user.photoURL || "/anonymous_male.svg"}
                 width={40}
@@ -159,28 +247,11 @@ export const Navbar = () => {
                       <DropdownItem key="configurations">
                         Configurations
                       </DropdownItem>
-                      {isAdmin ? (
-                        <DropdownItem key="admin_section">
-                          <Link color="foreground" href="/admin">
-                            Admin Section
-                          </Link>
-                        </DropdownItem>
-                      ) : (
-                        <DropdownItem key="help_and_feedback">
-                          <Link color="foreground" href="/helpAndFeedback">
-                            Help & Feedback
-                          </Link>
-                        </DropdownItem>
-                      )}
-                      <DropdownItem key="logout" color="danger">
-                        <button
-                          onClick={handleLogout}
-                          className={`${
-                            active ? "bg-gray-100" : ""
-                          } w-full text-left px-4 py-2 text-sm text-gray-700`}
-                        >
-                          Logout
-                        </button>
+                      <DropdownItem key="help_and_feedback" withDivider>
+                        Help & Feedback
+                      </DropdownItem>
+                      <DropdownItem key="logout" color="danger" withDivider>
+                        <Button onClick={handleLogout}>Log Out</Button>
                       </DropdownItem>
                     </DropdownMenu>
                   </Dropdown>
@@ -189,31 +260,34 @@ export const Navbar = () => {
             </Menu.Items>
           </Menu>
         ) : (
-          <Button
-            color="primary"
-            onClick={() => {
-              setVisible(true);
-              window.location.href = "./login";
-            }}
-          >
-            Log in
-          </Button>
+          <NavbarItem>
+            <Button className="bg-blue-500">
+              <Link color="foreground" href="/login">
+                Login
+              </Link>
+            </Button>
+          </NavbarItem>
         )}
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
         <ThemeSwitch />
-        <NavbarMenuToggle />
+        <NavbarMenuToggle
+          aria-label={visible ? "Close menu" : "Open menu"}
+          onClick={() => setVisible(!visible)}
+        />
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className="z-40">
         {searchInput}
-        <div className="mx-4 mt-2 flex flex-col gap-2">
+        <div className="mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
+                color={
+                  index === 2 ? "primary" : index === siteConfig.navMenuItems.length - 1 ? "danger" : "foreground"
+                }
                 href={item.href}
-                color={index === 0 ? "primary" : "foreground"}
                 size="lg"
               >
                 {item.label}
@@ -222,10 +296,6 @@ export const Navbar = () => {
           ))}
         </div>
       </NavbarMenu>
-
-      <Modal isOpen={visible} onClose={() => setVisible(false)}>
-        <h1> Here we go again </h1>
-      </Modal>
     </NextUINavbar>
   );
 };
