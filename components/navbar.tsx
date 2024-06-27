@@ -30,14 +30,16 @@ import { allumni } from "../public/values/allumni";
 import { InternalFacultyData } from "../public/values/InternalFaculty";
 import { Strings2 } from "../public/values/strings2";
 import { Strings } from "../public/values/strings";
+import { useRouter } from "next/router";
+import pather from "./pather.json";
 
 const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
   return (
-    <ul className="absolute bg-black shadow-lg max-h-48 overflow-y-auto z-50">
+    <ul className="absolute bg-gray-400/20 backdrop-blur-md mt-1 rounded-2xl shadow-lg max-h-48 overflow-y-auto z-50">
       {suggestions.map((suggestion, index) => (
         <li
           key={index}
-          className="px-4 py-2 cursor-pointer hover:border-2 border-gray-200"
+          className="px-4 py-2 cursor-pointer hover:scale-110 hover:text-violet-400 duration-300 w-fit transition-all"
           onClick={() => onSuggestionClick(suggestion)}
         >
           {suggestion}
@@ -54,6 +56,7 @@ export const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [path, setPath] = useState("Home");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -76,8 +79,6 @@ export const Navbar = () => {
 
     return () => unsubscribe();
   }, []);
-
-  
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -102,10 +103,12 @@ export const Navbar = () => {
   };
 
   const getSuggestionSource = (suggestion) => {
-    const alumniNames = Object.values(allumni.alumni).map((person) => person.name);
-    const facultyNames = Object.values(InternalFacultyData.InternalFacultyData).map(
+    const alumniNames = Object.values(allumni.alumni).map(
       (person) => person.name
     );
+    const facultyNames = Object.values(
+      InternalFacultyData.InternalFacultyData
+    ).map((person) => person.name);
     const firstYearMembers = Object.values(Strings2.First_Year).map(
       (person) => person.name
     );
@@ -117,37 +120,59 @@ export const Navbar = () => {
     );
     const mentors = Object.values(Strings.professors).map(
       (person) => person.name
-    )
+    );
 
     if (alumniNames.includes(suggestion)) {
       return "/allumni";
     } else if (facultyNames.includes(suggestion)) {
       return "/internalFaculty";
-    }else if(firstYearMembers.includes(suggestion) || secondYearMembers.includes(suggestion) || thirdYearMembers.includes(suggestion)){
-      return "/core_student_members"
-    }else if(mentors.includes(suggestion)){
-      return "/mentors"
+    } else if (
+      firstYearMembers.includes(suggestion) ||
+      secondYearMembers.includes(suggestion) ||
+      thirdYearMembers.includes(suggestion)
+    ) {
+      return "/core_student_members";
+    } else if (mentors.includes(suggestion)) {
+      return "/mentors";
     }
-    
+
     return null;
   };
 
   const getSearchSuggestions = (query) => {
-    const alumniNames = Object.values(allumni.alumni).map((person) => person.name);
-    const facultyNames = Object.values(InternalFacultyData.InternalFacultyData).map(
+    const alumniNames = Object.values(allumni.alumni).map(
       (person) => person.name
     );
-    const firstYearMembers = Object.values(Strings2.First_Year || {}).map((person) => person.name);
-    const secondYearMembers = Object.values(Strings2.Second_Year || {}).map((person) => person.name);
-    const thirdYearMembers = Object.values(Strings2.Third_Year|| {}).map((person) => person.name);
-    const mentors = Object.values(Strings.professors|| {}).map((person) => person.name);
-  
-    const allNames = [...alumniNames, ...facultyNames, ...firstYearMembers, ...secondYearMembers, ...thirdYearMembers, ...mentors];
-  
+    const facultyNames = Object.values(
+      InternalFacultyData.InternalFacultyData
+    ).map((person) => person.name);
+    const firstYearMembers = Object.values(Strings2.First_Year || {}).map(
+      (person) => person.name
+    );
+    const secondYearMembers = Object.values(Strings2.Second_Year || {}).map(
+      (person) => person.name
+    );
+    const thirdYearMembers = Object.values(Strings2.Third_Year || {}).map(
+      (person) => person.name
+    );
+    const mentors = Object.values(Strings.professors || {}).map(
+      (person) => person.name
+    );
+
+    const allNames = [
+      ...alumniNames,
+      ...facultyNames,
+      ...firstYearMembers,
+      ...secondYearMembers,
+      ...thirdYearMembers,
+      ...mentors,
+    ];
+
     if (!query) return [];
-    return allNames.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
+    return allNames.filter((name) =>
+      name.toLowerCase().includes(query.toLowerCase())
+    );
   };
-  
 
   const searchInput = (
     <div className="relative">
@@ -192,28 +217,35 @@ export const Navbar = () => {
         </NavbarBrand>
 
         <div className="hidden sm:flex gap-4 justify-start ml-6">
-          {siteConfig.navItems.map((item) => (
-            <NavbarItem key={item.href}>
-              <NextLink
-                className={clsx(
-                  linkStyles(
-                    siteConfig.navItems.indexOf(item) === 0
-                      ? { color: "primary" }
-                      : { color: "foreground" }
-                  ),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium"
-                )}
-                color="primary"
-                href={item.href}
-              >
-                {item.label}
-              </NextLink>
-            </NavbarItem>
-          ))}
+          {siteConfig.navItems.map(
+            (item) =>
+              item.label! && (
+                <NavbarItem key={item.href}>
+                  <NextLink
+                    className={clsx(
+                      linkStyles(
+                        item.label == pather.currentPath
+                          ? { color: "primary" }
+                          : { color: "foreground" }
+                      ),
+                      " text-lg hover:text-violet-400 hover:scale-110 duration-300 transition-all"
+                    )}
+                    color="primary"
+                    onClick={() => (pather.currentPath = item.label)}
+                    href={item.href}
+                  >
+                    {item.label}
+                  </NextLink>
+                </NavbarItem>
+              )
+          )}
         </div>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex basis-1/5 sm:basis-full" justify="end">
+      <NavbarContent
+        className="hidden sm:flex basis-1/5 sm:basis-full"
+        justify="end"
+      >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
         </NavbarItem>
@@ -297,24 +329,93 @@ export const Navbar = () => {
         />
       </NavbarContent>
 
-      <NavbarMenu className="z-40">
-        {searchInput}
-        <div className="mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2 ? "primary" : index === siteConfig.navMenuItems.length - 1 ? "danger" : "foreground"
-                }
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-              </Link>
-            </NavbarMenuItem>
-          ))}
-        </div>
-      </NavbarMenu>
+      {user ? (
+        isAdmin ? (
+          <NavbarMenu className="z-40">
+            {searchInput}
+            <div className="mt-2 flex flex-col gap-2">
+              {siteConfig.loginAdminNavMenuItems.map(
+                (item) =>
+                  item.label! && (
+                    <NavbarMenuItem key={`${item}`}>
+                      <Link
+                        className={clsx(
+                          linkStyles(
+                            {"color": item.label == pather.currentPath? "primary" : item.label == "Logout" ? "danger" : item.label == "Admin Section" ? "success" : "foreground"}
+                          ),
+                          "data-[active=true]:text-primary data-[active=true]:font-medium text-lg hover:text-violet-400 duration-300 transition-all"
+                        )}
+                        color="primary"
+                        onClick={ item.label == "Logout" ? handleLogout : () => (pather.currentPath = item.label)}
+                        href={item.href}
+                        size="lg"
+                      >
+                        {item.label}
+                      </Link>
+                    </NavbarMenuItem>
+                  )
+              )}
+            </div>
+          </NavbarMenu>
+        ) : (
+          <NavbarMenu className="z-40">
+            {searchInput}
+            <div className="mt-2 flex flex-col gap-2">
+              {siteConfig.loginNavMenuItems.map(
+                (item) =>
+                  item.label! && (
+                    <NavbarMenuItem key={`${item}`}>
+                      <Link
+                        className={clsx(
+                          linkStyles(
+                            // item.label == pather.currentPath
+                            //   ? { color: "primary" }
+                            //   : (item.label == "Logout" ? color: "foreground" : null)
+                            {"color": item.label == pather.currentPath? "primary" : item.label == "Logout" ? "danger" : item.label == "Admin Section" ? "success" : "foreground"}
+                          ),
+                          "data-[active=true]:text-primary data-[active=true]:font-medium text-lg hover:text-violet-400 duration-300 transition-all"
+                        )}
+                        color="primary"
+                        onClick={item.label == "Logout" ? handleLogout : () => (pather.currentPath = item.label)}
+                        href={item.href}
+                        size="lg"
+                      >
+                        {item.label}
+                      </Link>
+                    </NavbarMenuItem>
+                  )
+              )}
+            </div>
+          </NavbarMenu>
+        )
+      ) : (
+        <NavbarMenu className="z-40">
+          {searchInput}
+          <div className="mt-2 flex flex-col gap-2">
+            {siteConfig.navMenuItems.map(
+              (item) =>
+                item.label! && (
+                  <NavbarMenuItem key={`${item}`}>
+                    <Link
+                      className={clsx(
+                        linkStyles(
+                          {"color": item.label == pather.currentPath? "primary" : item.label == "Login" ? "success" : "foreground"}
+                        ),
+                        "data-[active=true]:text-primary data-[active=true]:font-medium text-lg hover:text-violet-400 duration-300 transition-all"
+                      )}
+                      color="primary"
+                      onClick={() => (pather.currentPath = item.label)}
+                      href={item.href}
+                      size="lg"
+                    >
+                      {item.label}
+                    </Link>
+                  </NavbarMenuItem>
+                )
+            )}
+          </div>
+        </NavbarMenu>
+      )}
     </NextUINavbar>
   );
 };

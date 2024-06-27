@@ -92,9 +92,9 @@ export default function DefaultLayout({
           <Link
             isExternal
             className="cursor-pointer flex items-center gap-1 text-current"
-            // href="https://nextui-docs-v2.vercel.app?utm_source=next-pages-template"
+            // href=""
             onClick={onOpen}
-            title="nextui.org homepage"
+            title="CIIE"
           >
             <span className="text-default-600">Created by </span>
             <p className="text-[#8800ff]">CIIE Core Team</p>

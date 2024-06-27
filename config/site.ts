@@ -1,3 +1,4 @@
+import { Label } from "@headlessui/react";
 
 export type SiteConfig = typeof siteConfig;
 
@@ -47,9 +48,9 @@ export const siteConfig = {
       href: "/internalFaculty",
     },
     {
- 
       href: "/mission",
-    },
+      },
+    
     {
  
       href: "/vision",
@@ -100,6 +101,105 @@ export const siteConfig = {
     },
   ],
 
+  loginNavMenuItems:  [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Reports",
+      href: "/projects",
+    },
+    {
+      label: "Verge",
+      href: "/verge",
+    },
+    {
+      label: "Events",
+      href: "/events",
+    },
+    {
+      label: "About Us",
+      href: "/about",
+    },
+    {
+      label: "My Settings",
+      href: "/settings",
+    },
+    {
+      label: "Team Settings",
+      href: "/",
+    },
+    {
+      label: "Analytics",
+      href: "/",
+    },
+    {
+      label: "System",
+      href: "/",
+    },
+    {
+      label: "Configurations",
+      href: "/",
+    },
+    {
+      label: "Logout",
+      href: "/",
+    },
+  ],
+
+  loginAdminNavMenuItems:  [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Reports",
+      href: "/projects",
+    },
+    {
+      label: "Verge",
+      href: "/verge",
+    },
+    {
+      label: "Events",
+      href: "/events",
+    },
+    {
+      label: "About Us",
+      href: "/about",
+    },
+    {
+      label: "My Settings",
+      href: "/settings",
+    },
+    {
+      label: "Team Settings",
+      href: "/",
+    },
+    {
+      label: "Analytics",
+      href: "/",
+    },
+    {
+      label: "System",
+      href: "/",
+    },
+    {
+      label: "Configurations",
+      href: "/",
+    },
+    {
+      label: "Admin Section",
+      href: "/admin",
+    },
+    {
+      label: "Logout",
+      href: "/",
+    },
+    
+  ],
+
   navMenuItems: [
     {
       label: "Home",
@@ -110,14 +210,9 @@ export const siteConfig = {
       href: "/projects",
     },
     {
-      label: "My Setting",
-      href: "/setting",
-    },
-    {
       label: "Verge",
       href: "/verge",
     },
-    
     {
       label: "Events",
       href: "/events",
@@ -126,10 +221,13 @@ export const siteConfig = {
       label: "About Us",
       href: "/about",
     },
-   
+    {
+      label: "Login",
+      href: "/login",
+    }
   ],
   links: {
-    github: "https://github.com/nextui-org/nextui",
+    github: "https://dark-matter-007",
     twitter: "https://twitter.com/getnextui",
     docs: "https://nextui-docs-v2.vercel.app",
     discord: "https://discord.gg/9b6yyZKmH4",

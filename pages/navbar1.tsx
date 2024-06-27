@@ -9,22 +9,22 @@ import {
   DropdownTrigger,
   Dropdown,
   DropdownMenu,
-  Avatar
+  Avatar,
 } from "@nextui-org/react";
 import Image from "next/image";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
 import { auth } from "../components/firebaseConfig";
 
 export default function App() {
-  const [username, setUsername] = useState('');
-  const [activeLink, setActiveLink] = useState('');
+  const [username, setUsername] = useState("");
+  const [activeLink, setActiveLink] = useState("");
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsername(user.displayName || user.email); // Use displayName or email as fallback
+        setUsername(user.displayName! || user.email!); // Use displayName or email as fallback
       } else {
-        setUsername('');
+        setUsername("");
       }
     });
 
@@ -35,7 +35,7 @@ export default function App() {
     try {
       await signOut(auth);
     } catch (error) {
-      console.error('Error signing out:', error);
+      console.error("Error signing out:", error);
     }
   };
 
@@ -43,40 +43,33 @@ export default function App() {
     setActiveLink(link);
   };
 
-
   return (
     <Navbar className="flex flex-row w-full  justify-around ">
-
-
       <div className="flex flex-row items-center gap-20">
-        
-       <Link href="./">
-        <NavbarBrand className="flex flex-row gap-4 items-center">
-          <Image
-            
-            src={"/ciie_logo.png"}
-            height={40}
-            width={40}
-            alt="ciie_logo"
-            
-          />
-          <p className="font-bold text-inherit text-3xl">CIIE</p>
-        </NavbarBrand></Link> 
+        <Link href="./">
+          <NavbarBrand className="flex flex-row gap-4 items-center">
+            <Image
+              src={"/ciie_logo.png"}
+              height={40}
+              width={40}
+              alt="ciie_logo"
+            />
+            <p className="font-bold text-inherit text-3xl">CIIE</p>
+          </NavbarBrand>
+        </Link>
 
         <NavbarContent className="hidden sm:flex gap-4" justify="center">
           <NavbarItem>
-            <Link 
+            <Link
               color="primary"
               href="/admin"
-              onClick={() => handleNavClick('home')}
-              >
+              onClick={() => handleNavClick("home")}
+            >
               Home
             </Link>
           </NavbarItem>
-          <NavbarItem >
-            <Link href="/admin-report" >
-              Reports
-            </Link>
+          <NavbarItem>
+            <Link href="/admin-report">Reports</Link>
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="/internalFaculty">
@@ -90,21 +83,17 @@ export default function App() {
           </NavbarItem>
           <NavbarItem>
             <Link color="foreground" href="/requests">
-             Request
+              Request
             </Link>
           </NavbarItem>
         </NavbarContent>
       </div>
 
-
-
-
-
       <NavbarContent as="div" justify="end">
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
-            <Avatar 
-              name={username.charAt(0).toUpperCase()} 
+            <Avatar
+              name={username.charAt(0).toUpperCase()}
               className="bg-green-700 text-2xl cursor-pointer"
             />
           </DropdownTrigger>
@@ -118,11 +107,14 @@ export default function App() {
             <DropdownItem key="analytics">
               <Link color="foreground" href="/broadcast">
                 Broadcast
-              </Link></DropdownItem>
+              </Link>
+            </DropdownItem>
             <DropdownItem key="system">System</DropdownItem>
-       
-            <DropdownItem key="configurations" href="/">Ciie Page</DropdownItem>
-      
+
+            <DropdownItem key="configurations" href="/">
+              Ciie Page
+            </DropdownItem>
+
             <DropdownItem key="help_and_feedback">
               <Link color="foreground" href="/helpAndFeedback">
                 Help & Feedback

@@ -12,6 +12,7 @@ import { AllAboutLearningCard } from "@/components/widgets/homeScreenCards";
 import { TeamCardForHome } from "../components/widgets/TeamCard";
 import { Strings } from "@/public/values/strings";
 import { auth } from "../components/firebaseConfig";
+import { useRouter } from "next/router";
 
 export default function IndexPage() {
   const [username, setUsername] = useState("");
@@ -27,6 +28,18 @@ export default function IndexPage() {
 
     return () => unsubscribe();
   }, []);
+
+  // const router = useRouter();
+
+  // By Ashwin
+  // Use this snippet to redirect to dashboard after login when implementing dashboard
+  // useEffect(() => {
+  //   if (username) {
+  //     router.push("/dashboard");
+  //   }
+  // }, [username]);
+
+  // router.push("/");
 
   return (
     <DefaultLayout>
