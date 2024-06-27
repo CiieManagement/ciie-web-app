@@ -77,6 +77,8 @@ export const Navbar = () => {
     return () => unsubscribe();
   }, []);
 
+  
+
   const handleLogout = async () => {
     await signOut(auth);
     window.location.href = "./";
@@ -254,9 +256,19 @@ export const Navbar = () => {
                       <DropdownItem key="configurations">
                         Configurations
                       </DropdownItem>
-                      <DropdownItem key="help_and_feedback" withDivider>
-                        Help & Feedback
-                      </DropdownItem>
+                      {isAdmin ? (
+                        <DropdownItem key="admin_section">
+                          <Link color="foreground" href="/admin">
+                            Admin Section
+                          </Link>
+                        </DropdownItem>
+                      ) : (
+                        <DropdownItem key="help_and_feedback">
+                          <Link color="foreground" href="/helpAndFeedback">
+                            Help & Feedback
+                          </Link>
+                        </DropdownItem>
+                      )}
                       <DropdownItem key="logout" color="danger" withDivider>
                         <Button onClick={handleLogout}>Log Out</Button>
                       </DropdownItem>
