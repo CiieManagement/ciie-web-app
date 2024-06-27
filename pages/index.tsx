@@ -9,7 +9,7 @@ import {
   WorkIsPriorityCard,
 } from "@/components/widgets/homeScreenCards";
 import { AllAboutLearningCard } from "@/components/widgets/homeScreenCards";
-import { TeamCardForHome } from "@/components/widgets/TeamCard";
+import { TeamCardForHome } from "../components/widgets/TeamCard";
 import { Strings } from "@/public/values/strings";
 import { auth } from "../components/firebaseConfig";
 
@@ -58,7 +58,7 @@ export default function IndexPage() {
         <SearchingForInnovationCard />
         <AllAboutLearningCard />
         <WorkIsPriorityCard />
-        <TeamCardForHome teamMembers={Object.values(Strings.team_members)} />
+        {/* <TeamCardForHome teamMembers={Object.values(Strings.team_members)} /> */}
         <div className="h-[50px]"></div>
       </section>
     </DefaultLayout>

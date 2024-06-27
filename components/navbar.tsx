@@ -29,6 +29,7 @@ import adminData from "./admins.json";
 import { allumni } from "../public/values/allumni";
 import { InternalFacultyData } from "../public/values/InternalFaculty";
 import { Strings2 } from "../public/values/strings2";
+import { Strings } from "../public/values/strings";
 
 const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
   return (
@@ -112,6 +113,9 @@ export const Navbar = () => {
     const thirdYearMembers = Object.values(Strings2.Third_Year).map(
       (person) => person.name
     );
+    const mentors = Object.values(Strings.professors).map(
+      (person) => person.name
+    )
 
     if (alumniNames.includes(suggestion)) {
       return "/allumni";
@@ -119,6 +123,8 @@ export const Navbar = () => {
       return "/internalFaculty";
     }else if(firstYearMembers.includes(suggestion) || secondYearMembers.includes(suggestion) || thirdYearMembers.includes(suggestion)){
       return "/core_student_members"
+    }else if(mentors.includes(suggestion)){
+      return "/mentors"
     }
     
     return null;
@@ -132,8 +138,9 @@ export const Navbar = () => {
     const firstYearMembers = Object.values(Strings2.First_Year || {}).map((person) => person.name);
     const secondYearMembers = Object.values(Strings2.Second_Year || {}).map((person) => person.name);
     const thirdYearMembers = Object.values(Strings2.Third_Year|| {}).map((person) => person.name);
+    const mentors = Object.values(Strings.professors|| {}).map((person) => person.name);
   
-    const allNames = [...alumniNames, ...facultyNames, ...firstYearMembers, ...secondYearMembers, ...thirdYearMembers];
+    const allNames = [...alumniNames, ...facultyNames, ...firstYearMembers, ...secondYearMembers, ...thirdYearMembers, ...mentors];
   
     if (!query) return [];
     return allNames.filter((name) => name.toLowerCase().includes(query.toLowerCase()));
