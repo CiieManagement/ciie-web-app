@@ -27,7 +27,7 @@ const Strings2 = {
         domain: "Full Stack Developer",
         image: "",
         description:
-          "I am a passionate full stack developer who excels in crafting engaging user experiences. My expertise in HTML, CSS, JavaScript, Python, React and Next allows me to create intuitive interfaces that captivate users. With strong problem-solving skills and a commitment to developing scalable applications, I consistently deliver secure and maintainable web solutions. My practical experience with front-end frameworks like React.js, combined with proficiency in MySQL, PostgreSQL, Node.js, and Django, positions me to create dynamic, responsive, and high-quality web applications.",
+          "I am a full stack web developer, as I have a deep experince of UI/Ux and then I started web development. Along with I am also having a good knowledge of data structures and algorithms. As Ui/Ux help me in my web development by visualizing a good amount of design same as data structure helps me to making strong logics in my web development journey.",
         gender: "male",
         linkedin: "https://www.linkedin.com/in/samarth-pal-9701ba235/",
         github: "",
@@ -98,12 +98,32 @@ const Strings2 = {
       3: {
         name: " Mokksh Kapur",
         domain: "Ai ML and Python",
-        image: "/CoreMembersImages/moksh.jpg",
+        image: "/",
         description:
           "I'm Mokksh Kapur, a dedicated and enthusiastic individual who values innovation and personal growth. My Area of Work includes Machine Learning and Python. My background includes leadership roles, such as serving as the Leading member of CIIE and GDSC, where I've organized successful events that fostered an environment of creativity and forward thinking Am Associated with CIIE as Innovation Head and Core member of CIIE Tech Team In it I Organize Workshops , Hackathons and Build many Projects in Ml and Analytics Also Recently finished as IOT Lead in GDSC.",
         gender: "Male",
         linkedin: "https://www.linkedin.com/in/mokksh-kapur-53bb60260?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
         github: "https://github.com/Mokkshking",
+      },
+      4: {
+        name: "Kevin Dhankhar",
+        domain: "Cyber Security",
+        image: "/CoreMembersImages/kevin.jpg",
+        description:
+          "I'm passionate about cybersecurity, constantly exploring new ways to protect and secure digital environments. As an avid CTF player, I thrive on the challenge of solving complex problems and honing my skills. My interest in cloud computing and server management drives me to stay updated on the latest technologies and best practices. Working in the IT department allows me to apply my knowledge in real-world scenarios, ensuring systems run smoothly and securely. My dedication to the field is fueled by a relentless curiosity and a desire to make a tangible impact in the world of technology.",
+        gender: "Male",
+        linkedin: "https://www.linkedin.com/in/kevin-dhankhar-5126a2245",
+        github: "https://github.com/apexwild534",
+      },
+      5: {
+        name: "Tanmay Nandwana",
+        domain: "Full Stack Developer",
+        image: "/CoreMembersImages/Tanmay.jpg",
+        description:
+          "As a passionate technologist, I continually strive to enhance my expertise in software development and system architecture. Proficient in Java, Node.js, PHP, Flutter, and MySQL, I embrace the challenge of creating robust and scalable applications. My fascination with full-stack development drives me to stay ahead of the curve with the latest frameworks and methodologies. Engaging in various projects, I enjoy the process of transforming innovative ideas into functional solutions. My goal is to leverage my diverse skill set to contribute to impactful and efficient technological advancements.",
+        gender: "Male",
+        // linkedin: "https://www.linkedin.com/in/kevin-dhankhar-5126a2245",
+        // github: "https://",
       },
       
     },
@@ -114,7 +134,7 @@ const Strings2 = {
         domain: "Web Development | DSA",
         image: "/CoreMembersImages/angel.jpg",
         description:
-          "Engineering student specializing in Data Structures and Algorithms (DSA) in C and web development. Skilled in building efficient algorithms and dynamic web applications. Proficient in C and C++, HTML, CSS, and JavaScript, with hands-on experience in competitive programming and responsive design. Passionate about problem-solving and eager to apply technical skills in real-world projects. Committed to continuous learning and professional growth in the tech industry. Let's connect to explore opportunities in software development and engineering.",
+          "Engineering student specializing in Data Structures and Algorithms (DSA) in C and web development. Skilled in building efficient algorithms and dynamic web applications. Proficient in C and C++, HTML, CSS, and JavaScript, with hands-on experience in competitive programming and responsive design. Passionate about problem-solving and eager to apply technical skills in real-world projects. Committed to continuous learning and professional growth in the tech industry. Let's connect to explore opportunities in software development and engineering.",
         gender: "Female",
         linkedin: "https://www.linkedin.com/in/angelguptaimp",
         github: "https://github.com/angelgupta22",

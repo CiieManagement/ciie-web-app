@@ -6,7 +6,7 @@ const InternalFacultyData = {
    
     InternalFacultyData: {
       1: {
-        name: "Kamaljit Singh",
+        name: "Dr. Kamaljit Singh",
         domain: "Management & Commerce",
         image: "/CoreMembersImages/Kamaljit Singh.jpg",
         position: "Assistant Professor",

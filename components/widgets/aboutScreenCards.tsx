@@ -114,22 +114,22 @@ function TeamMemberCard(props: teamMember) {
         {props.github && (
           <a href={props.github} target="_blank" rel="noopener noreferrer" title="GitHub">
             <Image
-              src="/icons/github.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
               alt="GitHub"
               width={0}
               height={0}
-              className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
+              className="w-6 h-6  hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
             />
           </a>
         )}
         {props.linkedin && (
           <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
             <Image
-              src="/icons/linkedin.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
               alt="LinkedIn"
               width={0}
               height={0}
-              className="w-5 h-5 hover:scale-125 transition-all duration-300 ease-in-out"
+              className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
             />
           </a>
         )}
@@ -166,7 +166,7 @@ function AllumniCard(props: allumni) {
         {props.github && (
           <a href={props.github} target="_blank" rel="noopener noreferrer" title="GitHub">
             <Image
-              src="/icons/github.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
               alt="GitHub"
               width={0}
               height={100}
@@ -177,7 +177,7 @@ function AllumniCard(props: allumni) {
         {props.linkedin && (
           <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
             <Image
-              src="/icons/linkedin.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
               alt="LinkedIn"
               width={0}
               height={100}
@@ -188,7 +188,7 @@ function AllumniCard(props: allumni) {
         {props.twitter && (
           <a href={props.twitter} target="_blank" rel="noopener noreferrer" title="Twitter">
             <Image
-              src="/icons/twitter.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg"
               alt="Twitter"
               width={0}
               height={100}
@@ -227,7 +227,7 @@ function InternalFaculty(props: InternalFaculty) {
         {props.github && (
           <a href={props.github} target="_blank" rel="noopener noreferrer" title="GitHub">
             <Image
-              src="/icons/github.svg"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
               alt="GitHub"
               width={0}
               height={100}
@@ -238,7 +238,7 @@ function InternalFaculty(props: InternalFaculty) {
         {props.linkedin && (
           <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
             <Image
-              src="/icons/linkedin.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
               alt="LinkedIn"
               width={0}
               height={100}
@@ -249,7 +249,7 @@ function InternalFaculty(props: InternalFaculty) {
         {props.twitter && (
           <a href={props.twitter} target="_blank" rel="noopener noreferrer" title="Twitter">
             <Image
-              src="/icons/twitter.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg"
               alt="Twitter"
               width={0}
               height={100}
@@ -260,7 +260,7 @@ function InternalFaculty(props: InternalFaculty) {
         {props.google_scholar && (
           <a href={props.google_scholar} target="_blank" rel="noopener noreferrer" title="Google Scholar">
             <Image
-              src="/icons/Google Scholar.png"
+              src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Scholar_logo.svg"
               alt="Google Scholar"
               width={0}
               height={100}
