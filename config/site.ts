@@ -119,28 +119,25 @@ export const siteConfig = {
       href: "/events",
     },
     {
-      label: "About Us",
-      href: "/about",
-    },
-    {
       label: "My Settings",
-      href: "/settings",
+      href: "/setting",
     },
     {
       label: "Team Settings",
       href: "/",
     },
-    {
-      label: "Analytics",
-      href: "/",
-    },
+  
     {
       label: "System",
       href: "/",
     },
     {
-      label: "Configurations",
-      href: "/",
+      label: "Help And Feedback",
+      href: "/helpAndFeedback",
+    },
+    {
+      label: "About Us",
+      href: "/about",
     },
     {
       label: "Logout",
@@ -166,28 +163,25 @@ export const siteConfig = {
       href: "/events",
     },
     {
-      label: "About Us",
-      href: "/about",
-    },
-    {
       label: "My Settings",
-      href: "/settings",
+      href: "/setting",
     },
     {
       label: "Team Settings",
       href: "/",
     },
-    {
-      label: "Analytics",
-      href: "/",
-    },
+ 
     {
       label: "System",
-      href: "/",
+      href: "/setting",
     },
     {
       label: "Configurations",
       href: "/",
+    },
+    {
+      label: "About Us",
+      href: "/about",
     },
     {
       label: "Admin Section",
