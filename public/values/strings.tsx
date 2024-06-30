@@ -135,6 +135,31 @@ const Strings = {
           link:"https://omnidev-courses.vercel.app/dsa"
         },
       },
+      bundle_workshops: {
+        1: {
+          name: "App + cloud development",
+          image1: "/app.jpg",
+          image2: "/cloud.jpg",
+          description:
+            "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
+          registration_date: "2024-05-18T10:00:00",
+          start_date: "2 july 2024",
+          end_date: "30 july 2024",
+          link:"https://omnidev-courses.vercel.app/app"
+        },
+      
+        2: {
+          name: "Web + cloud development",
+          image1: "/web.jpg",
+          image2: "/cloud.jpg",
+          description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
+          registration_date: "2024-05-18T14:00:00",
+          start_date: "2 july 2024",
+          end_date: "30 july 2024",
+          link: "https://omnidev-courses.vercel.app/web"
+        },
+     
+      },
     },
     previous: {
       workshops: {
