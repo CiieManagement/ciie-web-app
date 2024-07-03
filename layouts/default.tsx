@@ -34,24 +34,15 @@ export default function DefaultLayout({
                   <br />
                   <p>
                     <strong>Sahil Tiwari: </strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                  </p>
-                  <p>
-                    <strong>Ashwin Sharma: </strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    It was a good experience collaborating with the team, I worked on the Login Page and Route Protection.
                   </p>
                   <p>
                     <strong>Shivansh Shukla: </strong>
-                    Magna exercitation reprehenderit magna aute tempor cupidatat
-                    consequat elit dolor adipisicing. Mollit dolor eiusmod sunt
-                    ex incididunt cillum quis. Velit duis sit officia eiusmod
-                    Lorem aliqua enim laboris do dolor eiusmod. Et mollit
-                    incididunt nisi consectetur esse laborum eiusmod pariatur
-                    proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
+                    Our team has succeeded because of intense amount of understanding and hardwork. I linked RTDB and saw API & Backend and properly utilized.
+                  </p>
+                  <p>
+                    <strong>Ashwin Sharma: </strong>
+                    Being a member of a good and understanding team with a very strong foundational code is cherry on top. I Developed the core templates and dynamicity.
                   </p>
                 </ModalBody>
                 <ModalBody className="flex-1 overflow-auto">
@@ -59,15 +50,11 @@ export default function DefaultLayout({
                   <br />
                   <p>
                     <strong>Arjun Rai: </strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                     Final products are an outcome of teamwork and collaboration. I initiated the User Interface and laid down the basic wireframe.
                   </p>
                   <p>
                     <strong>Manan Kashyap: </strong>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    Along with Arjun, I polished and developed the further User Interface and suggested better ways for User Experience.
                   </p>               
                 </ModalBody>
               </div>

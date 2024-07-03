@@ -130,6 +130,16 @@ const Strings2 = {
   
     First_Year: {
       1: {
+        name: "Ashwin Sharma",
+        domain: "App Dev | Flutter & KMP | Web App Dev",
+        image: "/CoreMembersImages/Ashwin.jpg",
+        description:
+          "\"Languages are born, Developers are made... Technologies emerge - in a beautiful cascade... Haven't explored? Congrats you're enslaved.\", says Ashwin. From App to WebApp, From Native to Cross Platform, from Assemly_x86 to Python, from Arch Linux to Macintosh, from Automation to complex ML Algorithms [ to learn ], I am that one geek always craving to dive into the vast ocean of zeroes and ones. Occasionally I do some open source contributions as well as release my own software that are downloadable & ready to use. My portfolio can be visited at : https://software-by-ashwin.vercel.app and you won't be disappointed to view my github profile <br> using the button below 😇...",
+        gender: "Male",
+        linkedin: "https://www.linkedin.com/in/ashwin-sharma-aa4454295/",
+        github: "https://github.com/dark-matter-007",
+      },
+      2: {
         name: "Angel Gupta",
         domain: "Web Development | DSA",
         image: "/CoreMembersImages/angel.jpg",
@@ -139,7 +149,7 @@ const Strings2 = {
         linkedin: "https://www.linkedin.com/in/angelguptaimp",
         github: "https://github.com/angelgupta22",
       },
-      2: {
+      7: {
         name: "Alvia fatima",
         domain: "Medical Robotics Equipments Dev",
         image: "/CoreMembersImages/alvia.jpg",
@@ -149,7 +159,7 @@ const Strings2 = {
         linkedin: "http://linkedin.com/in/alvia-fatima-566988289",
         github: "",
       },
-      3: {
+      4: {
         name: "Shubham Singh",
         domain: "Web Development (using MERN Stack) and FluƩer App Development",
         image: "",
@@ -159,7 +169,7 @@ const Strings2 = {
         linkedin: " https://www.linkedin.com/in/shubham-singh-968160294/",
         github: "https://github.com/ssdevloper",
       },
-      4: {
+      5: {
         name: "Manan Kashyap",
         domain: "UI/UX Dev | Python Dev",
         image: "",
@@ -169,7 +179,7 @@ const Strings2 = {
         linkedin: "http://www.linkedin.com/in/manan-kashyap-294706264",
         github: "https://github.com/manankashyap134",
       },
-      5: {
+      3: {
         name: "Sahil Tiwari",
         domain: "App Dev | Web App Dev",
         image: "",
@@ -189,7 +199,7 @@ const Strings2 = {
         linkedin: "",
         github: "https://github.com/aayushmishra20",
       },
-      7: {
+      8: {
         name: "Shivam Jaiswal",
         domain: "Web Development (Full-Stack)",
         image: "/CoreMembersImages/shivam.jpg",
@@ -199,7 +209,7 @@ const Strings2 = {
         linkedin: "https://www.linkedin.com/in/shivam-jaiswal-8b04bb223/",
         github: "https://github.com/shivvjaiswal",
       },
-      8: {
+      9: {
         name: "Sanya Gupta ",
         domain: "work domain - designing",
         image: "",
