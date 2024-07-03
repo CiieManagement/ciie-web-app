@@ -103,7 +103,7 @@ const Strings = {
           description:
             "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
           registration_date: "2024-05-18T10:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link:"https://omnidev-courses.vercel.app/app"
         },
@@ -112,7 +112,7 @@ const Strings = {
           image: "/cloud.jpg",
           description: "In this workshop, we dive deep into cloud technologies that are emerging nowadays",
           registration_date: "2024-05-18T12:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link:"https://omnidev-courses.vercel.app/cloud"
         },
@@ -121,7 +121,7 @@ const Strings = {
           image: "/web.jpg",
           description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
           registration_date: "2024-05-18T14:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link: "https://omnidev-courses.vercel.app/web"
         },
@@ -130,7 +130,7 @@ const Strings = {
           image: "/dsa.jpg",
           description: "In this workshop, we dive deep into data structures that are emerging nowadays",
           registration_date: "2024-05-18T16:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link:"https://omnidev-courses.vercel.app/dsa"
         },
@@ -143,7 +143,7 @@ const Strings = {
           description:
             "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
           registration_date: "2024-05-18T10:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link:"https://omnidev-courses.vercel.app/appncloud"
         },
@@ -154,7 +154,7 @@ const Strings = {
           image2: "/cloud.jpg",
           description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
           registration_date: "2024-06-18T10:00:00",
-          start_date: "2 july 2024",
+          start_date: "6 july 2024",
           end_date: "30 july 2024",
           link: "https://omnidev-courses.vercel.app/webncloud"
         },
