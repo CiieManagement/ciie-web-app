@@ -99,6 +99,14 @@ export const siteConfig = {
  
       href: "/broadcast",
     },
+    {
+ 
+      href: "/detailPage",
+    },
+    {
+ 
+      href: "/registration",
+    },
   ],
 
   loginNavMenuItems:  [

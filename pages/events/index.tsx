@@ -8,8 +8,7 @@ import DefaultLayout from "@/layouts/default";
 import { Strings } from "@/public/values/strings";
 import BackdropAnimation from "@/components/utils/backdrop_animation";
 import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
-import { parseISO } from 'date-fns'
-
+ 
 export default function DocsPage() {
   useEffect(() => {
     toast.success(
@@ -84,6 +83,91 @@ export default function DocsPage() {
             basics to deployment, from fundamentals to complex algorithms, we
             cover everything here.
           </h1>
+
+          <h1 className="text-3xl mt-5  text-pretty text-left font-bold">
+            Law department Course
+          </h1>
+          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
+            {Object.values(Strings.events.current.IPR).map((workshop) => {
+              const startDate = new Date(workshop.start_date);
+              const registrationDate = new Date(workshop.registration_date);
+              const endDate = new Date(workshop.end_date);
+              const now = new Date();
+
+              return (
+                <div
+                  key={workshop.name}
+                  className="flex flex-col rounded-2xl max-w-md backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20 transform transition-all duration-500 hover:scale-105 hover:bg-gray-400/40"
+                  onClick={() => verify_forwar(workshop)}
+                >
+                  <div className="flex place-content-center rounded-xl mb-2 px-2">
+                    <Image
+                      className="min-w-[270px] w-full rounded-lg"
+                      src={workshop.image}
+                      loading="lazy"
+                      alt={workshop.name}
+                    />
+                  </div>
+                  <div className="flex flex-col place-content-center">
+                    <h1 className="font-bold text-xl mb-1 text-center md:text-xl">
+                      {workshop.name}
+                    </h1>
+
+                    <div className="flex flex-row place-content-center gap-2">
+                      <Image src="/icons/calendar.png" width={25} />
+                      <h1 className="my-auto text-sm font-bold text-[#9966ff]">
+                        {workshop.start_date}
+                      </h1>
+                     
+                    </div>
+
+                    <div className="mt-5">
+                      <h1 className="text-sm opacity-70">
+                        {workshop.description}
+                      </h1>
+                    </div>
+
+                    {now <= registrationDate && now <= startDate && (
+                      <div className="mt-10 bg-gray-400/20 p-2 w-fit mx-auto transition-all duration-300 rounded-xl">
+                        <h1 className="mr-1 font-bold mb-1">
+                          Register Within:
+                        </h1>
+
+                        <Countdown
+                          date={registrationDate}
+                          renderer={({ days, hours, minutes, seconds }) => (
+                            <div className="flex place-content-center">
+                              <div className="text-sm font-bold flex flex-row">
+                                <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
+                                  {days}
+                                </h1>
+                                <h1 className="mr-2 mt-auto mb-1">D</h1>
+                                <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
+                                  {hours}
+                                </h1>
+                                <h1 className="mr-2 mt-auto mb-1">H</h1>
+                                <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
+                                  {minutes}
+                                </h1>
+                                <h1 className="mr-2 mt-auto mb-1">M</h1>
+                                <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
+                                  {seconds}
+                                </h1>
+                                <h1 className="mt-auto mb-1">S</h1>
+                              </div>
+                            </div>
+                          )}
+                        />
+                      </div>
+                    )}
+
+                   
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
 
           <h1 className="text-3xl mt-5  text-pretty text-left font-bold">
             Single courses
@@ -165,19 +249,7 @@ export default function DocsPage() {
                       </div>
                     )}
 
-                    {/* {now < registrationDate && (
-                      <Button
-                        className="mt-4 w-[90%] mx-auto"
-                        color="primary"
-                        onClick={() => {
-                          // TODO: handle registration logic
-                          console.log('Register Now');
-                        }}
-                        variant="shadow"
-                      >
-                        Register Now
-                      </Button>
-                    )} */}
+                   
                   </div>
                 </div>
               );

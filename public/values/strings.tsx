@@ -135,6 +135,19 @@ const Strings = {
           link:"https://omnidev-courses.vercel.app/dsa"
         },
       },
+      IPR: {
+        1: {
+          name: "Cyber and IPR Course",
+          image: "/ipr.jpg",
+          description:
+            "In this workshop, we dive deep into intersection of cyberspace and intellectual property right",
+          registration_date: "2024-05-18T10:00:00",
+          start_date: "starts from  13 july 2024",
+          link:"https://omnidev-courses.vercel.app/app"
+        },
+      
+      
+      },
       bundle_workshops: {
         1: {
           name: "App + cloud development",
