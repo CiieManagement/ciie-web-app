@@ -114,7 +114,7 @@ export default function DocsPage() {
                     </h1>
 
                     <div className="flex flex-row place-content-center gap-2">
-                      <Image src="/icons/calendar.png" width={25} />
+                      <Image src="/icons/calendar.png"  alt="img" width={25} />
                       <h1 className="my-auto text-sm font-bold text-[#9966ff]">
                         {workshop.start_date}
                       </h1>
@@ -199,7 +199,7 @@ export default function DocsPage() {
                     </h1>
 
                     <div className="flex flex-row place-content-center gap-2">
-                      <Image src="/icons/calendar.png" width={25} />
+                      <Image src="/icons/calendar.png" alt="img" width={25} />
                       <h1 className="my-auto text-sm font-bold text-[#9966ff]">
                         {workshop.start_date}
                       </h1>
