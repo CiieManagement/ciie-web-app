@@ -46,14 +46,15 @@ const IndexPage = () => {
             {/* Right Side: Centered Details Section */}
             <div className="w-full md:w-1/2 px-4 md:px-8 text-center md:text-left">
               <div className="text-4xl text-[#F50057] font-bold">
-                IPR & Cyber Course
+                Intellectual Property Right Course
               </div>
               <div className="mt-4 text-lg text-gray-600 dark:text-gray-300 space-y-2">
-                <p>✔️ Beginner-Friendly Foundations</p>
-                <p>✔️ Intermediate-Level Exploration</p>
-                <p>✔️ Advanced Mastery</p>
-                <p>✔️ Hands-on Learning & Support</p>
-                <p>✔️ Q/A Sessions</p>
+                <p>✔️ Cyber and IPR</p>
+                <p>✔️ Law on Incubation</p>
+                <p>✔️ Data Protection and IPR</p>
+                <p>✔️ Copyright Law</p>
+                <p>✔️ Design Law</p>
+                <p>✔️ Patents Law</p>
               </div>
               <div className="mt-8 text-lg text-black dark:text-white">
                 👉 Understand the intersection of cyberspace and intellectual property rights, including issues like domain name disputes and online copyright infringements.
@@ -64,7 +65,7 @@ const IndexPage = () => {
                 <br />
                 👉 Understand the intricacies of patent law, including the process of obtaining patents and the enforcement of patent rights.
               </div>
-              <div className="mt-40 text-lg text-[#F50057] font-bold">
+              <div className="mt-10 text-lg text-[#F50057] font-bold">
                 👈🏾 To Know in-depth details of course please Register
               </div>
             </div>
@@ -78,7 +79,6 @@ const IndexPage = () => {
               </ModalHeader>
               <ModalBody>
                 <p>1. 75% attendance is mandatory for course consideration and for certificate issue</p>
-                <p>2. No student should apply for more than one course except bundle courses (only one bundle course is allowed as it consists of two courses).</p>
                 <p>3. All quizzes and practice sets need to be solved for certification.</p>
                 <p>4. Discipline is mandatory; no misbehavior will be entertained with other students or mentors.</p>
                 <p>5. You need to join classes right on time.</p>

@@ -137,10 +137,10 @@ const Strings = {
       },
       IPR: {
         1: {
-          name: "Cyber and IPR Course",
+          name: "Intellectual Property Right Course",
           image: "/ipr.jpg",
           description:
-            "In this workshop, we dive deep into intersection of cyberspace and intellectual property right",
+            "In this workshop, we dive deep into intersection of cyberspace, intellectual property rights and others",
           registration_date: "2024-05-18T10:00:00",
           start_date: "starts from  13 july 2024",
           link:"/detailPage"
