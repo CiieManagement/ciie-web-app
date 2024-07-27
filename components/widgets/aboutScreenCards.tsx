@@ -8,6 +8,16 @@ interface professorProp {
   image: string;
 }
 
+
+export interface Post {
+  id: string;
+  title: string;
+  author: string;
+  date: string;
+  content: string;
+}
+
+
 interface visionProp {
   image: string;
   visionText: string;

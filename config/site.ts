@@ -107,6 +107,19 @@ export const siteConfig = {
  
       href: "/registration",
     },
+    {
+ 
+      href: "/blog",
+    },
+    {
+ 
+      href: "/blog/edit",
+    },
+    
+    {
+ 
+      href: "/createBlog",
+    },
   ],
 
   loginNavMenuItems:  [
@@ -142,6 +155,15 @@ export const siteConfig = {
     {
       label: "Help And Feedback",
       href: "/helpAndFeedback",
+    },
+    {
+      label: "Create Blog",
+      href: "/createBlog",
+    },
+    
+    {
+      label: "Read Blogs",
+      href: "/blog",
     },
     {
       label: "About Us",
@@ -192,6 +214,14 @@ export const siteConfig = {
       href: "/about",
     },
     {
+      label: "Create Blog",
+      href: "/createBlog",
+    },
+    {
+      label: "Read Blogs",
+      href: "/blog",
+    },
+    {
       label: "Admin Section",
       href: "/admin",
     },
@@ -218,6 +248,14 @@ export const siteConfig = {
     {
       label: "Events",
       href: "/events",
+    },
+    {
+      label: "Create Blog",
+      href: "/createBlog",
+    },
+    {
+      label: "Read Blogs",
+      href: "/blog",
     },
     {
       label: "About Us",

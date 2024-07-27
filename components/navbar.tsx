@@ -280,6 +280,18 @@ export const Navbar = () => {
                           My Settings
                         </Link>
                       </DropdownItem>
+                      <DropdownItem key="settings">
+                        {" "}
+                        <Link color="foreground" href="/createBlog">
+                          Create Blog
+                        </Link>
+                      </DropdownItem>
+                      <DropdownItem key="settings">
+                        {" "}
+                        <Link color="foreground" href="/blog">
+                          Read Blogs
+                        </Link>
+                      </DropdownItem>
                       <DropdownItem key="team_settings">
                         Team Settings
                       </DropdownItem>
