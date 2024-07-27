@@ -32,6 +32,10 @@ export const siteConfig = {
       href: "/events",
     },
     {
+      label : "Blogs",
+      href: "/blog",
+    },
+    {
       label: "About Us",
       href: "/about",
     },
@@ -107,14 +111,8 @@ export const siteConfig = {
  
       href: "/registration",
     },
-    {
- 
-      href: "/blog",
-    },
-    {
- 
-      href: "/blog/edit",
-    },
+    
+   
     
     {
  

@@ -56,7 +56,7 @@ const Blogs = () => {
                 onClick={() => router.push(`/blog/edit/${blog.id}`)} // Update path
                 className="text-blue-600 dark:text-blue-400 hover:underline"
               >
-                Edit
+                Editclear npm run
               </button>
             )}
           </div>
