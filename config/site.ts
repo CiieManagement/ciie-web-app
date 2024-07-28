@@ -112,11 +112,12 @@ export const siteConfig = {
       href: "/registration",
     },
     
-   
-    
     {
  
       href: "/createBlog",
+    },
+    {
+      href : "/blog/adminReview"
     },
   ],
 

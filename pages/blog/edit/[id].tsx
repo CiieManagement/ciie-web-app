@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { db } from '../../../components/firebaseConfig'; // Ensure correct path
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import { Navbar } from '@/components/navbar';
@@ -18,12 +18,13 @@ const EditBlog = () => {
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
   const [user, setUser] = useState(null);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [ciieEmail, setCiieEmail] = useState('');
   const [date, setDate] = useState('');
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [loading, setLoading] = useState(true); // Initially loading
+  const [loadingAuth, setLoadingAuth] = useState(true); // Loading authentication state
+  const [loadingData, setLoadingData] = useState(true); // Loading data state
+  const [isAuthorized, setIsAuthorized] = useState(true);
 
   useEffect(() => {
     const handleResize = () => {
@@ -33,46 +34,63 @@ const EditBlog = () => {
     handleResize(); // Initial check
     window.addEventListener('resize', handleResize);
 
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     const fetchBlog = async () => {
       if (!id) return; // Ensure blog ID is available
       const docRef = doc(db, 'blogs', id);
       const docSnap = await getDoc(docRef);
+
+      
       if (docSnap.exists()) {
         const data = docSnap.data();
         setTitle(data.title);
         setContent(data.content);
         setAuthor(data.author);
         setDate(data.date);
-      } else {
+        setCiieEmail(data.ciieEmail);
+        const userData = auth.onAuthStateChanged(async (user) => {
+          if (data.userEmail !== user.email) {
+            console.log("Email is ", data.userEmail);
+            setIsAuthorized(false);
+        }
+          
+        })}
+       else {
         console.log("No such document!");
       }
+      setLoadingData(false); // Set loadingData to false after data is fetched
     };
 
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        setName(user.displayName || "");
         setEmail(user.email || "");
+        setLoadingAuth(false); // Set loadingAuth to false once auth is loaded
         if (id) {
-          fetchBlog();
+          await fetchBlog();
         }
       } else {
         setUser(null);
+        setLoadingAuth(false);
+        setLoadingData(false);
       }
-      setLoading(false);
     });
 
     return () => {
-      window.removeEventListener('resize', handleResize);
       unsubscribe();
     };
-  }, [id, router]);
+  }, [id, email]);
 
   const handleUpdate = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     try {
-      const blogRef = doc(db, 'blogs', id);
-      await updateDoc(blogRef, {
+      const blogRef = doc(db, 'pendingBlogs', id);
+      await setDoc(blogRef, {
         title,
         content,
         author,
@@ -80,7 +98,7 @@ const EditBlog = () => {
         ciieEmail,
         userEmail: email,
       });
-      toast.success("Blog updated successfully");
+      toast.success("Blog updated and sent for review");
       router.push('/blog');
     } catch (error) {
       toast.error("Failed to update blog");
@@ -88,7 +106,7 @@ const EditBlog = () => {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loadingAuth || loadingData) return <p>Loading...</p>;
 
   if (isSmallScreen) {
     return (
@@ -97,6 +115,19 @@ const EditBlog = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black text-white text-2xl font-bold p-6">
           <div className="relative p-8 bg-gray-900 rounded-lg shadow-lg">
             <span>Please use a laptop or larger screen to edit the blog.</span>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  if (!isAuthorized) {
+    return (
+      <>
+        <Navbar />
+        <div className="fixed inset-0 flex items-center justify-center bg-black text-white text-2xl font-bold p-6">
+          <div className="relative p-8 bg-gray-900 rounded-lg shadow-lg">
+            <span>You are not authorized to edit this blog post.</span>
           </div>
         </div>
       </>

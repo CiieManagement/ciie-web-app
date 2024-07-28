@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { db } from '../../../components/firebaseConfig'; // Make sure to configure Firebase
+import { db } from '../../../components/firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 import ReactMarkdown from 'react-markdown';
 import 'tailwindcss/tailwind.css';
-import rehypeRaw from 'rehype-raw'; // To render raw HTML
-import remarkGfm from 'remark-gfm'; // For GitHub Flavored Markdown (tables, task lists, etc.)
+import rehypeRaw from 'rehype-raw';
+import remarkGfm from 'remark-gfm';
 import { Navbar } from '@/components/navbar';
 import { auth } from '../../../components/firebaseConfig';
 
@@ -18,25 +18,36 @@ const BlogDetail = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const docRef = doc(db, 'blogs', id);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setBlog(docSnap.data());
-      } else {
-        console.log("No such document!");
+      if (!id) return;
+
+      try {
+        const docRef = doc(db, 'blogs', id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setBlog({ id: docSnap.id, ...docSnap.data() });
+        } else {
+          console.log("No such document!");
+        }
+      } catch (error) {
+        console.error("Error fetching document: ", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
-      setLoading(false);
     });
 
     fetchBlog();
+
     return () => unsubscribe();
   }, [id]);
 
-  if (loading || !blog) return <p>Loading...</p>;
+  if (loading) return <p>Loading...</p>;
+
+  if (!blog) return <p>No blog found.</p>;
 
   return (
     <>
@@ -52,15 +63,14 @@ const BlogDetail = () => {
               {blog.content}
             </ReactMarkdown>
           </div>
-         {user && user.email === blog.userEmail && (
-                    <button
-                      onClick={() => router.push(`/blog/edit/${id}`)} // Ensure correct path
-                      className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
-                    >
-                      Edit Blog
-                    </button>
-                )}
-
+          {user && user.email === blog.userEmail && (
+            <button
+              onClick={() => router.push(`/blog/edit/${id}`)}
+              className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-500 dark:bg-indigo-500 dark:hover:bg-indigo-400"
+            >
+              Edit Blog
+            </button>
+          )}
         </div>
       </div>
     </>

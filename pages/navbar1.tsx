@@ -82,6 +82,11 @@ export default function App() {
             </Link>
           </NavbarItem>
           <NavbarItem>
+            <Link color="foreground" href="/blog/adminReview  ">
+              Blog Review
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
             <Link color="foreground" href="/requests">
               Request
             </Link>
