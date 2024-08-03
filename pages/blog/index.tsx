@@ -69,7 +69,7 @@ const Blogs = () => {
         <div className="flex justify-center items-center h-64">
           <div className="text-center">
             <p className="text-xl font-semibold text-gray-600 dark:text-gray-300">No blogs at the moment.</p>
-            <Link href="/createBlog">
+            <Link href="/blog/createBlog">
               <p className="text-gray-500 dark:text-gray-400">Or Create One</p>
             </Link>
           </div>

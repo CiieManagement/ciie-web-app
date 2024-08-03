@@ -282,7 +282,7 @@ export const Navbar = () => {
                       </DropdownItem>
                       <DropdownItem key="settings">
                         {" "}
-                        <Link color="foreground" href="/createBlog">
+                        <Link color="foreground" href="/blog/createBlog">
                           Create Blog
                         </Link>
                       </DropdownItem>

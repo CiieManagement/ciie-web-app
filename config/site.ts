@@ -114,10 +114,19 @@ export const siteConfig = {
     
     {
  
-      href: "/createBlog",
+      href: "/blog/createBlog",
     },
     {
       href : "/blog/adminReview"
+    },
+    {
+      href : "/blog/pendingBlogs"
+    },
+    {
+      href : "/blog/pastBlogs"
+    },
+    {
+      href : "/blog/currentBlogs"
     },
   ],
 

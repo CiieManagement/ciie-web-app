@@ -9,6 +9,9 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from '../../../components/firebaseConfig'; // Ensure correct path
 
+// Import the admin emails list
+import adminsData from '@/components/admins.json';
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 const EditBlog = () => {
@@ -18,13 +21,12 @@ const EditBlog = () => {
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
   const [user, setUser] = useState(null);
-  const [email, setEmail] = useState('');
-  const [ciieEmail, setCiieEmail] = useState('');
-  const [date, setDate] = useState('');
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [loadingAuth, setLoadingAuth] = useState(true); // Loading authentication state
   const [loadingData, setLoadingData] = useState(true); // Loading data state
-  const [isAuthorized, setIsAuthorized] = useState(true);
+  const [isAuthorized, setIsAuthorized] = useState(false);
+
+  const admins = adminsData.admins;
 
   useEffect(() => {
     const handleResize = () => {
@@ -45,22 +47,26 @@ const EditBlog = () => {
       const docRef = doc(db, 'blogs', id);
       const docSnap = await getDoc(docRef);
 
-      
       if (docSnap.exists()) {
         const data = docSnap.data();
         setTitle(data.title);
         setContent(data.content);
         setAuthor(data.author);
-        setDate(data.date);
-        setCiieEmail(data.ciieEmail);
-        const userData = auth.onAuthStateChanged(async (user) => {
-          if (data.userEmail !== user.email) {
-            console.log("Email is ", data.userEmail);
-            setIsAuthorized(false);
-        }
-          
-        })}
-       else {
+
+        auth.onAuthStateChanged((user) => {
+          if (user) {
+            setUser(user);
+            setLoadingAuth(false);
+
+            // Check if user is authorized (either the author or an admin)
+            if (data.userEmail === user.email || admins.includes(user.email)) {
+              setIsAuthorized(true);
+            } else {
+              setIsAuthorized(false);
+            }
+          }
+        });
+      } else {
         console.log("No such document!");
       }
       setLoadingData(false); // Set loadingData to false after data is fetched
@@ -69,7 +75,6 @@ const EditBlog = () => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
       if (user) {
         setUser(user);
-        setEmail(user.email || "");
         setLoadingAuth(false); // Set loadingAuth to false once auth is loaded
         if (id) {
           await fetchBlog();
@@ -84,9 +89,9 @@ const EditBlog = () => {
     return () => {
       unsubscribe();
     };
-  }, [id, email]);
+  }, [id]);
 
-  const handleUpdate = async (e: { preventDefault: () => void; }) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     try {
       const blogRef = doc(db, 'pendingBlogs', id);
@@ -94,9 +99,8 @@ const EditBlog = () => {
         title,
         content,
         author,
-        date,
-        ciieEmail,
-        userEmail: email,
+        userEmail: user?.email,
+        date: new Date().toISOString(), // Set the current date as the update date
       });
       toast.success("Blog updated and sent for review");
       router.push('/blog');
@@ -134,12 +138,11 @@ const EditBlog = () => {
     );
   }
 
-
   return (
     <>
       <Navbar />
       <div className="container mx-auto p-4">
-        {user ? (
+        {user && isAuthorized ? (
           <>
             <h1 className="text-3xl font-bold text-center text-pink-600 dark:text-indigo-400">
               Edit Blog
@@ -153,7 +156,7 @@ const EditBlog = () => {
                   onChange={(e) => setTitle(e.target.value)}
                   className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                 />
-                <div className='space-y-16'>
+                <div className="space-y-16">
                   <ReactQuill
                     value={content}
                     onChange={setContent}
@@ -167,8 +170,7 @@ const EditBlog = () => {
                         [{ 'align': [] }],
                         ['link', 'image', 'video'],
                         ['clean'],
-                        ['emoji'] // For emoji support
-                      ]
+                      ],
                     }}
                   />
                   <input
@@ -178,20 +180,7 @@ const EditBlog = () => {
                     onChange={(e) => setAuthor(e.target.value)}
                     className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
                   />
-                  <input
-                    type="text"
-                    placeholder="CIIE Email"
-                    value={ciieEmail}
-                    onChange={(e) => setCiieEmail(e.target.value)}
-                    className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                  />
                 </div>
-                <input
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                />
               </div>
               <button
                 type="submit"

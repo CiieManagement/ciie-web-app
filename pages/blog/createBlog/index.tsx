@@ -1,13 +1,13 @@
 import { useState, useEffect, FormEvent } from 'react';
 import { useRouter } from 'next/router';
-import { db } from '../../components/firebaseConfig'; 
+import { db } from '../../../components/firebaseConfig';
 import { addDoc, collection } from 'firebase/firestore';
 import dynamic from 'next/dynamic';
 import 'react-quill/dist/quill.snow.css';
 import { Navbar } from '@/components/navbar';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { auth } from '../../components/firebaseConfig';  
+import { auth } from '../../../components/firebaseConfig';
 import { User } from 'firebase/auth';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
@@ -17,10 +17,9 @@ const NewBlog = () => {
   const [content, setContent] = useState('');
   const [author, setAuthor] = useState('');
   const [user, setUser] = useState<User | null>(null);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [loading, setLoading] = useState(true); 
-  const [date, setDate] = useState('');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(true);
   const [ciieEmail, setCiieEmail] = useState('');
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const router = useRouter();
@@ -32,13 +31,13 @@ const NewBlog = () => {
 
     handleResize();
     window.addEventListener('resize', handleResize);
-    
+
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setUser(user);
-        setName(user.displayName || "");
-        setEmail(user.email || "");
-        setCiieEmail(user.email || ""); // Automatically set ciieEmail
+        setName(user.displayName || '');
+        setEmail(user.email || '');
+        setCiieEmail(user.email || ''); // Automatically set ciieEmail
       } else {
         setUser(null);
       }
@@ -54,16 +53,18 @@ const NewBlog = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    const blog = { title, content, author, date, ciieEmail, userEmail: email };
+    const currentDate = new Date().toISOString().split('T')[0]; // Get current date in YYYY-MM-DD format
+    const blog = { title, content, author, date: currentDate, ciieEmail, userEmail: email };
+
     try {
       await addDoc(collection(db, 'pendingBlogs'), blog); // Save to pendingBlogs
-      toast.success("Blog submitted for review");
+      toast.success('Blog submitted for review');
       setTimeout(() => {
         router.push('/blog');
       }, 2000); // 2000 milliseconds = 2 seconds
     } catch (error) {
-      toast.error("Failed to submit blog");
-      console.error("Error adding document: ", error);
+      toast.error('Failed to submit blog');
+      console.error('Error adding document: ', error);
     }
   };
 
@@ -109,15 +110,15 @@ const NewBlog = () => {
                     className="h-64"
                     modules={{
                       toolbar: [
-                        [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
-                        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+                        [{ header: '1' }, { header: '2' }, { font: [] }],
+                        [{ list: 'ordered' }, { list: 'bullet' }],
                         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        [{ 'color': [] }, { 'background': [] }],
-                        [{ 'align': [] }],
+                        [{ color: [] }, { background: [] }],
+                        [{ align: [] }],
                         ['link', 'image', 'video'],
                         ['clean'],
-                        ['emoji']
-                      ]
+                        ['emoji'],
+                      ],
                     }}
                   />
                   <label htmlFor="author" className="sr-only">Author</label>
@@ -131,14 +132,6 @@ const NewBlog = () => {
                   />
                 </div>
                 {/* Removed the ciieEmail input field */}
-                <label htmlFor="date" className="sr-only">Date</label>
-                <input
-                  id="date"
-                  type="date"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400"
-                />
               </div>
               <button
                 type="submit"
