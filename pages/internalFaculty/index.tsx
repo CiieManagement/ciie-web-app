@@ -4,11 +4,16 @@ import {InternalFaculty } from '@/components/widgets/aboutScreenCards';
 import { InternalFacultyData } from '@/public/values/InternalFaculty';
 import { allumni } from '@/public/values/allumni';
 import withAdminAuth from "@/components/withAdminAuth";
+import Navbar from '@/pages/navbar1';
+import BackdropAnimation from '@/components/utils/backdrop_animation';
+import { ThemeSwitch } from '@/components/theme-switch';
 
 const DocsPage = () => {
   return (
-    <DefaultLayout>
-        
+    <>
+       <Navbar/>
+       
+     <BackdropAnimation/>
       <div className="bg-black py-12">
         {/* Main Content */}
         <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-gray-900 bg-opacity-80 rounded-lg max-w-6xl mx-auto">
@@ -36,7 +41,9 @@ const DocsPage = () => {
           </div>
         </div>
       </div>
-    </DefaultLayout>
+    
+    </>
+
   );
 };
 

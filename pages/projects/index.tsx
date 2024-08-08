@@ -15,7 +15,7 @@ import { useRouter } from "next/router";
 import DefaultLayout from "@/layouts/default";
 import BackdropAnimation from "@/components/utils/backdrop_animation";
 import { auth, db, storage } from "../../components/firebaseConfig";
-import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { Toaster, toast } from 'react-hot-toast';
 import Image from "next/image";
@@ -74,8 +74,8 @@ function DocsPage() {
       await uploadBytes(storageRef, file);
       const url = await getDownloadURL(storageRef);
 
-      const docRef = doc(db, "submissions", name);
-      await setDoc(docRef, {
+      const reportsCollectionRef = collection(db, "Reports");
+      await addDoc(reportsCollectionRef, {
         name,
         email,
         year,

@@ -29,7 +29,7 @@ const AdminPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'submissions'));
+        const querySnapshot = await getDocs(collection(db, 'Reports'));
         const dataList = querySnapshot.docs.map(doc => doc.data() as Submission);
         setData(dataList);
       } catch (error) {

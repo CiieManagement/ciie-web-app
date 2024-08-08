@@ -14,6 +14,7 @@ import {
 import Image from "next/image";
 import { onAuthStateChanged, signOut } from "@firebase/auth";
 import { auth } from "../components/firebaseConfig";
+import { ThemeSwitch } from "@/components/theme-switch";
 
 export default function App() {
   const [username, setUsername] = useState("");
@@ -45,6 +46,7 @@ export default function App() {
 
   return (
     <Navbar className="flex flex-row w-full  justify-around ">
+
       <div className="flex flex-row items-center gap-20">
         <Link href="./">
           <NavbarBrand className="flex flex-row gap-4 items-center">
@@ -95,6 +97,7 @@ export default function App() {
       </div>
 
       <NavbarContent as="div" justify="end">
+            
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
