@@ -24,7 +24,7 @@ export default function DefaultLayout({
   return (
     <>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
-        <ModalContent className="max-w-full w-auto md:w-3/4 lg:w-1/2">
+        <ModalContent className="max-w-full h-screen overflow-auto w-auto md:w-3/4 lg:w-1/2">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Web Design and development team</ModalHeader>
@@ -45,7 +45,7 @@ export default function DefaultLayout({
                     Being a member of a good and understanding team with a very strong foundational code is cherry on top. I Developed the core templates and dynamicity.
                   </p>
                 </ModalBody>
-                <ModalBody className="flex-1 overflow-auto">
+                <ModalBody className="flex overflow-auto">
                   <strong>Ui/Ux Team</strong>
                   <br />
                   <p>
