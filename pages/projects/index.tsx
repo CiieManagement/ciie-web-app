@@ -130,7 +130,7 @@ function DocsPage() {
               <Divider />
               <CardBody>
                 <p>
-                  If you are a CIIE member and you are not logged in, you cant see any projects.
+                  If you are a CIIE member and you are not logged in, you can't submit reports.
                   <br />
                   Please login first.
                 </p>
@@ -152,10 +152,10 @@ function DocsPage() {
         <div className="pb-10 max-w-7xl text-center items-center justify-center place-content-center">
           <BackdropAnimation />
 
-          <h1 className="text-5xl mb-5">Submit Your Report</h1>
+          <h1 className="text-2xl mb-5">Submit Your Report</h1>
           <form
             onSubmit={handleSubmit}
-            className="flex flex-col gap-4 items-center justify-center w-full m-5"
+            className="flex flex-col gap-4 items-center justify-center w-fit  m-5"
           >
             <Input
               label="Name"
