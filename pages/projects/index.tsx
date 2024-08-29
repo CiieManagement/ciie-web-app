@@ -130,7 +130,7 @@ function DocsPage() {
               <Divider />
               <CardBody>
                 <p>
-                  If you are a CIIE member and you are not logged in, you can't submit reports.
+                  If you are a CIIE member and you are not logged in, you cant submit reports.
                   <br />
                   Please login first.
                 </p>
