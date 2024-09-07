@@ -10,8 +10,7 @@ import Link from 'next/link';
 // Load JSON data
 import usersData from '@/components/users.json';
 import adminData from '@/components/admins.json';
-import { ThemeSwitch } from '@/components/theme-switch';
-
+ 
 // Import FontAwesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
