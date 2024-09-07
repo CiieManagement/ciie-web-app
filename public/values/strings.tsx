@@ -4,7 +4,7 @@ const Strings = {
     VC_sir: {
       name: "Dr. Paramjit S. Jaswal",
       speech:
-        "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
+        "\"At the heart of our institution lies a commitment to pioneering change and driving progress. We embrace innovation not as a fleeting trend but as a fundamental principle guiding our approach to education and research. Our goal is to empower each individual to challenge the status quo, explore new frontiers, and make a significant impact on the world. Here, you will find a community dedicated to nurturing creativity, fostering collaboration, and achieving excellence. Together, we will navigate a journey of growth and discovery that transcends conventional boundaries and opens doors to transformative opportunities.",
       designation: "Vice Chancellor",
       image: "/CoreMembersImages/vc.jpg",
     },
@@ -12,26 +12,28 @@ const Strings = {
     Registrar_sir: {
       name: "Prof. V.Samuel Raj",
       speech:
-        "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
-      designation: "Registrar & Member Secretaryr",
+        "\"Our dedication to innovation goes beyond mere words; it defines our core mission and values. We are here to ignite the spark of creativity within every individual, providing the tools, support, and mentorship needed to turn groundbreaking ideas into reality. Whether you are an established innovator or a newcomer eager to explore, our vibrant community offers the perfect environment for growth and collaboration. Join us as we embark on a collective journey towards excellence, pushing the boundaries of what is possible and making a lasting impact on our world.",
+      designation: "Registrar & Member Secretary",
       image: "/CoreMembersImages/Reg.jpg",
     },
 
     ahamadSir: {
       name: "Dr. Md Ahamad Mohiddon",
       speech:
-        "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
+        "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to revolutionize industries, transform communities, and shape the future. Our mission is to unlock that potential, providing the resources, support, and guidance necessary to turn ideas into impactful ventures... Whether you're a seasoned entrepreneur or just beginning to explore the possibilities of innovation, you've found a home here. Our diverse community thrives on collaboration, creativity, and a relentless pursuit of excellence. Together, we'll embark on a journey of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
       designation: "HOD Physics, Coordinator CIIE",
       image: "/prof_image_1.png",
     },
+    
     mohanSir: {
       name: "Dr. M Mohan",
       speech:
-        "\"Innovation is not merely a buzzword for us, It's a way of life. We believe that within every individual lies the potential to   revolutionize industries, transform communities, and shape the future.    Our mission is to unlock that potential, providing the resources,    support, and guidance necessary to turn ideas into impactful    ventures...    \nWhether you're a seasoned entrepreneur or just beginning to    explore the possibilities of innovation, you've found a home here. Our    diverse community thrives on collaboration, creativity, and a    relentless pursuit of excellence. Together, we'll embark on a journey    of discovery, learning, and growth that transcends boundaries and unlocks boundless opportunities.",
+        "\"In a world driven by rapid change and technological advancements, innovation is the key to staying ahead and making a meaningful difference. Our institution is dedicated to fostering an environment where creative ideas can flourish and groundbreaking solutions can emerge. We are committed to supporting each individual in their pursuit of excellence, providing a platform for experimentation, collaboration, and personal growth. Together, we will navigate the ever-evolving landscape of technology and education, pushing the limits of what is achievable and making impactful contributions to society.",
       designation: "HOD Computer Science | Dean student welfare",
       image: "/prof_image_2.jpeg",
     },
   },
+
   vision: {
     visionText:
       "“Empowering visionary entrepreneurs with cutting-edge resources and support to innovate, incubate, and shape the future at the CIIE Center for Innovation and Entrepreneurship”",

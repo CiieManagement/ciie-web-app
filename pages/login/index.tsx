@@ -12,6 +12,10 @@ import usersData from '@/components/users.json';
 import adminData from '@/components/admins.json';
 import { ThemeSwitch } from '@/components/theme-switch';
 
+// Import FontAwesome icons
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
 const users: UsersData = usersData;
 const admin: AdminData = adminData;
 
@@ -19,6 +23,7 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('loginEmail');
@@ -32,45 +37,48 @@ const LoginPage = () => {
 
   const handleFirebaseLogin = async (email: string, password: string) => {
     try {
-      signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in
-          const user = userCredential.user;
-          // Check if the email is admin
-          if (admin.admins.includes(email)) {
-            window.location.replace('./');
-          } else if (users.users.includes(email)) {
-            toast.success('Logged in successfully!');
-            window.location.replace('./');
-          } else {
-            toast.error('Either Your credentials are invalid or You are not a member of Ciie  ', {
-              position: 'top-center',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: 'light',
-              transition: Slide,
-            });
-          }
-        })
-        .catch((error) => {
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          toast.error('Either Your credentials are invalid or You are not a member of Ciie  ', {
-            position: 'top-center',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'light',
-            transition: Slide,
-          });
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      if (admin.admins.includes(email)) {
+        toast.success('Logged in as admin successfully!', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Slide,
         });
+        window.location.replace('./');  
+      } else if (users.users.includes(email)) {
+        toast.success('Logged in successfully!', {
+          position: 'top-center',
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Slide,
+        });
+        window.location.replace('./'); // Redirect to user dashboard or main page
+      } else {
+        toast.error('You are not a member of Ciie or invalid credentials.', {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+          transition: Slide,
+        });
+      }
 
       if (rememberMe) {
         localStorage.setItem('loginEmail', email);
@@ -80,7 +88,17 @@ const LoginPage = () => {
         localStorage.removeItem('loginPassword');
       }
     } catch (error) {
-      toast.error('Error logging in!');
+      toast.error('Error logging in! Please check your credentials.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
+      });
     }
   };
 
@@ -97,12 +115,12 @@ const LoginPage = () => {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <ToastContainer />
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+      <div className="min-h-screen bg-gray-100 p-2 flex flex-col justify-center">
+        
+        <div className="relative py-3 sm:max-w-xl p-2 sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-yellow-400 shadow-lg transform -skew-y-15 sm:skew-y-0 sm:-rotate-15 sm:rounded-3xl"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+          <div className="relative px-4 py-10 rounded-2xl bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">CIIE</h1>
@@ -111,7 +129,7 @@ const LoginPage = () => {
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   <div className="flex flex-wrap">
                     <div className="w-full">
-                      <label htmlFor="username" className="block text-sm font-medium text-gray-700">
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                         Personal Email
                       </label>
                       <div className="mt-1">
@@ -134,20 +152,31 @@ const LoginPage = () => {
                       <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                         Password
                       </label>
-                      <div className="mt-1">
+                      <div className="relative mt-1">
                         <input
                           id="password"
                           name="password"
-                          type="password"
+                          type={passwordVisible ? 'text' : 'password'}
+                          placeholder='password'
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           autoComplete="current-password"
                           required
                           className="appearance-none block w-full px-3 py-2 border border-gray-200 bg-gray-100 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
+                        <button
+                          type="button"
+                          onClick={() => setPasswordVisible(!passwordVisible)}
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                        >
+                          <FontAwesomeIcon
+                            icon={passwordVisible ? faEyeSlash : faEye}
+                            className="text-gray-400"
+                          />
+                        </button>
                       </div>
-                      <Link href="/resetPassword">
-                        <button className="text-sm">Reset password</button>
+                      <Link href="/resetPassword" className='text-sm'>
+                        Reset password
                       </Link>
                     </div>
                   </div>
@@ -175,6 +204,7 @@ const LoginPage = () => {
           </div>
         </div>
       </div>
+      <ToastContainer position='top-center' />
     </>
   );
 };

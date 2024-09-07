@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '../../components/firebaseConfig';
 import toast, { Toaster } from 'react-hot-toast';
 import { sendPasswordResetEmail } from 'firebase/auth';
@@ -7,9 +7,9 @@ const ResetPasswordForm = () => {
   const [email, setEmail] = useState('');
 
 
-  function privacyMessage(){
-    toast.custom("Maintain the privacy, don't share your credentials to anyone");
-    }
+useEffect(()=>{
+  toast.custom("Maintain the privacy, don't share your credentials to anyone");
+},[toast])
 
 
   const handleResetPassword = async (e: { preventDefault: () => void; }) => {
@@ -46,7 +46,7 @@ const ResetPasswordForm = () => {
             placeholder="Enter your email address"
             value={email}
             onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setEmail(e.target.value)}
-            onClick={privacyMessage}
+       
             required
           />
         </div>

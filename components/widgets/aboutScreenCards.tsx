@@ -68,8 +68,8 @@ function SpeechCard(props: professorProp) {
         />
       </div>
 
-      <div className=" flex-col flex rounded-xl md:mt-3 px-4 pb-2 max-w-lg">
-        <h1 className=" text-left md:text-lg opacity-80">{props.speech}</h1>
+      <div className=" flex-col flex rounded-xl md:mt-3  px-4 pb-2 max-w-lg">
+        <h1 className=" text-left content-center md:text-lg opacity-80">{props.speech}</h1>
 
         <h1 className=" rounded-lg text-right font-bold md:text-xl mr-1 mt-2">
           {props.name}
