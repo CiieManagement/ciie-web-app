@@ -61,7 +61,7 @@ export const siteConfig = {
     },
     {
  
-      href: "/core_student_members",
+      href: "/community",
     },
     {
  

@@ -21,7 +21,7 @@ export default function DocsPage() {
     { label: 'Mission', link: '/mission' },
     { label: 'Vision', link: '/vision' },
     { label: 'Mentors', link: '/mentors' },
-    { label: 'Core Student Members', link: '/core_student_members' },
+    { label: 'Communities', link: '/community' },
     { label: 'Alumni', link: '/allumni' },
     { label: 'Certifications', link: '/certifications' },
     { label: 'Internal Faculty', link: '/internalFaculty' },

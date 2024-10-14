@@ -99,52 +99,60 @@ function VisionCard(props: visionProp) {
 
 function TeamMemberCard(props: teamMember) {
   return (
-    <div className="relative flex flex-col md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
-      <div className="flex place-content-center">
-        <Image
-          className=" mx-auto ml-auto rounded-3xl"
-          src={props.image}
-          width={0}
-          height={100}
-          layout="responsive"
-          loading="lazy"
-          alt="img"
-        />
-      </div>
+    <div className="relative flex flex-col md:flex-row md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
+  <div className="md:w-1/3 flex justify-center md:justify-start">
+    <Image
+      className="rounded-3xl"
+      src={props.image}
+      width={250} // Set specific width for the image
+      height={150} // Set specific height for the image
+      loading="lazy"
+      alt="Profile Image"
+    />
+  </div>
 
-      <div className="flex flex-col">
-        <h1 className="mt-5 md:text-xl text-lg font-bold">{props.name}</h1>
-        <h1 className="md:text-md text-sm text-secondary">{props.domain}</h1>
-        <h1 className="mt-2 md:text-md text-sm text-left">{props.description}</h1>
-      </div>
+  <div className="md:w-2/3 flex flex-col justify-center mt-5 md:mt-0">
+    <h1 className="text-lg md:text-xl font-bold">{props.name}</h1>
+    <h2 className="text-sm md:text-md text-secondary">{props.domain}</h2>
+    <p className="mt-2 text-sm md:text-md text-left">{props.description}</p>
 
-      <br />
-
-      <div className="absolute bottom-3 right-3 flex space-x-2 ">
-        {props.github && (
-          <a href={props.github} target="_blank" rel="noopener noreferrer" title="GitHub">
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
-              alt="GitHub"
-              width={0}
-              height={0}
-              className="w-6 h-6  hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
-            />
-          </a>
-        )}
-        {props.linkedin && (
-          <a href={props.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
-            <Image
-              src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
-              alt="LinkedIn"
-              width={0}
-              height={0}
-              className="w-6 h-6 hover:scale-125 transition-all duration-300 ease-in-out"
-            />
-          </a>
-        )}
-      </div>
+    <div className="mt-4 flex space-x-3">
+      {props.github && (
+        <a
+          href={props.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="GitHub"
+        >
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
+            alt="GitHub"
+            width={24}
+            height={24}
+            className="hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
+          />
+        </a>
+      )}
+      {props.linkedin && (
+        <a
+          href={props.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          title="LinkedIn"
+        >
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
+            alt="LinkedIn"
+            width={24}
+            height={24}
+            className="hover:scale-125 transition-all duration-300 ease-in-out"
+          />
+        </a>
+      )}
     </div>
+  </div>
+</div>
+
   );
 }
 
