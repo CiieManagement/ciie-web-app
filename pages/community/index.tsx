@@ -36,7 +36,7 @@ const Index = () => {
       <div
         key={member.id}
         onClick={() => handleCardClick(member.id)}
-        className="bg-white p-6 flex items-center justify-between mx-auto max-w-3xl rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 ease-in-out cursor-pointer mb-8 transform hover:scale-105 hover:bg-gradient-to-br from-purple-500 to-pink-500 hover:text-white"
+        className=" bg-gray-400/20 overflow-hidden max-w-lg flex flex-col items-center justify-between rounded-3xl shadow-lg hover:shadow-2xl  duration-300 ease-in-out cursor-pointer transform hover:scale-105 transition-all"
       >
         {/* Profile Image */}
         <Image
@@ -48,18 +48,19 @@ const Index = () => {
               : member.communityImage
           }
           alt={`${member.name}'s profile`}
-          width={120}
-          height={120}
-          className="rounded-full shadow-lg object-cover border-4 border-gray-300 hover:border-transparent transition-all"
+          width={0}
+          height={0}
+          layout="responsive"
+          className=" h-fit w-full shadow-lg transition-all"
         />
-        <div className="ml-6 flex-1">
-          <h2 className="text-3xl font-bold text-gray-900 group-hover:text-white transition duration-200">
+        <div className=" mx-3 flex-1 mt-5">
+          <h2 className="text-3xl font-bold  group-hover:text-white transition duration-200">
             {member.name}
           </h2>
           <h3 className="text-lg text-blue-600 group-hover:text-blue-200 font-medium transition duration-200">
             {member.department}
           </h3>
-          <p className="text-gray-700 text-left mt-2 max-w-2xl group-hover:text-gray-100 transition duration-200">
+          <p className=" text-left my-4 max-w-2xl group-hover:text-gray-100 transition duration-200">
             {member.description.length > 150
               ? `${member.description.substring(0, 150)}...`
               : member.description}
@@ -86,7 +87,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900">
+    <div className="min-h-screen">
       <BackdropAnimation />
       <div className="relative z-10 flex flex-col items-center text-center px-6 py-8">
         <h1 className="text-5xl font-bold mb-12 text-white tracking-wide">
@@ -94,7 +95,7 @@ const Index = () => {
         </h1>
 
         {/* Rendering fetched team members */}
-        <div className="w-full space-y-6">
+        <div className="w-full max-w-6xl grid sm:grid-cols-2">
           {renderTeamMembers(teamMembers)}
         </div>
       </div>
