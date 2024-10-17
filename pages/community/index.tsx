@@ -36,7 +36,7 @@ const Index = () => {
       <div
         key={member.id}
         onClick={() => handleCardClick(member.id)}
-        className=" bg-gray-400/20 overflow-hidden max-w-lg flex flex-col items-center justify-between rounded-3xl shadow-lg hover:shadow-2xl  duration-300 ease-in-out cursor-pointer transform hover:scale-105 transition-all"
+        className="bg-gray-400/20 overflow-hidden w-full sm:max-w-lg flex flex-col items-center justify-between rounded-2xl shadow-md sm:hover:shadow-xl duration-300 ease-in-out cursor-pointer transform hover:scale-105 transition-all"
       >
         {/* Profile Image */}
         <Image
@@ -51,22 +51,22 @@ const Index = () => {
           width={0}
           height={0}
           layout="responsive"
-          className=" h-fit w-full shadow-lg transition-all"
+          className="w-full h-auto shadow-lg"
         />
-        <div className=" mx-3 flex-1 mt-5">
-          <h2 className="text-3xl font-bold  group-hover:text-white transition duration-200">
+        <div className="p-4 sm:mx-3 flex-1 mt-4">
+          <h2 className="text-xl sm:text-2xl font-bold text-center sm:group-hover:text-white transition duration-200">
             {member.name}
           </h2>
-          <h3 className="text-lg text-blue-600 group-hover:text-blue-200 font-medium transition duration-200">
+          <h3 className="text-sm sm:text-lg text-blue-600 sm:group-hover:text-blue-200 font-medium text-center transition duration-200">
             {member.department}
           </h3>
-          <p className=" text-left my-4 max-w-2xl group-hover:text-gray-100 transition duration-200">
+          <p className="text-left my-4 text-sm sm:text-base sm:group-hover:text-gray-100 transition duration-200">
             {member.description.length > 150
               ? `${member.description.substring(0, 150)}...`
               : member.description}
           </p>
         </div>
-        <div className="ml-4 transition duration-200">
+        <div className="mb-4 transition duration-200">
           <svg
             className="w-6 h-6 text-gray-500 group-hover:text-white"
             fill="none"
@@ -87,15 +87,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900">
       <BackdropAnimation />
-      <div className="relative z-10 flex flex-col items-center text-center px-6 py-8">
-        <h1 className="text-5xl font-bold mb-12 text-white tracking-wide">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 py-8">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-10 text-white tracking-wide">
           Meet Our Community Coordinators
         </h1>
 
         {/* Rendering fetched team members */}
-        <div className="w-full max-w-6xl grid sm:grid-cols-2">
+        <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {renderTeamMembers(teamMembers)}
         </div>
       </div>

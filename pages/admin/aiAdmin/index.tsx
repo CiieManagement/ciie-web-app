@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { collection, getDocs, query, where, updateDoc, doc, arrayUnion } from 'firebase/firestore';
-import { db, auth } from '@/components/firebaseConfig';  // Ensure correct Firebase config import
+import { db, auth } from '@/components/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
-import Image from 'next/image';  // Import Image from Next.js
-import { Dialog } from '@headlessui/react';  // For modal functionality
-import { Button } from 'react-bootstrap';  // Import Button from React Bootstrap
+import Image from 'next/image';
+import { Dialog } from '@headlessui/react';
+import { Button, Accordion } from 'react-bootstrap';
 import React from 'react';
+import * as XLSX from 'xlsx';  // Import XLSX for exporting data
 
 interface TeamMember {
   name: string;
@@ -26,6 +27,21 @@ interface Community {
 }
 
 interface Application {
+  yedataAnalysisExperiencer: string;
+  workshopSource: string;
+  workshopTopics: string;
+  workshopGoal: string;
+  mlCourses: string;
+  pythonProficiency: string;
+  course: string;
+  phoneNumber: string;
+  appliedAt: any;
+  department: string;
+  email: string;
+  branch: string;
+  section: string;
+  mathProficiency: string;
+  mlTopics: string;
   registrationNumber: string;
   name: string;
   year: string;
@@ -35,7 +51,7 @@ const CommunityPage = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);  // Modal state
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [newMember, setNewMember] = useState<TeamMember>({
     name: '',
     role: '',
@@ -61,7 +77,7 @@ const CommunityPage = () => {
         if (!coordinatorSnapshot.empty) {
           const coordinatorData = coordinatorSnapshot.docs[0].data();
 
-          if (coordinatorData.community === 'Cloud') {
+          if (coordinatorData.community === 'AI and ML') {
             setIsCoordinator(true);
           } else {
             setErrorMessage('You are a coordinator, but you are in the wrong community.');
@@ -80,14 +96,22 @@ const CommunityPage = () => {
     const fetchCommunitiesAndApplications = async () => {
       try {
         const communitiesCollection = collection(db, 'communities');
-        const q = query(communitiesCollection, where('department', '==', 'Cloud'));
+        const q = query(communitiesCollection, where('department', '==', 'AI and ML'));
         const communitySnapshot = await getDocs(q);
         const communityList: Community[] = communitySnapshot.docs.map((doc) => doc.data() as Community);
 
         const applicationsCollection = collection(db, 'applications');
-        const w = query(applicationsCollection, where('department', '==', 'Cloud'));
+        const w = query(applicationsCollection, where('department', '==', 'AI and ML'));
         const applicationSnapshot = await getDocs(w);
-        const applicationList: Application[] = applicationSnapshot.docs.map((doc) => doc.data() as Application);
+        const applicationList: Application[] = applicationSnapshot.docs.map((doc) => {
+          const data = doc.data() as Application;
+
+          if (data.appliedAt && data.appliedAt.seconds) {
+            data.appliedAt = new Date(data.appliedAt.seconds * 1000).toLocaleDateString();
+          }
+
+          return data;
+        });
 
         setCommunities(communityList);
         setApplications(applicationList);
@@ -114,7 +138,7 @@ const CommunityPage = () => {
   const handleAddMember = async () => {
     try {
       const communitiesCollectionRef = collection(db, 'communities');
-      const q = query(communitiesCollectionRef, where('department', '==', 'Cloud'));
+      const q = query(communitiesCollectionRef, where('department', '==', 'AI and ML'));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -131,11 +155,18 @@ const CommunityPage = () => {
 
         setCommunities(updatedCommunitiesList);
       } else {
-        console.error('No community found with department "Cloud".');
+        console.error('No community found with department "AI and ML".');
       }
     } catch (error) {
       console.error('Error adding member:', error);
     }
+  };
+
+  const downloadExcel = () => {
+    const worksheet = XLSX.utils.json_to_sheet(applications);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Applications');
+    XLSX.writeFile(workbook, 'applications_data.xlsx');
   };
 
   if (loading) {
@@ -148,7 +179,7 @@ const CommunityPage = () => {
 
   return isCoordinator ? (
     <div className="p-8">
-      <h1 className="text-3xl font-bold mb-8">Cloud Community Details</h1>
+      <h1 className="text-3xl font-bold mb-8">AI and ML Community Details</h1>
 
       <Button onClick={() => setIsModalOpen(true)} className="bg-blue-500 text-white p-2 rounded mb-4">
         Add Team Member
@@ -196,69 +227,93 @@ const CommunityPage = () => {
         </div>
       </Dialog>
 
-      <div className="flex justify-center mb-12">
-        {communities.map((community, index) => (
-          <div key={index} className="flex flex-col items-center">
-            <div className="relative w-52 h-48">
-              <Image
-                src={community.personalImage}
-                alt="Community Coordinator"
-                layout="fill"
-                objectFit="cover"
-                objectPosition="top"
-                className="rounded-2xl"
-              />
-            </div>
-            <h1 className="text-xl font-bold text-blue-600">
-              Community Coordinator - Dr. {community.faculty}
-            </h1>
-          </div>
-        ))}
-      </div>
-
-      <h2 className="text-2xl font-semibold mb-8">Team Members</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {communities.map((community, index) => (
-          <div key={index} className="border p-4 rounded-lg shadow-lg">
-            <h3 className="text-xl font-semibold mb-4">Team Members</h3>
-            <ul className="list-disc pl-5">
-              {community.teamMembers.map((member, idx) => (
-                <li key={idx} className="mb-4">
-                  <p><strong>Name:</strong> {member.name}</p>
-                  <p><strong>Role:</strong> {member.role}</p>
-                  <p>
-                    <strong>GitHub:</strong>{' '}
-                    <a href={member.github} target="_blank" rel="noopener noreferrer">
-                      {member.github}
-                    </a>
-                  </p>
-                  <p>
-                    <strong>LinkedIn:</strong>{' '}
-                    <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                      {member.linkedin}
-                    </a>
-                  </p>
-                </li>
+      {/* Collapsible Section for Community */}
+      <Accordion>
+        <Accordion.Item eventKey="0">
+          <Accordion.Header>Community Coordinator</Accordion.Header>
+          <Accordion.Body>
+            <div className="flex justify-center mb-12">
+              {communities.map((community, index) => (
+                <div key={index} className="flex flex-col items-center">
+                  <div className="relative w-52 h-48">
+                    <Image
+                      src={community.personalImage}
+                      alt="Community Coordinator"
+                      layout="fill"
+                      objectFit="cover"
+                      objectPosition="top"
+                      className="rounded-lg"
+                    />
+                  </div>
+                  <h1 className="font-bold text-2xl">{community.faculty}</h1>
+                  <h2 className="italic text-lg">{community.name}</h2>
+                  <p className="text-center">{community.personalThoughts}</p>
+                </div>
               ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
 
-      <h2 className="text-2xl font-semibold mt-8">Applications</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
-        {applications.map((application, idx) => (
-          <div key={idx} className="border p-4 rounded-lg shadow-lg">
-            <p><strong>Name:</strong> {application.name}</p>
-            <p><strong>Registration Number:</strong> {application.registrationNumber}</p>
-            <p><strong>Year:</strong> {application.year}</p>
-          </div>
-        ))}
-      </div>
+        {/* Collapsible Section for Team Members */}
+        <Accordion.Item eventKey="1">
+          <Accordion.Header>Team Members</Accordion.Header>
+          <Accordion.Body>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {communities.map((community, index) =>
+                community.teamMembers.map((teamMember, memberIndex) => (
+                  <div key={memberIndex} className="flex flex-col items-center border p-4 rounded-lg">
+                    <h3 className="text-xl font-bold">{teamMember.name}</h3>
+                    <p className="italic">{teamMember.role}</p>
+                    <div className="flex space-x-4">
+                      <a href={teamMember.github} target="_blank" rel="noopener noreferrer">
+                        GitHub
+                      </a>
+                      <a href={teamMember.linkedin} target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                      </a>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        {/* Collapsible Section for Applications */}
+        <Accordion.Item eventKey="2">
+          <Accordion.Header>Applications</Accordion.Header>
+          <Accordion.Body>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto border-collapse border border-gray-400">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2 border border-gray-400">Name</th>
+                    <th className="px-4 py-2 border border-gray-400">Registration Number</th>
+                    <th className="px-4 py-2 border border-gray-400">Email</th>
+                    <th className="px-4 py-2 border border-gray-400">Applied At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {applications.map((application, index) => (
+                    <tr key={index}>
+                      <td className="border border-gray-400 px-4 py-2">{application.name}</td>
+                      <td className="border border-gray-400 px-4 py-2">{application.registrationNumber}</td>
+                      <td className="border border-gray-400 px-4 py-2">{application.email}</td>
+                      <td className="border border-gray-400 px-4 py-2">{application.appliedAt}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <Button onClick={downloadExcel} className="bg-green-500 text-white p-2 rounded mt-4">
+              Download Applications Data as Excel
+            </Button>
+          </Accordion.Body>
+        </Accordion.Item>
+      </Accordion>
     </div>
-  ) : (
-    <p>{errorMessage}</p>
-  );
+  ) : null;
 };
 
 export default CommunityPage;
