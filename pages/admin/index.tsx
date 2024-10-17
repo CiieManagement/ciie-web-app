@@ -43,6 +43,15 @@ const AdminPage = () => {
             </div>
           </Link>
 
+
+           <Link href="/community/create-community" passHref>
+            <div className="bg-gray-800 shadow-md rounded-lg p-6 cursor-pointer">
+              <h2 className="text-2xl font-semibold mb-4">Create Community</h2>
+              <p className="text-gray-300 mb-4">Add new student reports and manage submissions.</p>
+              <button className="bg-blue-500 text-white px-4 py-2 rounded">Create Community</button>
+            </div>
+          </Link>
+
           <Link href="/requests" passHref>
           <div className="bg-gray-800 shadow-md rounded-lg p-6">
             <h2 className="text-2xl font-semibold ">Manage New Requests</h2>
