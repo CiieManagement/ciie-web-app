@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { px } from "framer-motion";
+import { collection, getDocs } from "@firebase/firestore";
+import { db } from "../firebaseConfig";
+
+
 interface professorProp {
   name: string;
   designation: string;
@@ -24,7 +28,7 @@ interface visionProp {
   fixedflex: boolean;
 }
 
-interface teamMember {
+interface TeamMember {
   image: string;
   name: string;
   domain: string;
@@ -32,6 +36,7 @@ interface teamMember {
   linkedin: string;
   github: string;
 }
+
 interface allumni {
   image: string;
   name: string;
@@ -97,64 +102,83 @@ function VisionCard(props: visionProp) {
   );
 }
 
-function TeamMemberCard(props: teamMember) {
+function TeamMemberCard() {
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
+
+  useEffect(() => {
+    const fetchTeamMembers = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "communities"));
+        const membersData: TeamMember[] = querySnapshot.docs.map((doc) => ({
+          ...doc.data(),
+        })) as TeamMember[];
+        setTeamMembers(membersData);
+      } catch (error) {
+        console.error("Error fetching team members: ", error);
+      }
+    };
+
+    fetchTeamMembers();
+  }, []);
+
   return (
-    <div className="relative flex flex-col md:flex-row md:gap-x-10 rounded-2xl max-w-3xl md:mx-auto backdrop-blur-sm p-5 bg-gray-300/20 border-2 border-gray-400/20">
-  <div className="md:w-1/3 flex justify-center md:justify-start">
-    <Image
-      className="rounded-3xl"
-      src={props.image}
-      width={250} // Set specific width for the image
-      height={150} // Set specific height for the image
-      loading="lazy"
-      alt="Profile Image"
-    />
-  </div>
-
-  <div className="md:w-2/3 flex flex-col justify-center mt-5 md:mt-0">
-    <h1 className="text-lg md:text-xl font-bold">{props.name}</h1>
-    <h2 className="text-sm md:text-md text-secondary">{props.domain}</h2>
-    <p className="mt-2 text-sm md:text-md text-left">{props.description}</p>
-
-    <div className="mt-4 flex space-x-3">
-      {props.github && (
-        <a
-          href={props.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="GitHub"
+    <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-2 px-4 md:px-8">
+      {teamMembers.map((member, index) => (
+        <div
+          key={index}
+          className="flex flex-col md:flex-row gap-6 rounded-xl max-w-4xl mx-auto backdrop-blur-lg p-6 bg-white/20 shadow-lg border border-gray-200 hover:shadow-2xl transition-shadow duration-300"
         >
-          <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
-            alt="GitHub"
-            width={24}
-            height={24}
-            className="hover:scale-125 transition-all duration-300 ease-in-out bg-white/60"
-          />
-        </a>
-      )}
-      {props.linkedin && (
-        <a
-          href={props.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          title="LinkedIn"
-        >
-          <Image
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
-            alt="LinkedIn"
-            width={24}
-            height={24}
-            className="hover:scale-125 transition-all duration-300 ease-in-out"
-          />
-        </a>
-      )}
+          {/* Image section - aligned to the left on wider screens */}
+          <div className="md:w-1/3 flex justify-center">
+            <Image
+              className="rounded-xl object-cover"
+              src={member.image}
+              width={250} // Adjusted width
+              height={250} // Adjusted height
+              loading="lazy"
+              alt={`${member.name}'s profile image`}
+            />
+          </div>
+
+          {/* Details section - aligned to the right */}
+          <div className="flex flex-col justify-center md:w-2/3 text-left">
+            <h2 className="text-xl font-semibold text-gray-800">{member.department}</h2>
+            <h1 className="text-lg text-secondary font-medium mt-2">{member.name}</h1>
+            <p className="mt-4 text-sm text-gray-600 leading-relaxed">{member.description}</p>
+
+            <div className="mt-5 flex space-x-5">
+              {member.github && (
+                <a href={member.github} target="_blank" rel="noopener noreferrer" title="GitHub">
+                  <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg"
+                    alt="GitHub"
+                    width={28}
+                    height={28}
+                    className="hover:scale-110 transition-transform duration-200 ease-in-out"
+                  />
+                </a>
+              )}
+              {member.linkedin && (
+                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                  <Image
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg"
+                    alt="LinkedIn"
+                    width={28}
+                    height={28}
+                    className="hover:scale-110 transition-transform duration-200 ease-in-out"
+                  />
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+      ))}
     </div>
-  </div>
-</div>
-
   );
 }
+
+
+
 
  
 function AllumniCard(props: allumni) {

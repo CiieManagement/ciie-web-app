@@ -4,16 +4,13 @@ import { toast, Slide, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { auth } from '../../components/firebaseConfig';
 import { Checkbox } from '@nextui-org/react';
-import { UsersData, AdminData } from '@/interfaces'; // Import interfaces
+import { UsersData, AdminData } from '@/interfaces';
 import Link from 'next/link';
-
-// Load JSON data
 import usersData from '@/components/users.json';
 import adminData from '@/components/admins.json';
- 
-// Import FontAwesome icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { getFirestore, collection, getDocs, query, where } from 'firebase/firestore'; // Import Firestore methods
 
 const users: UsersData = usersData;
 const admin: AdminData = adminData;
@@ -23,6 +20,7 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const db = getFirestore(); // Initialize Firestore
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('loginEmail');
@@ -39,6 +37,7 @@ const LoginPage = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
+      // Check for admin access
       if (admin.admins.includes(email)) {
         toast.success('Logged in as admin successfully!', {
           position: 'top-center',
@@ -51,8 +50,12 @@ const LoginPage = () => {
           theme: 'light',
           transition: Slide,
         });
-        window.location.replace('./');  
-      } else if (users.users.includes(email)) {
+        window.location.replace('./');
+        return; // Exit early if logged in as admin
+      }
+
+      // Check for user access
+      if (users.users.includes(email)) {
         toast.success('Logged in successfully!', {
           position: 'top-center',
           autoClose: 3000,
@@ -65,10 +68,20 @@ const LoginPage = () => {
           transition: Slide,
         });
         window.location.replace('./'); // Redirect to user dashboard or main page
-      } else {
-        toast.error('You are not a member of Ciie or invalid credentials.', {
+        return; // Exit early if logged in as user
+      }
+
+      // Check for coordinator access
+      const coordinatorQuery = query(collection(db, 'coordinators'), where('email', '==', email)); // Query by email
+      const coordinatorSnapshot = await getDocs(coordinatorQuery);
+
+      if (!coordinatorSnapshot.empty) {
+        const coordinatorData = coordinatorSnapshot.docs[0].data(); // Get the first matching coordinator
+        const community = coordinatorData.community; // Get the community
+
+        toast.success(`Logged in as coordinator successfully in ${community}!`, {
           position: 'top-center',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -77,15 +90,35 @@ const LoginPage = () => {
           theme: 'light',
           transition: Slide,
         });
+
+        // Redirect based on community value
+        switch (community) {
+          case 'cloud':
+            window.location.replace('/admin/cloudAdmin'); // Redirect to cloud community page
+            break;
+          case 'AI':
+            window.location.replace('/admin/webAdmin'); // Redirect to AI community page
+            break;
+          // Add more cases as necessary for other communities
+          default:
+            window.location.replace('./'); // Default redirect
+        }
+        return; // Exit early if logged in as coordinator
       }
 
-      if (rememberMe) {
-        localStorage.setItem('loginEmail', email);
-        localStorage.setItem('loginPassword', password);
-      } else {
-        localStorage.removeItem('loginEmail');
-        localStorage.removeItem('loginPassword');
-      }
+      // If no valid role found, show error
+      toast.error('You are not a member of Ciie or invalid credentials.', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+        transition: Slide,
+      });
+
     } catch (error) {
       toast.error('Error logging in! Please check your credentials.', {
         position: 'top-center',
@@ -98,6 +131,15 @@ const LoginPage = () => {
         theme: 'light',
         transition: Slide,
       });
+    }
+
+    // Handle remembering credentials
+    if (rememberMe) {
+      localStorage.setItem('loginEmail', email);
+      localStorage.setItem('loginPassword', password);
+    } else {
+      localStorage.removeItem('loginEmail');
+      localStorage.removeItem('loginPassword');
     }
   };
 
@@ -115,7 +157,6 @@ const LoginPage = () => {
   return (
     <>
       <div className="min-h-screen bg-gray-100 p-2 flex flex-col justify-center">
-        
         <div className="relative py-3 sm:max-w-xl p-2 sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-yellow-400 shadow-lg transform -skew-y-15 sm:skew-y-0 sm:-rotate-15 sm:rounded-3xl"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -183,27 +224,33 @@ const LoginPage = () => {
                 <div className="pt-5">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <Checkbox defaultChecked={rememberMe} color="primary" onChange={handleRememberMe}>
-                        <span className="text-gray-700"> Remember me </span>
-                      </Checkbox>
+                      <Checkbox defaultChecked={rememberMe} onChange={handleRememberMe} />
+                      <label htmlFor="remember" className="ml-2 block text-sm text-gray-900">
+                        Remember me
+                      </label>
+                    </div>
+                    <div className="text-sm">
+                      <Link href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                        Create an account
+                      </Link>
                     </div>
                   </div>
-                  <div className="pt-4">
+                  <div className="mt-6">
                     <button
                       type="button"
                       onClick={() => handleFirebaseLogin(email, password)}
-                      className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
-                      Log in
+                      Sign in
                     </button>
                   </div>
                 </div>
               </form>
+              <ToastContainer />
             </div>
           </div>
         </div>
       </div>
-      <ToastContainer position='top-center' />
     </>
   );
 };

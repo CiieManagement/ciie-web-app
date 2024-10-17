@@ -128,6 +128,21 @@ export const siteConfig = {
     {
       href : "/blog/currentBlogs"
     },
+    {
+      href : "/community/create-community"
+    },
+    {
+      href : "/community/view"
+    },
+    {
+      href : "/community/coordinator"
+    },
+    {
+      href : "/admin/cloudAdmin"
+    },
+    {
+      href : "/admin/webAdmin"
+    },
   ],
 
   loginNavMenuItems:  [
