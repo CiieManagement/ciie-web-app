@@ -195,7 +195,7 @@ const WorkshopForm = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full text-center">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Reminder</h3>
-            <p className="text-gray-600 mb-6">Please create your AWS account if you haven't done so yet. Students with accounts will be prioritized, and it is essential for the workshop.</p>
+            <p className="text-gray-600 mb-6">Please create your AWS account if you have not done so yet. Students with accounts will be prioritized, and it is essential for the workshop.</p>
             <button onClick={closeReminder} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
               OK
             </button>
