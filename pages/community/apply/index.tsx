@@ -9,6 +9,7 @@ interface FormData {
   name: string;
   registrationNumber: string;
   email: string;
+  year: number;
   phoneNumber: string;
   course: string;
   branch: string;
@@ -71,6 +72,7 @@ const Apply: React.FC = () => {
         registrationNumber: "",
         email: "",
         phoneNumber: "",
+        year:0,
         course: "",
         branch: "",
         section: "",
@@ -120,6 +122,17 @@ const Apply: React.FC = () => {
                 type="text"
                 name="registrationNumber"
                 value={formData.registrationNumber}
+                onChange={handleChange}
+                className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block ">Year</label>
+              <input
+                type="text"
+                name="year"
+                value={formData.year}
                 onChange={handleChange}
                 className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                 required
