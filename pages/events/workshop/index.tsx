@@ -87,7 +87,7 @@ const WorkshopForm = () => {
       {!showForm ? (
         <div className="min-h-screen bg-gradient-to-r from-purple-300 via-blue-300 to-teal-300 flex items-center justify-center">
           <div className="bg-white shadow-lg rounded-lg p-10 max-w-4xl w-full">
-            <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Join CIIE's Cloud Workshop! 🌩</h1>
+            <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Join CIIEs Cloud Workshop! 🌩</h1>
             <p className="text-lg text-gray-700 mb-4">
               Are you excited to dive into the world of cloud computing and take your technical skills to the next level? The
               Center for Innovation Incubation and Entrepreneurship (CIIE) is thrilled to announce a two-day cloud workshop
@@ -133,7 +133,7 @@ const WorkshopForm = () => {
               <li>Earn AWS Certification to boost your career</li>
             </ul>
 
-            <p className="mt-6 text-lg text-gray-700">Dont miss this chance to enhance your cloud skills. Register now!</p>
+            <p className="mt-6 text-lg text-gray-700">Do not miss this chance to enhance your cloud skills. Register now!</p>
 
             <div className="mt-6 flex justify-center">
               <button
