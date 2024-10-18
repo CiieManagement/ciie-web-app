@@ -91,7 +91,7 @@ const Index = () => {
       <BackdropAnimation />
       <div className="relative z-10 flex flex-col items-center text-center px-4 py-8">
         <h1 className="text-4xl sm:text-5xl font-bold mb-10 text-white tracking-wide">
-          Meet Our Community Coordinators
+          Our Community
         </h1>
 
         {/* Rendering fetched team members */}
