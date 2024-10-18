@@ -5,6 +5,7 @@ import { collection, addDoc } from "firebase/firestore"; // Firestore methods fo
 import axios from "axios";
 
 interface FormData {
+  pythonProficiency: string;
   name: string;
   registrationNumber: string;
   email: string;

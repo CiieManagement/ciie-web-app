@@ -27,11 +27,11 @@ const Index = () => {
     fetchTeamMembers();
   }, []);
 
-  const handleCardClick = (id) => {
+  const handleCardClick = (id: any) => {
     router.push(`/community/detail/${id}`);
   };
 
-  const renderTeamMembers = (members) => {
+  const renderTeamMembers = (members: any[]) => {
     return members.map((member) => (
       <div
         key={member.id}
@@ -53,7 +53,7 @@ const Index = () => {
           layout="responsive"
           className="w-full h-auto shadow-lg"
         />
-        <div className="p-4 sm:mx-3 flex-1 mt-4">
+        <div className="p-2 sm:mx-3 flex-1 mt-2">
           <h2 className="text-xl sm:text-2xl font-bold text-center sm:group-hover:text-white transition duration-200">
             {member.name}
           </h2>
@@ -68,7 +68,7 @@ const Index = () => {
         </div>
         <div className="mb-4 transition duration-200">
           <svg
-            className="w-6 h-6 text-gray-500 group-hover:text-white"
+            className="w-6 h-2 text-gray-500 group-hover:text-white"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -95,7 +95,7 @@ const Index = () => {
         </h1>
 
         {/* Rendering fetched team members */}
-        <div className="w-full max-w-7xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {renderTeamMembers(teamMembers)}
         </div>
       </div>
