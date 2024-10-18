@@ -76,8 +76,7 @@ const Apply: React.FC = () => {
         section: "",
         department: ""
       }
-      submitToSheets()
-      // setFormData(newFormData);
+       // setFormData(newFormData);
     } catch (error) {
       console.error("Error submitting application: ", error);
     } finally {
@@ -90,25 +89,7 @@ const Apply: React.FC = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitToSheets = () => {
-    const data = JSON.stringify(formData);
-    axios.post('https://api.sheetbest.com/sheets/76056cfb-e654-42ec-8f30-b3e05d87a784', data, {
-      headers: {
-        'Authorization': 'eh85ogj#hj8spgOVqzn4aZ5uDaMPS934%Ty8dU2imuH$OcCib#wAw__0jhegF#Ig',
-        'Content-Type': 'application/json'
-      }
-    })
-    setFormData({
-      name: "",
-      registrationNumber: "",
-      email: "",
-      phoneNumber: "",
-      course: "",
-      branch: "",
-      section: "",
-      department: "",
-    });
-  }
+ 
     return (
       <div className="min-h-screen flex items-center justify-center p-6">
         <div className="bg-gray-400/20 p-8 rounded-lg shadow-lg w-full max-w-4xl">
