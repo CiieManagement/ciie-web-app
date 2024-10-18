@@ -5,6 +5,12 @@ import { Navbar } from "@/components/navbar";
 import BackdropAnimation from "@/components/utils/backdrop_animation";
 
 const WorkshopForm = () => {
+    const [showForm, setShowForm] = useState(false);
+
+    const handleContinue = () => {
+        setShowForm(true);
+    };
+
   const [formData, setFormData] = useState({
     fullName: "",
     registrationNumber: "",
@@ -77,6 +83,70 @@ const WorkshopForm = () => {
     <>
       <Navbar />
       <BackdropAnimation />
+
+      {!showForm ? (
+        <div className="min-h-screen bg-gradient-to-r from-purple-300 via-blue-300 to-teal-300 flex items-center justify-center">
+          <div className="bg-white shadow-lg rounded-lg p-10 max-w-4xl w-full">
+            <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Join CIIE's Cloud Workshop! 🌩</h1>
+            <p className="text-lg text-gray-700 mb-4">
+              Are you excited to dive into the world of cloud computing and take your technical skills to the next level? The
+              Center for Innovation Incubation and Entrepreneurship (CIIE) is thrilled to announce a two-day cloud workshop
+              at SRM University, designed to equip you with essential knowledge and hands-on experience in AWS services and
+              Kubernetes.
+            </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">Workshop Overview:</h2>
+            <ul className="list-disc pl-5 text-gray-700 mb-4">
+              <li>Date: <span className="font-bold">November 24-25</span></li>
+              <li>Time: <span className="font-bold">9:30 AM to 4:00 PM</span></li>
+              <li>Location: <span className="font-bold">SRM University</span></li>
+            </ul>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">What You’ll Learn:</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-purple-100 rounded-lg shadow">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Day 1: AWS Services</h3>
+                <ul className="list-disc pl-5 text-gray-700">
+                  <li>Git and GitHub</li>
+                  <li>Amazon EC2, Amazon S3, Amazon RDS</li>
+                  <li>Hands-On Labs with EC2, S3, and RDS</li>
+                </ul>
+              </div>
+              <div className="p-4 bg-blue-100 rounded-lg shadow">
+                <h3 className="text-xl font-bold text-gray-800 mb-2">Day 2: Kubernetes</h3>
+                <ul className="list-disc pl-5 text-gray-700">
+                  <li>Kubernetes Concepts and Architecture</li>
+                  <li>Working with Pods, Services, and Deployments</li>
+                  <li>Hands-On Labs with Kubernetes</li>
+                </ul>
+              </div>
+            </div>
+
+            <p className="mt-6 text-lg text-gray-700">
+              Upon successful completion of the workshop, attendees will receive a certification in Amazon Web Services (AWS),
+              validating your cloud computing proficiency.
+            </p>
+
+            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">Why Attend?</h2>
+            <ul className="list-disc pl-5 text-gray-700">
+              <li>Hands-On Learning with CIIE mentors</li>
+              <li>Earn AWS Certification to boost your career</li>
+            </ul>
+
+            <p className="mt-6 text-lg text-gray-700">Dont miss this chance to enhance your cloud skills. Register now!</p>
+
+            <div className="mt-6 flex justify-center">
+              <button
+                onClick={handleContinue}
+                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
+              >
+                Continue to Registration
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+
       <div className="min-h-screen bg-gradient-to-r from-purple-200 via-blue-200 to-teal-200 flex items-center justify-center">
         <div className="bg-white shadow-lg rounded-lg p-8 max-w-3xl w-full">
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Workshop Registration Form</h2>
@@ -167,6 +237,7 @@ const WorkshopForm = () => {
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
+            
 
 
             {formData.awsAccount === "No" && (
@@ -189,6 +260,7 @@ const WorkshopForm = () => {
         </form>
       </div>
     </div>
+    )}
 
 
     {showReminder && (
