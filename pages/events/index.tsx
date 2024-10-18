@@ -27,11 +27,11 @@ export default function DocsPage() {
     // link.click();
 
     const userConfirmed = confirm(
-      "Don't forget to read the rules carefully, before registering for your course. Tap OK to continue."
+      "Don't forget to join the group after registering yourself, it will automatically re-direct you to there. Tap OK to continue."
     );
 
     if (userConfirmed) {
-      window.open(workshop.link, "_blank"); // Open the link in a new tab
+      window.open("/events/workshop", "_blank"); // Open the link in a new tab
     } else {
       toast.error("Registration canceled");
     }
@@ -84,7 +84,7 @@ export default function DocsPage() {
             cover everything here.
           </h1>
 
-          <h1 className="text-3xl mt-5  text-pretty text-left font-bold">
+          {/* <h1 className="text-3xl mt-5  text-pretty text-left font-bold">
               Collaboration with SCIPR
           </h1>
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
@@ -166,7 +166,7 @@ export default function DocsPage() {
                 </div>
               );
             })}
-          </div>
+          </div> */}
 
 
           <h1 className="text-3xl mt-5  text-pretty text-left font-bold">
@@ -256,10 +256,10 @@ export default function DocsPage() {
             })}
           </div>
           
-          <h1 className="text-3xl  text-pretty text-left font-bold mt-10">
+          {/* <h1 className="text-3xl  text-pretty text-left font-bold mt-10">
             Bundle courses{" "}
-          </h1>
-          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
+          </h1> */}
+          {/* <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
             {Object.values(Strings.events.current.bundle_workshops).map(
               (workshop) => {
                 const startDate = new Date(workshop.start_date);
@@ -308,7 +308,7 @@ export default function DocsPage() {
                         <h1 className="my-auto text-sm font-bold text-[#9966ff]">
                           {workshop.end_date}
                         </h1>
-                      </div>
+                      </div> */}
 
                       {/* <Countdown
                         date={"2 July 2024"}
@@ -337,11 +337,11 @@ export default function DocsPage() {
                        }
                       /> */}
 
-                      <div className="mt-5">
+                      {/* <div className="mt-5">
                         <h1 className="text-sm opacity-70">
                           {workshop.description}
                         </h1>
-                      </div>
+                      </div> */}
 
                       {/* 
                   {now <= registrationDate && now <= startDate && (
@@ -392,12 +392,12 @@ export default function DocsPage() {
                       Register Now
                     </Button>
                   )} */}
-                    </div>
+                    {/* </div>
                   </div>
                 );
               }
             )}
-          </div>
+          </div> */}
         </div>
       </section>
 

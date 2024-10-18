@@ -143,6 +143,9 @@ export const siteConfig = {
     {
       href : "/admin/webAdmin"
     },
+    {
+      href : "/events/workshop"
+    },
   ],
 
   loginNavMenuItems:  [

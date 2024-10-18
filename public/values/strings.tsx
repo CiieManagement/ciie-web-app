@@ -99,82 +99,82 @@ const Strings = {
   events: {
     current: {
       workshops: {
+        // 1: {
+        //   name: "App Development Workshop",
+        //   image: "/app.jpg",
+        //   description:
+        //     "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
+        //   registration_date: "2024-05-18T10:00:00",
+        //   start_date: "6 july 2024",
+        //   end_date: "30 july 2024",
+        //   link:"https://omnidev-courses.vercel.app/app"
+        // },
         1: {
-          name: "App Development Workshop",
-          image: "/app.jpg",
-          description:
-            "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
-          registration_date: "2024-05-18T10:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
-          link:"https://omnidev-courses.vercel.app/app"
-        },
-        2: {
           name: "Cloud Learning Workshop",
           image: "/cloud.jpg",
           description: "In this workshop, we dive deep into cloud technologies that are emerging nowadays",
           registration_date: "2024-05-18T12:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
+          start_date: "24 oct 2024",
+          end_date: "25 oct 2024",
           link:"https://omnidev-courses.vercel.app/cloud"
         },
-        3: {
-          name: "Web Development Workshop",
-          image: "/web.jpg",
-          description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
-          registration_date: "2024-05-18T14:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
-          link: "https://omnidev-courses.vercel.app/web"
-        },
-        4: {
-          name: "Dsa Workshop",
-          image: "/dsa.jpg",
-          description: "In this workshop, we dive deep into data structures that are emerging nowadays",
-          registration_date: "2024-05-18T16:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
-          link:"https://omnidev-courses.vercel.app/dsa"
-        },
+        // 3: {
+        //   name: "Web Development Workshop",
+        //   image: "/web.jpg",
+        //   description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
+        //   registration_date: "2024-05-18T14:00:00",
+        //   start_date: "6 july 2024",
+        //   end_date: "30 july 2024",
+        //   link: "https://omnidev-courses.vercel.app/web"
+        // },
+        // 4: {
+        //   name: "Dsa Workshop",
+        //   image: "/dsa.jpg",
+        //   description: "In this workshop, we dive deep into data structures that are emerging nowadays",
+        //   registration_date: "2024-05-18T16:00:00",
+        //   start_date: "6 july 2024",
+        //   end_date: "30 july 2024",
+        //   link:"https://omnidev-courses.vercel.app/dsa"
+        // },
       },
-      IPR: {
-        1: {
-          name: "Intellectual Property Right Course",
-          image: "/ipr.jpg",
-          description:
-            "In this workshop, we dive deep into intersection of cyberspace, intellectual property rights and others",
-          registration_date: "2024-05-18T10:00:00",
-          start_date: "starts from  13 july 2024",
-          link:"/detailPage"
-        },
+      // IPR: {
+      //   1: {
+      //     name: "Intellectual Property Right Course",
+      //     image: "/ipr.jpg",
+      //     description:
+      //       "In this workshop, we dive deep into intersection of cyberspace, intellectual property rights and others",
+      //     registration_date: "2024-05-18T10:00:00",
+      //     start_date: "starts from  13 july 2024",
+      //     link:"/detailPage"
+      //   },
       
       
-      },
-      bundle_workshops: {
-        1: {
-          name: "App + cloud development",
-          image1: "/app.jpg",
-          image2: "/cloud.jpg",
-          description:
-            "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
-          registration_date: "2024-05-18T10:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
-          link:"https://omnidev-courses.vercel.app/appncloud"
-        },
+      // },
+      // bundle_workshops: {
+      //   1: {
+      //     name: "App + cloud development",
+      //     image1: "/app.jpg",
+      //     image2: "/cloud.jpg",
+      //     description:
+      //       "In this workshop, we dive deep into app development technologies like Flutter and React-Native that are emerging nowadays.",
+      //     registration_date: "2024-05-18T10:00:00",
+      //     start_date: "6 july 2024",
+      //     end_date: "30 july 2024",
+      //     link:"https://omnidev-courses.vercel.app/appncloud"
+      //   },
       
-        2: {
-          name: "Web + cloud development",
-          image1: "/web.jpg",
-          image2: "/cloud.jpg",
-          description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
-          registration_date: "2024-06-18T10:00:00",
-          start_date: "6 july 2024",
-          end_date: "30 july 2024",
-          link: "https://omnidev-courses.vercel.app/webncloud"
-        },
+      //   2: {
+      //     name: "Web + cloud development",
+      //     image1: "/web.jpg",
+      //     image2: "/cloud.jpg",
+      //     description: "In this workshop, we dive deep into web development technologies that are emerging nowadays",
+      //     registration_date: "2024-06-18T10:00:00",
+      //     start_date: "6 july 2024",
+      //     end_date: "30 july 2024",
+      //     link: "https://omnidev-courses.vercel.app/webncloud"
+      //   },
      
-      },
+      // },
     },
     previous: {
       workshops: {
