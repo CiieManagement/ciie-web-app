@@ -121,10 +121,10 @@ const Strings = {
         2: {
           name: "AI and ML ",
           image: "/aiml.jpg",
-          description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
+          description: "This workshop covers AI technology and Deep Learning fundamentals through hands-on projects, providing practical experience in building neural networks with real-world datasets.",
           registration_date: "2024-05-18T12:00:00",
-          start_date: "24 oct 2024",
-          end_date: "25 oct 2024",
+          start_date: "22 oct 2024",
+          end_date: "23 oct 2024",
           link:"/events/workshop/aiWorkshop"
         },
         // 2: {

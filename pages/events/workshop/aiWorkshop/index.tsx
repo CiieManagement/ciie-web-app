@@ -16,22 +16,20 @@ const WorkshopForm = () => {
     registrationNumber: "",
     year: "",
     email: "",
-    awsAccount: "",
     phoneNumber: "",
     course: "",
     branch: "",
     section: "",
     department: "AI and ML",
-    cloud: "",
-    linuxExperience: "",
-    shellScripting: "",
-    githubActions: "",
-    ansibleExperience: "",
-    terraformExperience: "",
-    jiraExperience: "",
-    jenkinsExperience: "",
-    dockerExperience: "",
-    kubernetesExperience: "",
+    maths_understanding: "",
+    python_fluency: "",
+    course_details: "",
+    ml_topics: "",
+    libraries_knowledge: "",
+    hope_of_achieving: "",
+    heard_workshop: "",
+    topics: "",
+     
   });
 
   const [showReminder, setShowReminder] = useState(false); // New state for the reminder modal
@@ -47,25 +45,22 @@ const WorkshopForm = () => {
       setShowReminder(true); // Show the reminder modal
       setFormData({
         fullName: "",
-        registrationNumber: "",
-        year: "",
-        email: "",
-        phoneNumber: "",
-        course: "",
-        branch: "",
-        section: "",
-        awsAccount: "",
-        department: "Cloud",
-        cloud: "",
-        linuxExperience: "",
-        shellScripting: "",
-        githubActions: "",
-        ansibleExperience: "",
-        terraformExperience: "",
-        jiraExperience: "",
-        jenkinsExperience: "",
-        dockerExperience: "",
-        kubernetesExperience: "",
+    registrationNumber: "",
+    year: "",
+    email: "",
+    phoneNumber: "",
+    course: "",
+    branch: "",
+    section: "",
+    department: "AI and ML",
+    maths_understanding: "",
+    python_fluency: "",
+    course_details: "",
+    ml_topics: "",
+    libraries_knowledge: "",
+    hope_of_achieving: "",
+    heard_workshop: "",
+    topics: "",
       });
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -76,7 +71,7 @@ const WorkshopForm = () => {
   const closeReminder = () => {
     setShowReminder(false);
     // Redirect to the WhatsApp group link
-    window.location.href = "https://chat.whatsapp.com/HS8puOQihYDLoN3KGtDcey";
+    window.location.href = "https://chat.whatsapp.com/Huf7iWY2lrMDFXl8qj25DD";
   };
 
   return (
@@ -161,39 +156,39 @@ const WorkshopForm = () => {
               <input type="text" name="branch" placeholder="Branch" value={formData.branch} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="section" placeholder="Section" value={formData.section} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="department" placeholder="Department" value="AI and ML" readOnly onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <select name="cloud" value={formData.cloud} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+              <select name="maths_understanding" value={formData.maths_understanding} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
                 <option value="">What is your current proficiency level in Basic Mathematics (Algebra, Probability, Statistics)?</option>
-                <option value="Beginner">No Prior Knowledge</option>
+                <option value="No Prior Knowledge">No Prior Knowledge</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
               </select>
 
-            <select name="linuxExperience" value={formData.linuxExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="python_fluency" value={formData.python_fluency} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">How would you rate your proficiency in Python programming?</option>
               <option value="Yes">Yes</option>
               <option value="No Prior Knowledge">No Prior Knowledge</option>
             </select>
 
-            <select name="shellScripting" value={formData.shellScripting} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="course_details" value={formData.course_details} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">Have you completed any courses related to Machine Learning or Data Science?</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
-            <select name="githubActions" value={formData.githubActions} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="ml_topics" value={formData.ml_topics} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">What Machine Learning topics are you most interested in? (Select all that apply)</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
-            <select name="ansibleExperience" value={formData.ansibleExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="libraries_knowledge" value={formData.libraries_knowledge} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">What prior experience do you have with data analysis libraries (e.g., NumPy, Pandas)?</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
@@ -201,25 +196,25 @@ const WorkshopForm = () => {
 
            
 
-            <select name="terraformExperience" value={formData.terraformExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="hope_of_achieving" value={formData.hope_of_achieving} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">What do you hope to achieve by attending this workshop?</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
-            <select name="jiraExperience" value={formData.jiraExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="heard_workshop" value={formData.heard_workshop} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">How did you hear about this workshop?</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
-            <select name="jenkinsExperience" value={formData.jenkinsExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+            <select name="topics" value={formData.topics} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
               <option value="">Which topics would you like to see emphasized in the workshop? (Select all that apply)</option>
-              <option value="Beginner">No Prior Knowledge</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
@@ -241,7 +236,7 @@ const WorkshopForm = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full text-center">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Reminder</h3>
-            <p className="text-gray-600 mb-6">Please create your AWS account if you have No Prior Knowledget done so yet. Students with accounts will be prioritized, and it is essential for the workshop.</p>
+            <p className="text-gray-600 mb-6">A basic understanding of Python and foundational math concepts like Linear Algebra and Probability will enhance your learning experience in this workshop. </p>
             <button onClick={closeReminder} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
               OK
             </button>
