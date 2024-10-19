@@ -137,6 +137,7 @@ const Apply: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                
                 required
               />
             </div>
@@ -244,6 +245,7 @@ const Apply: React.FC = () => {
     value={formData.linuxExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -260,6 +262,7 @@ const Apply: React.FC = () => {
     value={formData.shellScripting || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -276,6 +279,7 @@ const Apply: React.FC = () => {
     value={formData.githubActionsExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -292,6 +296,7 @@ const Apply: React.FC = () => {
     value={formData.ansibleExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -308,6 +313,7 @@ const Apply: React.FC = () => {
     value={formData.terraformExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -324,6 +330,7 @@ const Apply: React.FC = () => {
     value={formData.jiraExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -340,6 +347,8 @@ const Apply: React.FC = () => {
     value={formData.jenkinsExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
+    
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -356,6 +365,7 @@ const Apply: React.FC = () => {
     value={formData.dockerExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -372,6 +382,7 @@ const Apply: React.FC = () => {
     value={formData.kubernetesExperience || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   >
     <option value="">Select your experience level</option>
     <option value="noPriorKnowledge">No Prior Knowledge</option>
@@ -389,6 +400,7 @@ const Apply: React.FC = () => {
     value={formData.projectDetails || ""}
     onChange={handleChange}
     className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+    required
   />
 </div>
 
@@ -406,6 +418,7 @@ const Apply: React.FC = () => {
                     value={formData.mathProficiency || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your proficiency</option>
                     <option value="Beginner">Beginner (Basic understanding, but no application experience)</option>
@@ -424,6 +437,7 @@ const Apply: React.FC = () => {
                     value={formData.pythonProficiency || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your proficiency</option>
                     <option value="Beginner">Beginner (Limited knowledge, can write simple programs)</option>
@@ -442,6 +456,7 @@ const Apply: React.FC = () => {
                     value={formData.mlCourses || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select an option</option>
                     <option value="Yes">Yes</option>
@@ -455,6 +470,7 @@ const Apply: React.FC = () => {
                       value={formData.mlCourseDetails || ""}
                       onChange={handleChange}
                       className="mt-2 w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      required
                     />
                   )}
                 </div>
@@ -469,6 +485,7 @@ const Apply: React.FC = () => {
                     value={formData.mlTopics || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your topics</option>
                     <option value="Supervised Learning">Supervised Learning</option>
@@ -486,6 +503,7 @@ const Apply: React.FC = () => {
                       value={formData.otherMlTopics || ""}
                       onChange={handleChange}
                       className="mt-2 w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      required
                     />
                   )}
                 </div>
@@ -500,6 +518,7 @@ const Apply: React.FC = () => {
                     value={formData.dataAnalysisExperience || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your experience</option>
                     <option value="None">None</option>
@@ -519,6 +538,7 @@ const Apply: React.FC = () => {
                     value={formData.workshopGoal || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your goal</option>
                     <option value="Gain foundational knowledge">Gain foundational knowledge in Machine Learning</option>
@@ -535,6 +555,7 @@ const Apply: React.FC = () => {
                       value={formData.otherWorkshopGoal || ""}
                       onChange={handleChange}
                       className="mt-2 w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      required
                     />
                   )}
                 </div>
@@ -549,6 +570,7 @@ const Apply: React.FC = () => {
                     value={formData.workshopSource || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select an option</option>
                     <option value="College Announcement">College Announcement</option>
@@ -564,6 +586,7 @@ const Apply: React.FC = () => {
                       value={formData.otherWorkshopSource || ""}
                       onChange={handleChange}
                       className="mt-2 w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      required
                     />
                   )}
                 </div>
@@ -578,6 +601,7 @@ const Apply: React.FC = () => {
                     value={formData.workshopTopics || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                    required
                   >
                     <option value="" disabled>Select your topics</option>
                     <option value="Basics of Machine Learning">Basics of Machine Learning</option>
@@ -595,6 +619,7 @@ const Apply: React.FC = () => {
                       value={formData.otherWorkshopTopics || ""}
                       onChange={handleChange}
                       className="mt-2 w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                      required
                     />
                   )}
                 </div>
