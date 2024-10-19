@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import { collection, getDocs, query, where, updateDoc, doc, arrayUnion } from 'firebase/firestore';
 import { db, auth } from '@/components/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -27,6 +27,7 @@ interface Community {
 }
 
 interface Application {
+  fullName: ReactNode;
   yedataAnalysisExperiencer: string;
   workshopSource: string;
   workshopTopics: string;
@@ -50,6 +51,7 @@ interface Application {
 const CommunityPage = () => {
   const [communities, setCommunities] = useState<Community[]>([]);
   const [applications, setApplications] = useState<Application[]>([]);
+  const [workshopApplications, setWorkshopApplications] = useState<Application[]>([]); // New state for workshop applications
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newMember, setNewMember] = useState<TeamMember>({
@@ -113,8 +115,23 @@ const CommunityPage = () => {
           return data;
         });
 
+        // Fetch workshop applications
+        const workshopsCollection = collection(db, 'workshop');
+        const workshopQuery = query(workshopsCollection, where('department', '==', 'Cloud'));
+        const workshopSnapshot = await getDocs(workshopQuery);
+        const workshopApplicationList: Application[] = workshopSnapshot.docs.map((doc) => {
+          const data = doc.data() as Application;
+
+          if (data.appliedAt && data.appliedAt.seconds) {
+            data.appliedAt = new Date(data.appliedAt.seconds * 1000).toLocaleDateString();
+          }
+
+          return data;
+        });
+
         setCommunities(communityList);
         setApplications(applicationList);
+        setWorkshopApplications(workshopApplicationList); // Set workshop applications
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -167,6 +184,12 @@ const CommunityPage = () => {
     const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, 'Applications');
     XLSX.writeFile(workbook, 'applications_data.xlsx');
+  };
+  const downloadExcelWorkshop = () => {
+    const worksheet = XLSX.utils.json_to_sheet(workshopApplications);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Workshops');
+    XLSX.writeFile(workbook, 'workshop_data.xlsx');
   };
 
   if (loading) {
@@ -230,7 +253,7 @@ const CommunityPage = () => {
       {/* Collapsible Section for Community */}
       <Accordion>
         <Accordion.Item eventKey="0">
-          <Accordion.Header>Community Coordinator</Accordion.Header>
+          <Accordion.Header className='mt-3 mb-3'>Community Coordinator</Accordion.Header>
           <Accordion.Body>
             <div className="flex justify-center mb-12">
               {communities.map((community, index) => (
@@ -255,8 +278,8 @@ const CommunityPage = () => {
         </Accordion.Item>
 
         {/* Collapsible Section for Team Members */}
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>Team Members</Accordion.Header>
+        <Accordion.Item eventKey="1" className='mb-10'>
+          <Accordion.Header className='mt-3 mb-3'>Team Members</Accordion.Header>
           <Accordion.Body>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {communities.map((community, index) =>
@@ -280,8 +303,8 @@ const CommunityPage = () => {
         </Accordion.Item>
 
         {/* Collapsible Section for Applications */}
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>Applications</Accordion.Header>
+        <Accordion.Item eventKey="2" className='mb-10'>
+          <Accordion.Header className='mt-3 mb-3'>Community Applications</Accordion.Header>
           <Accordion.Body>
             <div className="overflow-x-auto">
               <table className="min-w-full table-auto border-collapse border border-gray-400">
@@ -308,6 +331,38 @@ const CommunityPage = () => {
 
             <Button onClick={downloadExcel} className="bg-green-500 text-white p-2 rounded mt-4">
               Download Applications Data as Excel
+            </Button>
+          </Accordion.Body>
+        </Accordion.Item>
+
+        <Accordion.Item eventKey="3" className='mb-10'>
+          <Accordion.Header className='mt-3 mb-3'>Workshops Applications</Accordion.Header>
+          <Accordion.Body>
+            <div className="overflow-x-auto">
+              <table className="min-w-full table-auto border-collapse border border-gray-400">
+                <thead>
+                  <tr>
+                    <th className="px-4 py-2 border border-gray-400">Name</th>
+                    <th className="px-4 py-2 border border-gray-400">Registration Number</th>
+                    <th className="px-4 py-2 border border-gray-400">Email</th>
+                    <th className="px-4 py-2 border border-gray-400">Applied At</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {workshopApplications.map((workshopApplication, index) => (
+                    <tr key={index}>
+                      <td className="border border-gray-400 px-4 py-2">{workshopApplication.fullName}</td>
+                      <td className="border border-gray-400 px-4 py-2">{workshopApplication.registrationNumber}</td>
+                      <td className="border border-gray-400 px-4 py-2">{workshopApplication.email}</td>
+                      <td className="border border-gray-400 px-4 py-2">{workshopApplication.appliedAt}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <Button onClick={downloadExcelWorkshop} className="bg-green-500 text-white p-2 rounded mt-4">
+              Download Workshop Application Data as Excel
             </Button>
           </Accordion.Body>
         </Accordion.Item>

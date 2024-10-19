@@ -43,9 +43,19 @@ const WorkshopForm = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
+
+
+     
+
     e.preventDefault();
     try {
-      await addDoc(collection(db, "workshop"), formData);
+
+      const dataToSubmit = {
+        ...formData,
+        appliedAt: new Date(), // Set the appliedAt field to the current date
+      };
+      await addDoc(collection(db, "workshop"), dataToSubmit);
+      appliedAt: new Date(),
       setShowReminder(true); // Show the reminder modal
       setFormData({
         fullName: "",

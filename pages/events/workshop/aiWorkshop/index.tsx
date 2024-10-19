@@ -43,41 +43,46 @@ const WorkshopForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await addDoc(collection(db, "workshop"), formData);
+      // Add appliedAt to formData before submitting
+      const dataToSubmit = {
+        ...formData,
+        appliedAt: new Date(), // Set the appliedAt field to the current date
+      };
+  
+      await addDoc(collection(db, "workshop"), dataToSubmit); // Submit the form data
       setShowReminder(true); // Show the reminder modal
       setFormData({
         fullName: "",
-    registrationNumber: "",
-    year: "",
-    email: "",
-    phoneNumber: "",
-    course: "",
-    branch: "",
-    section: "",
-    department: "AI and ML",
-    maths_understanding: "",
-    python_fluency: "",
-    course_details: "",
-    ml_topics: "",
-    libraries_knowledge: "",
-    hope_of_achieving: "",
-    heard_workshop: "",
-    topics: "",
+        registrationNumber: "",
+        year: "",
+        email: "",
+        phoneNumber: "",
+        course: "",
+        branch: "",
+        section: "",
+        department: "AI and ML",
+        maths_understanding: "",
+        python_fluency: "",
+        course_details: "",
+        ml_topics: "",
+        libraries_knowledge: "",
+        hope_of_achieving: "",
+        heard_workshop: "",
+        topics: "",
       });
-      toast.success("Application Submitted successfully");
-
+      toast.success("Application submitted successfully");
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Error submitting form!");
     }
   };
-
+  
   const closeReminder = () => {
     setShowReminder(false);
     // Redirect to the WhatsApp group link
     window.location.href = "https://chat.whatsapp.com/Huf7iWY2lrMDFXl8qj25DD";
   };
-
+  
   return (
     <>
       <Navbar />
