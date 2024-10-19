@@ -19,7 +19,7 @@ export default function DocsPage() {
     );
   }, []);
 
-  const verify_forwar = (workshop) => {
+  const verify_forwar = (workshop: { name: string; image: string; description: string; registration_date: string; start_date: string; end_date: string; } | { name: string; image: string; description: string; registration_date: string; start_date: string; end_date: string; link: string; }) => {
     // const fileUrl = "/ci.pdf"; // URL of the file to download
     // const link = document.createElement("a");
     // link.href = fileUrl;
@@ -31,7 +31,7 @@ export default function DocsPage() {
     );
 
     if (userConfirmed) {
-      window.open("/events/workshop", "_blank"); // Open the link in a new tab
+      window.open(workshop.link, "_blank"); // Open the link in a new tab
     } else {
       toast.error("Registration canceled");
     }

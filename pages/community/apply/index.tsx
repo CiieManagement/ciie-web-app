@@ -23,6 +23,7 @@ interface FormData {
   jiraExperience?: string;
   jenkinsExperience?: string;
   dockerExperience?: string;
+  projectDetails?:string;
   kubernetesExperience?: string;
 }
 
@@ -306,6 +307,16 @@ const Apply: React.FC = () => {
                     type="text"
                     name="kubernetesExperience"
                     value={formData.kubernetesExperience || ""}
+                    onChange={handleChange}
+                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  />
+                </div>
+                <div>
+                  <label className="block ">Your Project Details</label>
+                  <input
+                    type="text"
+                    name="projectDetails"
+                    value={formData.projectDetails || ""}
                     onChange={handleChange}
                     className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
                   />

@@ -112,12 +112,30 @@ const Strings = {
         1: {
           name: "Cloud Learning Workshop",
           image: "/cloud.jpg",
-          description: "In this workshop, we dive deep into cloud technologies that are emerging nowadays",
+          description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
           registration_date: "2024-05-18T12:00:00",
           start_date: "24 oct 2024",
           end_date: "25 oct 2024",
-          link:"https://omnidev-courses.vercel.app/cloud"
+          link:"/events/workshop"
         },
+        2: {
+          name: "AI and ML ",
+          image: "/aiml.jpg",
+          description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
+          registration_date: "2024-05-18T12:00:00",
+          start_date: "24 oct 2024",
+          end_date: "25 oct 2024",
+          link:"/events/workshop/aiWorkshop"
+        },
+        // 2: {
+        //   name: "AI and ML Learning Workshop",
+        //   image: "/aiml.jpg",
+        //   description: "In this workshop, we dive deep into cloud technologies that are emerging nowadays",
+        //   registration_date: "2024-05-18T12:00:00",
+        //   start_date: "24 oct 2024",
+        //   end_date: "25 oct 2024",
+        //   link:"/events/workshop/aiWorkshop"
+        // },
         // 3: {
         //   name: "Web Development Workshop",
         //   image: "/web.jpg",

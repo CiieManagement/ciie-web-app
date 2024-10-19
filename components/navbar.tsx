@@ -23,7 +23,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { SearchIcon } from "@/components/icons";
 import Image from "next/image";
 import { getAuth, onAuthStateChanged, signOut, User } from "firebase/auth";
-import { auth } from "./firebaseConfig";
+import { auth, db } from "./firebaseConfig";
 import { Menu } from "@headlessui/react";
 import adminData from "./admins.json";
 import { allumni } from "../public/values/allumni";
@@ -32,6 +32,7 @@ import { Strings2 } from "../public/values/strings2";
 import { Strings } from "../public/values/strings";
 import { useRouter } from "next/router";
 import pather from "./pather.json";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
 const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
   return (
@@ -54,6 +55,7 @@ export const Navbar = () => {
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isCoordinator, setIsCoordinator] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const [path, setPath] = useState("Home");
@@ -71,6 +73,45 @@ export const Navbar = () => {
 
     return () => unsubscribe();
   }, []);
+
+
+  useEffect(() => {
+    const checkCoordinator = async (email: string | null) => {
+      if (!email) {
+        setErrorMessage('You are not authorized to view this page.');
+        setLoading(false);
+        return;
+      }
+
+      console.log("email is",email);
+      
+
+      try {
+        const coordinatorsCollection = collection(db, 'coordinators');
+        const q = query(coordinatorsCollection, where('email', '==', email));
+        const coordinatorSnapshot = await getDocs(q);
+
+        if (!coordinatorSnapshot.empty) {
+          const coordinatorData = coordinatorSnapshot.docs[0].data();
+
+          if (coordinatorData.community === 'Cloud') {
+            setIsCoordinator(true);
+          }
+        } else {
+          setErrorMessage('You are not authorized to view this page.');
+        }
+      } catch (error) {
+        console.error('Error checking coordinator:', error);
+        setErrorMessage('An error occurred. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+
+  },[]);
+  
+
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -300,6 +341,23 @@ export const Navbar = () => {
                       <DropdownItem key="configurations">
                         Configurations
                       </DropdownItem>
+                    
+                    
+                      {!isCoordinator ? (
+                        <DropdownItem key="admin_section">
+                          <Link href="/admin/cloudAdmin">
+                            <a className="text-foreground">Admin Section</a>
+                          </Link>
+                        </DropdownItem>
+                      ):(
+                        <DropdownItem key="help_and_feedback">
+                        <Link color="foreground" href="/helpAndFeedback">
+                          Help & Feedback
+                        </Link>
+                      </DropdownItem>
+                      )}
+
+
                       {isAdmin ? (
                         <DropdownItem key="admin_section">
                           <Link color="foreground" href="/admin">
@@ -431,3 +489,11 @@ export const Navbar = () => {
     </NextUINavbar>
   );
 };
+  function setErrorMessage(arg0: string) {
+    throw new Error("Function not implemented.");
+  }
+
+  function setLoading(arg0: boolean) {
+    throw new Error("Function not implemented.");
+  }
+

@@ -21,7 +21,7 @@ const WorkshopForm = () => {
     course: "",
     branch: "",
     section: "",
-    department: "Cloud",
+    department: "AI and ML",
     cloud: "",
     linuxExperience: "",
     shellScripting: "",
@@ -85,66 +85,66 @@ const WorkshopForm = () => {
       <BackdropAnimation />
 
       {!showForm ? (
-        <div className="min-h-screen bg-gradient-to-r from-purple-300 via-blue-300 to-teal-300 flex items-center justify-center">
-          <div className="bg-white shadow-lg rounded-lg p-10 max-w-4xl w-full">
-            <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">Join CIIEs Cloud Workshop! 🌩</h1>
-            <p className="text-lg text-gray-700 mb-4">
-              Are you excited to dive into the world of cloud computing and take your technical skills to the next level? The
-              Center for Innovation Incubation and Entrepreneurship (CIIE) is thrilled to announce a two-day cloud workshop
-              at SRM University, designed to equip you with essential knowledge and hands-on experience in AWS services and
-              Kubernetes.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">Workshop Overview:</h2>
-            <ul className="list-disc pl-5 text-gray-700 mb-4">
-              <li>Date: <span className="font-bold">November 24-25</span></li>
-              <li>Time: <span className="font-bold">9:30 AM to 4:00 PM</span></li>
-              <li>Location: <span className="font-bold">SRM University</span></li>
-            </ul>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">What You’ll Learn:</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="p-4 bg-purple-100 rounded-lg shadow">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Day 1: AWS Services</h3>
-                <ul className="list-disc pl-5 text-gray-700">
-                  <li>Git and GitHub</li>
-                  <li>Amazon EC2, Amazon S3, Amazon RDS</li>
-                  <li>Hands-On Labs with EC2, S3, and RDS</li>
-                </ul>
-              </div>
-              <div className="p-4 bg-blue-100 rounded-lg shadow">
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Day 2: Kubernetes</h3>
-                <ul className="list-disc pl-5 text-gray-700">
-                  <li>Kubernetes Concepts and Architecture</li>
-                  <li>Working with Pods, Services, and Deployments</li>
-                  <li>Hands-On Labs with Kubernetes</li>
-                </ul>
-              </div>
-            </div>
-
-            <p className="mt-6 text-lg text-gray-700">
-              Upon successful completion of the workshop, attendees will receive a certification in Amazon Web Services (AWS),
-              validating your cloud computing proficiency.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">Why Attend?</h2>
-            <ul className="list-disc pl-5 text-gray-700">
-              <li>Hands-On Learning with CIIE mentors</li>
-              <li>Earn AWS Certification to boost your career</li>
-            </ul>
-
-            <p className="mt-6 text-lg text-gray-700">Do not miss this chance to enhance your cloud skills. Register now!</p>
-
-            <div className="mt-6 flex justify-center">
-              <button
-                onClick={handleContinue}
-                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
-              >
-                Continue to Registration
-              </button>
-            </div>
-          </div>
+      <div className="min-h-screen bg-gradient-to-r from-purple-300 via-blue-300 to-teal-300 flex items-center justify-center">
+      <div className="bg-white shadow-lg rounded-lg p-10 max-w-4xl w-full">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">🚀 Deep Learning Bootcamp: From Fundamentals to Real-World Applications</h1>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">📝 Description of the Workshop:</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          Deep Learning Bootcamp: From Fundamentals to Real-World Applications</p>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">🎯 Learning Outcome:</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          This 2-day workshop introduces students to the world of AI and Deep Learning. Whether you are new to AI or just starting out, you will gain a solid foundation and hands-on, project-based experience to apply in real-world scenarios.
+        </p>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">🔍 Why This Workshop is Relevant to You:</h2>
+        <p className="text-lg text-gray-700 mb-4">
+          Deep Learning is driving innovation across industries. Whether you are pursuing a career in AI or simply curious, this workshop equips you with essential skills to get started. By the end of the workshop, you will have built and trained your own neural network, and you will walk away with practical experience that you can apply to future projects and research.
+        </p>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">💡 Skills You will Gain:</h2>
+        <ul className="list-disc pl-5 text-gray-700 mb-4">
+          <li>🤖 Understanding of Neural Networks</li>
+          <li>🐍 Basics of Python for AI</li>
+          <li>📊 Data Preprocessing Techniques</li>
+          <li>🛠️ Building and Training Models</li>
+          <li>🎛️ Hyperparameter Tuning</li>
+          <li>📈 Model Evaluation and Optimization</li>
+          <li>🔢 Knowledge of Activation Functions and Loss Functions</li>
+          <li>🧠 Problem-Solving and Project-Based Learning</li>
+        </ul>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">📅 Day 1: Foundations of Deep Learning</h2>
+        <ul className="list-disc pl-5 text-gray-700 mb-4">
+          <li>🤖 Introduction to AI, Machine Learning, and Neural Networks</li>
+          <li>📐 Basic Math (Linear Algebra, Calculus) and Activation Functions</li>
+          <li>💻 Hands-on with Python libraries: NumPy, Pandas, TensorFlow</li>
+          <li>🛠️ Build and train your first neural network</li>
+          <li>📊 Start working on a real-world dataset</li>
+        </ul>
+    
+        <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">⚙️ Day 2: Building and Tuning Models</h2>
+        <ul className="list-disc pl-5 text-gray-700 mb-4">
+          <li>🤖 Neural Network Training, Evaluation, and Optimization</li>
+          <li>🎛️ Hyperparameter tuning and Regularization</li>
+          <li>🔬 Cross-validation and testing on new data</li>
+          <li>💡 Continue project work and apply advanced techniques</li>
+        </ul>
+    
+        <p className="mt-6 text-lg text-gray-700">🎓 Do not miss this chance to enhance your AI and deep learning skills. Register now!</p>
+    
+        <div className="mt-6 flex justify-center">
+          <button
+            onClick={handleContinue}
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
+          >
+            🚀 Continue to Registration
+          </button>
         </div>
+      </div>
+    </div>
+    
       ) : (
 
       <div className="min-h-screen bg-gradient-to-r from-purple-200 via-blue-200 to-teal-200 flex items-center justify-center">
@@ -160,36 +160,40 @@ const WorkshopForm = () => {
               <input type="text" name="course" placeholder="Course" value={formData.course} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="branch" placeholder="Branch" value={formData.branch} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="section" placeholder="Section" value={formData.section} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="department" placeholder="Department" value="Cloud" readOnly onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
+              <input type="text" name="department" placeholder="Department" value="AI and ML" readOnly onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <select name="cloud" value={formData.cloud} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-                <option value="">Cloud Experience</option>
+                <option value="">What is your current proficiency level in Basic Mathematics (Algebra, Probability, Statistics)?</option>
+                <option value="Beginner">No Prior Knowledge</option>
                 <option value="Beginner">Beginner</option>
                 <option value="Intermediate">Intermediate</option>
                 <option value="Advanced">Advanced</option>
               </select>
 
             <select name="linuxExperience" value={formData.linuxExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Linux</option>
+              <option value="">How would you rate your proficiency in Python programming?</option>
               <option value="Yes">Yes</option>
-              <option value="No">No</option>
+              <option value="No Prior Knowledge">No Prior Knowledge</option>
             </select>
 
             <select name="shellScripting" value={formData.shellScripting} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Shell Scripting</option>
+              <option value="">Have you completed any courses related to Machine Learning or Data Science?</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
             <select name="githubActions" value={formData.githubActions} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">GitHub Actions Experience</option>
+              <option value="">What Machine Learning topics are you most interested in? (Select all that apply)</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
             <select name="ansibleExperience" value={formData.ansibleExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Ansible</option>
+              <option value="">What prior experience do you have with data analysis libraries (e.g., NumPy, Pandas)?</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
@@ -198,58 +202,28 @@ const WorkshopForm = () => {
            
 
             <select name="terraformExperience" value={formData.terraformExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Terraform</option>
+              <option value="">What do you hope to achieve by attending this workshop?</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
             <select name="jiraExperience" value={formData.jiraExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Jira</option>
+              <option value="">How did you hear about this workshop?</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
 
             <select name="jenkinsExperience" value={formData.jenkinsExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Jenkins</option>
+              <option value="">Which topics would you like to see emphasized in the workshop? (Select all that apply)</option>
+              <option value="Beginner">No Prior Knowledge</option>
               <option value="Beginner">Beginner</option>
               <option value="Intermediate">Intermediate</option>
               <option value="Advanced">Advanced</option>
             </select>
-
-            <select name="dockerExperience" value={formData.dockerExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Docker</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-
-            <select name="kubernetesExperience" value={formData.kubernetesExperience} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Experience on Kubernetes</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-
-            <select name="awsAccount" value={formData.awsAccount} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Do you have an AWS account?</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            
-
-
-            {formData.awsAccount === "No" && (
-              <a
-                href="https://aws.amazon.com/education/awseducate/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-300 text-center"
-              >
-                Create AWS Student Account - why?
-              </a>
-            )}
            
 
 
@@ -267,7 +241,7 @@ const WorkshopForm = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg shadow-lg p-8 max-w-lg w-full text-center">
             <h3 className="text-xl font-bold text-gray-800 mb-4">Reminder</h3>
-            <p className="text-gray-600 mb-6">Please create your AWS account if you have not done so yet. Students with accounts will be prioritized, and it is essential for the workshop.</p>
+            <p className="text-gray-600 mb-6">Please create your AWS account if you have No Prior Knowledget done so yet. Students with accounts will be prioritized, and it is essential for the workshop.</p>
             <button onClick={closeReminder} className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">
               OK
             </button>
