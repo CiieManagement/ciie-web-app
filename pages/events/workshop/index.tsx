@@ -80,7 +80,7 @@ const WorkshopForm = () => {
   const closeReminder = () => {
     setShowReminder(false);
     // Redirect to the WhatsApp group link
-    window.location.href = "https://chat.whatsapp.com/HS8puOQihYDLoN3KGtDcey";
+    // window.location.href = "https://chat.whatsapp.com/HS8puOQihYDLoN3KGtDcey";
   };
 
   return (

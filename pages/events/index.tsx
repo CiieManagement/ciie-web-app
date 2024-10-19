@@ -27,7 +27,7 @@ export default function DocsPage() {
     // link.click();
 
     const userConfirmed = confirm(
-      "Don't forget to join the group after registering yourself, it will automatically re-direct you to there. Tap OK to continue."
+      "You are proceeding towards registration."
     );
 
     if (userConfirmed) {

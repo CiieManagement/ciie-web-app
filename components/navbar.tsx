@@ -32,6 +32,7 @@ import { Strings2 } from "../public/values/strings2";
 import { Strings } from "../public/values/strings";
 import { useRouter } from "next/router";
 import pather from "./pather.json";
+import { getFirestore } from 'firebase/firestore';
 import { collection, getDocs, query, where } from "@firebase/firestore";
 
 const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
@@ -54,7 +55,11 @@ export const Navbar = () => {
   const [visible, setVisible] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [username, setUsername] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
   const [isAdmin, setIsAdmin] = useState(false);
+  const [error, setErrorMessage] = useState("");
+  const [community, setCommunity] = useState("");
+  const [loading, setLoading] = useState("");
   const [isCoordinator, setIsCoordinator] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -64,6 +69,7 @@ export const Navbar = () => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUsername(user.displayName || user.email || "");
+        setEmail(user.email);
         setIsAdmin(adminData.admins.includes(user.email || ""));
       } else {
         setUsername("");
@@ -73,6 +79,10 @@ export const Navbar = () => {
 
     return () => unsubscribe();
   }, []);
+
+
+ const db = getFirestore();
+
 
 
   useEffect(() => {
@@ -94,7 +104,12 @@ export const Navbar = () => {
         if (!coordinatorSnapshot.empty) {
           const coordinatorData = coordinatorSnapshot.docs[0].data();
 
-          if (coordinatorData.community === 'Cloud') {
+          if (coordinatorData.community === 'Cloud' || coordinatorData.community == 'AI and ML') {
+            if(coordinatorData.community === 'Cloud'){
+              setCommunity('Cloud');
+            }else{
+              setCommunity('AI and ML');
+            }
             setIsCoordinator(true);
           }
         } else {
@@ -108,8 +123,8 @@ export const Navbar = () => {
       }
     };
 
-
-  },[]);
+    checkCoordinator(email);
+  },[email]);
   
 
 
@@ -343,19 +358,26 @@ export const Navbar = () => {
                       </DropdownItem>
                     
                     
-                      {!isCoordinator ? (
-                        <DropdownItem key="admin_section">
-                          <Link href="/admin/cloudAdmin">
-                            <a className="text-foreground">Admin Section</a>
-                          </Link>
-                        </DropdownItem>
-                      ):(
-                        <DropdownItem key="help_and_feedback">
-                        <Link color="foreground" href="/helpAndFeedback">
-                          Help & Feedback
-                        </Link>
-                      </DropdownItem>
-                      )}
+                      {isCoordinator ?(
+                            <DropdownItem key="admin_section">
+                              {community === 'Cloud' ? (
+                                <Link href="/admin/cloudAdmin">
+                                  <a className="text-foreground">Admin Section</a>
+                                </Link>
+                              ) : (
+                                <Link href="/admin/aiAdmin">
+                                  <a className="text-foreground">Admin Section</a>
+                                </Link>
+                              )}
+                            </DropdownItem>
+                          ):(
+                            <DropdownItem key="help_and_feedback">
+                            <Link color="foreground" href="#">
+                              You logged in as a student
+                            </Link>
+                          </DropdownItem>
+                          )}
+
 
 
                       {isAdmin ? (
@@ -489,11 +511,8 @@ export const Navbar = () => {
     </NextUINavbar>
   );
 };
-  function setErrorMessage(arg0: string) {
-    throw new Error("Function not implemented.");
-  }
+  
 
-  function setLoading(arg0: boolean) {
-    throw new Error("Function not implemented.");
-  }
+  
 
+ 
