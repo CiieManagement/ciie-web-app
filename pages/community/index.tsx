@@ -68,7 +68,7 @@ const Index = () => {
         </div>
         <div className="mb-4 transition duration-200">
           <svg
-            className="w-6 h-2 text-gray-500 group-hover:text-white"
+            className="w-6 h-6 text-gray-500 group-hover:text-white"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -87,15 +87,15 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-800 to-gray-900">
+    <div className="min-h-screen">
       <BackdropAnimation />
       <div className="relative z-10 flex flex-col items-center text-center px-4 py-8">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-10 text-white tracking-wide">
-          Our Community
+        <h1 className="text-4xl sm:text-5xl font-bold mb-10 tracking-wide">
+          Our Communities
         </h1>
 
         {/* Rendering fetched team members */}
-        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-6">
           {renderTeamMembers(teamMembers)}
         </div>
       </div>
