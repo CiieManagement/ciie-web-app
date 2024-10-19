@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import { db } from "../../../components/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore"; // Firestore methods for adding data
 import axios from "axios";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FormData {
   pythonProficiency: string;
@@ -40,6 +42,16 @@ const Apply: React.FC = () => {
     branch: "",
     section: "",
     department: "", // Initially empty
+    linuxExperience: "",
+    shellScripting: "",
+    githubActionsExperience: "",
+    ansibleExperience: "",
+    terraformExperience: "",
+    jiraExperience: "",
+    jenkinsExperience: "",
+    dockerExperience: "",
+    projectDetails: "",
+    kubernetesExperience: "",
   });
 
   useEffect(() => {
@@ -67,6 +79,8 @@ const Apply: React.FC = () => {
         appliedAt: new Date(), // Store the timestamp of application
       });
 
+      toast.success("Application Submitted successfully");
+
       setSuccessMessage("Application submitted successfully!");
       const newFormData : FormData = {
         name: "",
@@ -77,7 +91,17 @@ const Apply: React.FC = () => {
         course: "",
         branch: "",
         section: "",
-        department: ""
+        department: "",
+        linuxExperience: "",
+        shellScripting: "",
+        githubActionsExperience: "",
+        ansibleExperience: "",
+        terraformExperience: "",
+        jiraExperience: "",
+        jenkinsExperience: "",
+        dockerExperience: "",
+        projectDetails: "",
+        kubernetesExperience: "",
       }
        // setFormData(newFormData);
     } catch (error) {
@@ -214,113 +238,160 @@ const Apply: React.FC = () => {
             {formData.department === "Cloud" && (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block ">Experience on Linux</label>
-                  <input
-                    type="text"
-                    name="linuxExperience"
-                    value={formData.linuxExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+  <label className="block">Experience on Linux</label>
+  <select
+    name="linuxExperience"
+    value={formData.linuxExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Shell Scripting</label>
-                  <input
-                    type="text"
-                    name="shellScripting"
-                    value={formData.shellScripting || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Shell Scripting</label>
+  <select
+    name="shellScripting"
+    value={formData.shellScripting || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">GitHub Actions Experience</label>
-                  <input
-                    type="text"
-                    name="githubActionsExperience"
-                    value={formData.githubActionsExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">GitHub Actions Experience</label>
+  <select
+    name="githubActionsExperience"
+    value={formData.githubActionsExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Ansible</label>
-                  <input
-                    type="text"
-                    name="ansibleExperience"
-                    value={formData.ansibleExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Ansible</label>
+  <select
+    name="ansibleExperience"
+    value={formData.ansibleExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Terraform</label>
-                  <input
-                    type="text"
-                    name="terraformExperience"
-                    value={formData.terraformExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Terraform</label>
+  <select
+    name="terraformExperience"
+    value={formData.terraformExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Jira</label>
-                  <input
-                    type="text"
-                    name="jiraExperience"
-                    value={formData.jiraExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Jira</label>
+  <select
+    name="jiraExperience"
+    value={formData.jiraExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Jenkins</label>
-                  <input
-                    type="text"
-                    name="jenkinsExperience"
-                    value={formData.jenkinsExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Jenkins</label>
+  <select
+    name="jenkinsExperience"
+    value={formData.jenkinsExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Docker</label>
-                  <input
-                    type="text"
-                    name="dockerExperience"
-                    value={formData.dockerExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Docker</label>
+  <select
+    name="dockerExperience"
+    value={formData.dockerExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
 
-                <div>
-                  <label className="block ">Experience on Kubernetes</label>
-                  <input
-                    type="text"
-                    name="kubernetesExperience"
-                    value={formData.kubernetesExperience || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
-                <div>
-                  <label className="block ">Your Project Details</label>
-                  <input
-                    type="text"
-                    name="projectDetails"
-                    value={formData.projectDetails || ""}
-                    onChange={handleChange}
-                    className="w-full px-4 py-2  rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  />
-                </div>
+<div>
+  <label className="block">Experience on Kubernetes</label>
+  <select
+    name="kubernetesExperience"
+    value={formData.kubernetesExperience || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  >
+    <option value="">Select your experience level</option>
+    <option value="noPriorKnowledge">No Prior Knowledge</option>
+    <option value="beginner">Beginner</option>
+    <option value="intermediate">Intermediate</option>
+    <option value="advanced">Advanced</option>
+  </select>
+</div>
+
+<div>
+  <label className="block">Your Project Details</label>
+  <input
+    type="text"
+    name="projectDetails"
+    value={formData.projectDetails || ""}
+    onChange={handleChange}
+    className="w-full px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+  />
+</div>
+
               </div>
             )}
             {formData.department === "AI and ML" && (
@@ -540,6 +611,8 @@ const Apply: React.FC = () => {
             </button>
           </form>
         </div>
+        <ToastContainer />
+
       </div>
     );
   };

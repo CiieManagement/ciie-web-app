@@ -3,6 +3,8 @@ import { db } from "@/components/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { Navbar } from "@/components/navbar";
 import BackdropAnimation from "@/components/utils/backdrop_animation";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const WorkshopForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -67,6 +69,8 @@ const WorkshopForm = () => {
         dockerExperience: "",
         kubernetesExperience: "",
       });
+      toast.success("Application Submitted successfully");
+
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Error submitting form!");
@@ -273,6 +277,8 @@ const WorkshopForm = () => {
           </div>
         </div>
       )}
+        <ToastContainer />
+
     </>
   );
 };
