@@ -155,87 +155,222 @@ const WorkshopForm = () => {
         <div className="bg-white shadow-lg rounded-lg p-8 max-w-3xl w-full">
           <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Workshop Registration Form</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="registrationNumber" placeholder="Registration Number" value={formData.registrationNumber} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="year" placeholder="Year" value={formData.year} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="course" placeholder="Course" value={formData.course} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="branch" placeholder="Branch" value={formData.branch} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="section" placeholder="Section" value={formData.section} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="department" placeholder="Department" value="AI and ML" readOnly onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <select name="maths_understanding" value={formData.maths_understanding} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-                <option value="">What is your current proficiency level in Basic Mathematics (Algebra, Probability, Statistics)?</option>
-                <option value="No Prior Knowledge">No Prior Knowledge</option>
-                <option value="Beginner">Beginner</option>
-                <option value="Intermediate">Intermediate</option>
-                <option value="Advanced">Advanced</option>
-              </select>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <input
+      type="text"
+      name="fullName"
+      placeholder="Full Name"
+      value={formData.fullName}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="registrationNumber"
+      placeholder="Registration Number"
+      value={formData.registrationNumber}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="year"
+      placeholder="Year"
+      value={formData.year}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="email"
+      name="email"
+      placeholder="Email"
+      value={formData.email}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="phoneNumber"
+      placeholder="Phone Number"
+      value={formData.phoneNumber}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="course"
+      placeholder="Course"
+      value={formData.course}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="branch"
+      placeholder="Branch"
+      value={formData.branch}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="section"
+      placeholder="Section"
+      value={formData.section}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <input
+      type="text"
+      name="department"
+      placeholder="Department"
+      value="AI and ML"
+      readOnly
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    />
+    <select
+      name="maths_understanding"
+      value={formData.maths_understanding}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        What is your current proficiency level in Basic Mathematics (Algebra, Probability, Statistics)?
+      </option>
+      <option value="No Prior Knowledge">No Prior Knowledge</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
 
-            <select name="python_fluency" value={formData.python_fluency} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">How would you rate your proficiency in Python programming?</option>
-              <option value="Yes">Yes</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-            </select>
+    <select
+      name="python_fluency"
+      value={formData.python_fluency}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        How would you rate your proficiency in Python programming?
+      </option>
+      <option value="No Prior Knowledge">No Prior Knowledge</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
 
-            <select name="course_details" value={formData.course_details} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Have you completed any courses related to Machine Learning or Data Science?</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+    <select
+      name="course_details"
+      value={formData.course_details}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        Have you completed any courses related to Machine Learning or Data Science?
+      </option>
+      <option value="No">No</option>
+      <option value="Yes">Yes</option>
+    </select>
 
-            <select name="ml_topics" value={formData.ml_topics} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">What Machine Learning topics are you most interested in? (Select all that apply)</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+    <select
+      name="ml_topics"
+      value={formData.ml_topics}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        What Machine Learning topics are you most interested in? (Select all that apply)
+      </option>
+      <option value="Supervised Learning">Supervised Learning</option>
+      <option value="Unsupervised Learning">Unsupervised Learning</option>
+      <option value="Reinforcement Learning">Reinforcement Learning</option>
+      <option value="Deep Learning">Deep Learning</option>
+    </select>
 
-            <select name="libraries_knowledge" value={formData.libraries_knowledge} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">What prior experience do you have with data analysis libraries (e.g., NumPy, Pandas)?</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+    <select
+      name="libraries_knowledge"
+      value={formData.libraries_knowledge}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        What prior experience do you have with data analysis libraries (e.g., NumPy, Pandas)?
+      </option>
+      <option value="No Prior Knowledge">No Prior Knowledge</option>
+      <option value="Beginner">Beginner</option>
+      <option value="Intermediate">Intermediate</option>
+      <option value="Advanced">Advanced</option>
+    </select>
 
-           
+    <select
+      name="hope_of_achieving"
+      value={formData.hope_of_achieving}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        What do you hope to achieve by attending this workshop?
+      </option>
+      <option value="Learn Basic Concepts">Learn Basic Concepts</option>
+      <option value="Apply Advanced Knowledge">Apply Advanced Knowledge</option>
+      <option value="Work on Real-World Projects">Work on Real-World Projects</option>
+    </select>
 
-            <select name="hope_of_achieving" value={formData.hope_of_achieving} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">What do you hope to achieve by attending this workshop?</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+    <select
+      name="heard_workshop"
+      value={formData.heard_workshop}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        How did you hear about this workshop?
+      </option>
+      <option value="Email">Email</option>
+      <option value="Social Media">Social Media</option>
+      <option value="Word of Mouth">Word of Mouth</option>
+      <option value="Website">Website</option>
+    </select>
 
-            <select name="heard_workshop" value={formData.heard_workshop} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">How did you hear about this workshop?</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
+    <select
+      name="topics"
+      value={formData.topics}
+      onChange={handleChange}
+      className="input-field p-3 rounded-lg border-2 border-teal-300"
+      required
+    >
+      <option value="">
+        Which topics would you like to see emphasized in the workshop? (Select all that apply)
+      </option>
+      <option value="Data Preprocessing">Data Preprocessing</option>
+      <option value="Model Training">Model Training</option>
+      <option value="Hyperparameter Tuning">Hyperparameter Tuning</option>
+      <option value="Model Evaluation">Model Evaluation</option>
+    </select>
+  </div>
 
-            <select name="topics" value={formData.topics} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
-              <option value="">Which topics would you like to see emphasized in the workshop? (Select all that apply)</option>
-              <option value="No Prior Knowledge">No Prior Knowledge</option>
-              <option value="Beginner">Beginner</option>
-              <option value="Intermediate">Intermediate</option>
-              <option value="Advanced">Advanced</option>
-            </select>
-           
+  <button
+    type="submit"
+    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-300"
+  >
+    Submit
+  </button>
+</form>
 
-
-          </div>
-          <button type="submit" className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg shadow-md transition-colors duration-300">
-            Submit
-          </button>
-        </form>
       </div>
     </div>
     )}
