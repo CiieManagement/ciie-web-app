@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { db } from "@/components/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
 import { Navbar } from "@/components/navbar";
 import BackdropAnimation from "@/components/utils/backdrop_animation";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+ 
 
 const WorkshopForm = () => {
     const [showForm, setShowForm] = useState(false);
@@ -42,21 +43,32 @@ const WorkshopForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
-
-
-     
-
     e.preventDefault();
+  
     try {
-
+      // Check if the email already exists in the "workshop" collection
+      const q = query(collection(db, "workshop"), where("email", "==", formData.email));
+      const p = query(collection(db, "workshop"), where("registrationNumber", "==", formData.registrationNumber));
+      const querySnapshot1 = await getDocs(q);
+      const querySnapshot2 = await getDocs(p);
+  
+      if (!querySnapshot1.empty || !querySnapshot2.empty) {
+        // If the email already exists, show an error message and stop submission
+        toast.error("You already submitted the form");
+        return;
+      }
+  
       const dataToSubmit = {
         ...formData,
         appliedAt: new Date(), // Set the appliedAt field to the current date
       };
+  
+      // Add the new document to the collection if email does not exist
       await addDoc(collection(db, "workshop"), dataToSubmit);
-      appliedAt: new Date(),
-      setShowReminder(true); // Show the reminder modal
+  
+      // Reset the form data and show success message
       setFormData({
         fullName: "",
         registrationNumber: "",
@@ -79,8 +91,10 @@ const WorkshopForm = () => {
         dockerExperience: "",
         kubernetesExperience: "",
       });
+      
+      setShowReminder(true); // Show the reminder modal
       toast.success("Application Submitted successfully");
-
+  
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Error submitting form!");
