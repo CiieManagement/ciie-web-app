@@ -352,6 +352,7 @@ const CommunityPage = () => {
                 <tbody>
                   {workshopApplications.map((workshopApplication, index) => (
                     <tr key={index}>
+                      <td className="border border-gray-400 px-4 py-2">{index}</td>
                       <td className="border border-gray-400 px-4 py-2">{workshopApplication.fullName}</td>
                       <td className="border border-gray-400 px-4 py-2">{workshopApplication.registrationNumber}</td>
                       <td className="border border-gray-400 px-4 py-2">{workshopApplication.email}</td>

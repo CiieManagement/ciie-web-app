@@ -40,6 +40,10 @@ const WorkshopForm = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const showError=()=>{
+    toast.error("Registrations are closed");
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -140,10 +144,10 @@ const WorkshopForm = () => {
     
         <div className="mt-6 flex justify-center">
           <button
-            onClick={handleContinue}
-            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
+          onClick={showError}
+            className="bg-purple-200 hover:bg-red-700 text-black font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
           >
-            🚀 Continue to Registration
+            Registrations Ended
           </button>
         </div>
       </div>
