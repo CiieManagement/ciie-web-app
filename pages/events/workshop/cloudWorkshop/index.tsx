@@ -90,7 +90,7 @@ const WorkshopForm = () => {
   const closeReminder = () => {
     setShowReminder(false);
     // Redirect to the WhatsApp group link
-    // window.location.href = "https://chat.whatsapp.com/HS8puOQihYDLoN3KGtDcey";
+    window.location.href = "https://chat.whatsapp.com/DXlCJqWO7yA5LzyAYow2BN";
   };
 
   return (
@@ -167,8 +167,15 @@ const WorkshopForm = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="registrationNumber" placeholder="Registration Number" value={formData.registrationNumber} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="text" name="year" placeholder="Year" value={formData.year} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
+              {/* <input type="text" name="year" placeholder="Year" value={formData.year} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/> */}
+              <select name="year" value={formData.year} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required>
+                <option value="">Year</option>
+                <option value="1st Sem/ 1st Year">1st Sem/ 1st Year</option>
+                <option value="3rd Sem/ 2nd Year">3rd Sem/ 2nd Year</option>
+                <option value="5th Sem/ 3rd Year">5th Sem/ 3rd Year</option>
+                <option value="7th Sem/ 4th Year">7th Sem/ 4th Year</option>
+              </select>
+              <input type="email" name="email" placeholder="College Email" value={formData.email} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="course" placeholder="Course" value={formData.course} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
               <input type="text" name="branch" placeholder="Branch" value={formData.branch} onChange={handleChange} className="input-field p-3 rounded-lg border-2 border-teal-300" required/>
