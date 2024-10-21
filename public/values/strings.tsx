@@ -116,7 +116,7 @@ const Strings = {
           registration_date: "2024-05-18T12:00:00",
           start_date: "24 oct 2024",
           end_date: "25 oct 2024",
-          link:"/events/workshop"
+          link:"/events/workshop/cloudWorkshop"
         },
         2: {
           name: "AI and ML ",
