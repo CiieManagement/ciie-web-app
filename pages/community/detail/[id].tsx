@@ -7,7 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 const CommunityDetails = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [community, setCommunity] = useState<any | null>(null); // Explicitly type community
+  const [community, setCommunity] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchCommunity = async () => {
@@ -24,26 +24,26 @@ const CommunityDetails = () => {
 
   if (!community) return <div className="text-center py-20">Loading...</div>;
 
-  // Add the "Apply" button that navigates to the Apply page with the department in the query
   const handleApply = () => {
     router.push({
-      pathname: "/community/apply", // Navigate to the Apply page
-      query: { department: community.department }, // Pass the department value
+      pathname: "/community/apply",
+      query: { department: community.department },
     });
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
-      <h1 className="text-5xl font-bold mb-4 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-pink-700 flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
+      <h1 className="text-5xl font-bold mb-4 text-center text-gray-800">
         {community.name}
       </h1>
-      <p className="text-lg opacity-80 py-3 px-5 bg-gray-400/20 rounded-full text-center mb-6">
+      <p className="text-lg opacity-80 py-3 px-5 bg-black rounded-full text-center mb-6">
         {community.department || "N/A"}
       </p>
 
-      <div className=" flex flex-col md:grid grid-cols-2 gap-10">
+      <div className="flex flex-col md:grid grid-cols-2 gap-10">
 
-        <div className="flex flex-col mx-5 md:mx-0 max-w-lg items-center md:items-center space-y-6 md:space-y-0 mb-8">
+        {/* Coordinator Section */}
+        <div className="flex flex-col mx-5 md:mx-0 max-w-lg items-center space-y-6 mb-8">
           {community.personalImage && (
             <Image
               src={community.personalImage}
@@ -51,88 +51,67 @@ const CommunityDetails = () => {
               width={200}
               height={200}
               layout="responsive"
-              className="rounded-3xl mb-5 shadow-md object-cover w-full max-w-sm"
+              className="rounded-full mb-5 shadow-lg object-cover w-full max-w-xs"
             />
           )}
-          <div className=" ml-2 w-full md:w-fit items-center">
-            <h2 className="text-2xl mx-auto w-fit text-center font-semibold ">
-              Course Coordinator
-            </h2>
-            <p className="mb-2 w-fit mx-auto text-indigo-500">
-              Dr. {community.faculty}
-            </p>
-            <p className="opacity-80 text-justify mx-2 leading-relaxed">
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold">Course Coordinator</h2>
+            <p className="mb-2 text-white font-bold">Dr. {community.faculty}</p>
+            <div className="border-2 p-2 rounded-lg">
+            <p className="opacity-80 font-mono font-semibold text-justify mx-4 leading-relaxed">
               {community.personalThoughts}
             </p>
+            </div>
           </div>
         </div>
 
-        <div className="flex flex-col md:items-center bg-gray-400/20 rounded-3xl">
-
+        {/* Team Members Section */}
+        <div className="flex flex-col md:items-center bg-gray-50 rounded-3xl shadow-lg p-6">
           {community.teamMembers && community.teamMembers.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-2xl font-semibold text-center  mb-4">
+              <h3 className="text-2xl font-semibold text-center text-gray-800 mb-4">
                 Team Members
               </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 mx-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {community.teamMembers.map((member: any, index: number) => (
-
-                  <div key={index} className="bg-gray-400/20 p-4 rounded-2xl shadow-md">
-                    <Image src={"/anonymous_male.svg"} width={100} height={100} layout="responsive" alt={""} className=" mx-auto -mt-5 mb-4" />
-
-                    <h4 className="text-lg font-bold">
+                  <div key={index} className="bg-gradient-to-br from-indigo-800 to-pink-800 p-4 rounded-2xl  shadow-md hover:shadow-lg transition">
+                    <Image
+                      src={"/anonymous_male.svg"}
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      alt={""}
+                      className="mx-auto mb-4"
+                    />
+                    <h4 className="text-lg font-extrabold text-center">
                       {member.name}
                     </h4>
-                    <p className="text-indigo-500">{member.role}</p>
-                    {member.linkedin && (
-                      <a
-                        href={member.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-500 hover:underline"
-                      >
-                        LinkedIn
-                      </a>
-                    )}
-                    {member.github && (
-                      <a
-                        href={member.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-4  hover:underline"
-                      >
-                        GitHub
-                      </a>
-                    )}
+                    <p className="font-semibold text-sm text-white text-center">
+                      {member.role}
+                    </p>
+                    <div className="flex justify-center mt-2 space-x-3">
+                      {member.linkedin && (
+                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
+                          <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" width={24} height={24} alt="LinkedIn" />
+                        </a>
+                      )}
+                      {member.github && (
+                        <a href={member.github} target="_blank" rel="noopener noreferrer">
+                          <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg" width={24} height={24} alt="GitHub" />
+                        </a>
+                      )}
+                    </div>
                   </div>
                 ))}
-
-                <div className="bg-gray-400/20 opacity-50 p-4 rounded-2xl shadow-md">
-                  <Image src={"/anonymous_male.svg"} width={100} height={100} layout="responsive" alt={""} className=" mx-auto -mt-5 mb-4" />
-                  <h4 className="text-lg font-bold">
-                    {"Member Name"}
-                  </h4>
-                  <p className="text-indigo-500">Member Role</p>
-                </div>
-
-                <div className="bg-gray-400/20 opacity-50 p-4 rounded-2xl shadow-md">
-                  <Image src={"/anonymous_male.svg"} width={100} height={100} layout="responsive" alt={""} className=" mx-auto -mt-5 mb-4" />
-
-                  <h4 className="text-lg font-bold">
-                    {"Member Name"}
-                  </h4>
-                  <p className="text-indigo-500">Member Role</p>
-                </div>
               </div>
             </div>
           )}
 
           {/* Apply Button */}
-          <div className="text-center mx-5 sm:mx-auto mt-5 sm:mt-auto mb-6 rounded-full">
+          <div className="text-center mt-10">
             <button
               onClick={handleApply}
-
-              className="px-6 py-2  bg-indigo-500 text-white rounded-full hover:bg-indigo-600 hover:scale-105 transition"
+              className="px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 hover:scale-105 transition transform"
             >
               Apply for {community.name}
             </button>

@@ -95,7 +95,7 @@ const Index = () => {
         </h1>
 
         {/* Rendering fetched team members */}
-        <div className="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
           {renderTeamMembers(teamMembers)}
         </div>
       </div>

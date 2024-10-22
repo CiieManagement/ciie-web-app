@@ -144,6 +144,9 @@ export const siteConfig = {
       href : "/admin/webAdmin"
     },
     {
+      href : "/admin/uiAdmin"
+    },
+    {
       href : "/events/workshop/cloudWorkshop"
     },
   ],

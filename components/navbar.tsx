@@ -104,13 +104,14 @@ export const Navbar = () => {
         if (!coordinatorSnapshot.empty) {
           const coordinatorData = coordinatorSnapshot.docs[0].data();
 
-          if (coordinatorData.community === 'Cloud' || coordinatorData.community == 'AI and ML') {
+          if (coordinatorData.community === 'Cloud' || coordinatorData.community == 'AI and ML' || coordinatorData.community == 'Ui/Ux') {
             if(coordinatorData.community === 'Cloud'){
               setCommunity('Cloud');
-            }else{
+            }else if(coordinatorData.community === 'AI and ML'){
               setCommunity('AI and ML');
-            }
+            }else{
             setIsCoordinator(true);
+            }
           }
         } else {
           setErrorMessage('You are not authorized to view this page.');
@@ -358,25 +359,29 @@ export const Navbar = () => {
                       </DropdownItem>
                     
                     
-                      {isCoordinator ?(
-                            <DropdownItem key="admin_section">
-                              {community === 'Cloud' ? (
-                                <Link href="/admin/cloudAdmin">
-                                  <a className="text-foreground">Admin Section</a>
-                                </Link>
-                              ) : (
-                                <Link href="/admin/aiAdmin">
-                                  <a className="text-foreground">Admin Section</a>
-                                </Link>
-                              )}
-                            </DropdownItem>
-                          ):(
-                            <DropdownItem key="help_and_feedback">
-                            <Link color="foreground" href="#">
-                              You logged in as a student
-                            </Link>
-                          </DropdownItem>
-                          )}
+                    {isCoordinator ? (
+                                       <DropdownItem key="admin_section">
+                                       {community === "Cloud" ? (
+                                         <Link href="/admin/cloudAdmin">
+                                           <a className="text-foreground">Admin Section</a>
+                                         </Link>
+                                       ) : community === "AI and ML" ? (
+                                         <Link href="/admin/aiAdmin">
+                                           <a className="text-foreground">Admin Section</a>
+                                         </Link>
+                                       ) : (
+                                         <Link href="/admin/uiAdmin">
+                                           <a className="text-foreground">Admin Section</a>
+                                         </Link>
+                                       )}
+                                     </DropdownItem>
+                                   ) : (
+                                     <DropdownItem key="help_and_feedback">
+                                       {/* Add content for non-coordinator users here */}
+                                       {/* <a className="text-foreground">Help and Feedback</a> */}
+                                     </DropdownItem>
+                                   )}
+
 
 
 

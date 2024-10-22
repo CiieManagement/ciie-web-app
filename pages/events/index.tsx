@@ -194,6 +194,7 @@ export default function DocsPage() {
                     />
                   </div>
                   <div className="flex flex-col place-content-center">
+                    <p className="font-semibold text-red-500 m-3"> {workshop.about}</p>
                     <h1 className="font-bold text-xl mb-1 text-center md:text-xl">
                       {workshop.name}
                     </h1>
@@ -214,6 +215,7 @@ export default function DocsPage() {
                         {workshop.description}
                       </h1>
                     </div>
+
 
                     {now <= registrationDate && now <= startDate && (
                       <div className="mt-10 bg-gray-400/20 p-2 w-fit mx-auto transition-all duration-300 rounded-xl">
