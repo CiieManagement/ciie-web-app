@@ -125,7 +125,7 @@ const WorkshopForm = () => {
      
          <h2 className="text-2xl font-semibold text-gray-800 mt-6 mb-2">📅 Workshop Overview:</h2>
          <ul className="list-disc pl-5 text-gray-700 mb-4">
-           <li>📆 Date: <span className="font-bold">October 24-25</span></li>
+           <li>📆 Date: <span className="font-bold">To be announced</span></li>
            <li>⏰ Time: <span className="font-bold">9:30 AM to 4:00 PM</span></li>
            <li>📍 Venue: <span className="font-bold">SRM University</span></li>
          </ul>

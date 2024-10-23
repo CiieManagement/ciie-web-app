@@ -103,16 +103,17 @@ export const Navbar = () => {
 
         if (!coordinatorSnapshot.empty) {
           const coordinatorData = coordinatorSnapshot.docs[0].data();
-
-          if (coordinatorData.community === 'Cloud' || coordinatorData.community == 'AI and ML' || coordinatorData.community == 'Ui/Ux') {
-            if(coordinatorData.community === 'Cloud'){
+            if(coordinatorData.community === 'Cloud'){              
               setCommunity('Cloud');
+              setIsCoordinator(true);
             }else if(coordinatorData.community === 'AI and ML'){
               setCommunity('AI and ML');
+              setIsCoordinator(true);
             }else{
+            setCommunity('Ui/Ux');
             setIsCoordinator(true);
             }
-          }
+          
         } else {
           setErrorMessage('You are not authorized to view this page.');
         }
@@ -126,6 +127,11 @@ export const Navbar = () => {
 
     checkCoordinator(email);
   },[email]);
+
+  useEffect(()=>{
+    console.log("coordinator is ",isCoordinator);
+    
+  })
   
 
 
@@ -196,7 +202,7 @@ export const Navbar = () => {
     return null;
   };
 
-  const getSearchSuggestions = (query) => {
+  const getSearchSuggestions = (query: string) => {
     const alumniNames = Object.values(allumni.alumni).map(
       (person) => person.name
     );
@@ -358,8 +364,7 @@ export const Navbar = () => {
                         Configurations
                       </DropdownItem>
                     
-                    
-                    {isCoordinator ? (
+                                    {isCoordinator ? (
                                        <DropdownItem key="admin_section">
                                        {community === "Cloud" ? (
                                          <Link href="/admin/cloudAdmin">
@@ -379,6 +384,8 @@ export const Navbar = () => {
                                      <DropdownItem key="help_and_feedback">
                                        {/* Add content for non-coordinator users here */}
                                        {/* <a className="text-foreground">Help and Feedback</a> */}
+                                       <Link href="#">No Acces as a Coordinator
+                                       </Link>
                                      </DropdownItem>
                                    )}
 

@@ -125,7 +125,7 @@ const Strings = {
           description: "This workshop covers AI technology and Deep Learning fundamentals through hands-on projects, providing practical experience in building neural networks with real-world datasets.",
           registration_date: "2024-05-18T12:00:00",
           start_date: "22 oct 2024",
-          end_date: "postponed",
+          end_date: "23 oct 2024",
           about:"registrations are closed",
           link:"/events/workshop/aiWorkshop"
         },
