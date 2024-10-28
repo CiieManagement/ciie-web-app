@@ -113,10 +113,11 @@ const Strings = {
           name: "Cloud Learning Workshop",
           image: "/cloud.jpg",
           description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
-          registration_date: "2024-05-18T12:00:00",
-          start_date: "to be announced",
-          end_date: "to be announced",
-          about:"registrations are closed temporarily",
+          registration_date: "2024-11-04T12:00:00",
+          print_start_date:"2024-11-04T12:00:00",
+          start_date: "8th Nov",
+          end_date: "9th Nov",
+          about:"Registrations will be open from 4th Nov to 5th Nov until 6:00 PM",
           link:"/events/workshop/cloudWorkshop"
         },
         2: {

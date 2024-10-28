@@ -174,11 +174,13 @@ export default function DocsPage() {
           </h1>
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 transition-all duration-300 cursor-pointer">
             {Object.values(Strings.events.current.workshops).map((workshop) => {
-              const startDate = new Date(workshop.start_date);
+              const print_start_date = new Date(workshop.print_start_date);
+              
+              // const daySuffix = getDaySuffix(day);
               const registrationDate = new Date(workshop.registration_date);
               const endDate = new Date(workshop.end_date);
               const now = new Date();
-
+ 
               return (
                 <div
                   key={workshop.name}
@@ -194,7 +196,7 @@ export default function DocsPage() {
                     />
                   </div>
                   <div className="flex flex-col place-content-center">
-                    <p className="font-semibold text-red-500 m-3"> {workshop.about}</p>
+                    <p className="font-semibold animate- text-red-600 m-1"> {workshop.about}</p>
                     <h1 className="font-bold text-xl mb-1 text-center md:text-xl">
                       {workshop.name}
                     </h1>
@@ -217,14 +219,14 @@ export default function DocsPage() {
                     </div>
 
 
-                    {now <= registrationDate && now <= startDate && (
+                    {now <= print_start_date && (
                       <div className="mt-10 bg-gray-400/20 p-2 w-fit mx-auto transition-all duration-300 rounded-xl">
                         <h1 className="mr-1 font-bold mb-1">
-                          Register Within:
+                          Registertration Will start in :
                         </h1>
 
                         <Countdown
-                          date={registrationDate}
+                          date={print_start_date}
                           renderer={({ days, hours, minutes, seconds }) => (
                             <div className="flex place-content-center">
                               <div className="text-sm font-bold flex flex-row">
@@ -233,7 +235,7 @@ export default function DocsPage() {
                                 </h1>
                                 <h1 className="mr-2 mt-auto mb-1">D</h1>
                                 <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
-                                  {hours}
+                                  {hours-12}
                                 </h1>
                                 <h1 className="mr-2 mt-auto mb-1">H</h1>
                                 <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">

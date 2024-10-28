@@ -12,7 +12,7 @@ const WorkshopForm = () => {
 
     const handleContinue = () => {
         // setShowForm(true);
-        toast.error("Registrations Closed");
+        toast.error("Registrations are not open yet");
     };
 
   const [formData, setFormData] = useState({
