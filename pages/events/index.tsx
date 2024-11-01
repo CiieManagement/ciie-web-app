@@ -235,7 +235,7 @@ export default function DocsPage() {
                                 </h1>
                                 <h1 className="mr-2 mt-auto mb-1">D</h1>
                                 <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">
-                                  {hours-12}
+                                  {hours}
                                 </h1>
                                 <h1 className="mr-2 mt-auto mb-1">H</h1>
                                 <h1 className="bg-purple-400/30 px-2 py-1 border-2 border-purple-400/50 rounded-md m-1">

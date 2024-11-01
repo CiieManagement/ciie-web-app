@@ -40,7 +40,6 @@ export default function IndexPage() {
   // }, [username]);
 
   // router.push("/");
-
   return (
     <DefaultLayout>
       <BackdropAnimation />

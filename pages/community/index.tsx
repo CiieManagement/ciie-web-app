@@ -8,11 +8,12 @@ import Image from "next/image";
 const Index = () => {
   const router = useRouter();
   const [teamMembers, setTeamMembers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Fetching team members from Firestore
   useEffect(() => {
     const fetchTeamMembers = async () => {
       try {
+        setLoading(true);
         const querySnapshot = await getDocs(collection(db, "communities"));
         const membersData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -21,6 +22,8 @@ const Index = () => {
         setTeamMembers(membersData);
       } catch (error) {
         console.error("Error fetching team members: ", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -89,15 +92,22 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <BackdropAnimation />
-      <div className="relative z-10 flex flex-col items-center text-center px-4 py-8">
+      <div className="relative z-6 flex flex-col items-center text-center px-2 py-4">
         <h1 className="text-4xl sm:text-5xl font-bold mb-10 tracking-wide">
           Our Communities
         </h1>
 
-        {/* Rendering fetched team members */}
-        <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {renderTeamMembers(teamMembers)}
-        </div>
+        {loading ? (
+          <div className="flex flex-col items-center justify-center mt-20 space-y-4">
+            {/* Loading Spinner */}
+            <div className="w-16 h-16 border-4 border-blue-500 border-t-transparent border-solid rounded-full animate-spin"></div>
+            <p className="text-lg font-semibold text-gray-600">Loading...</p>
+          </div>
+        ) : (
+          <div className="w-full max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {renderTeamMembers(teamMembers)}
+          </div>
+        )}
       </div>
     </div>
   );
