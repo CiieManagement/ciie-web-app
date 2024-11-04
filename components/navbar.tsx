@@ -384,7 +384,7 @@ export const Navbar = () => {
                                      <DropdownItem key="help_and_feedback">
                                        {/* Add content for non-coordinator users here */}
                                        {/* <a className="text-foreground">Help and Feedback</a> */}
-                                       <Link href="#">No Acces as a Coordinator
+                                       <Link href="#">
                                        </Link>
                                      </DropdownItem>
                                    )}

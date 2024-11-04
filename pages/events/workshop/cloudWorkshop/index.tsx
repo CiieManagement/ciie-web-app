@@ -11,8 +11,8 @@ const WorkshopForm = () => {
     const [showForm, setShowForm] = useState(false);
 
     const handleContinue = () => {
-        // setShowForm(true);
-        toast.error("Registrations are not open yet");
+        setShowForm(true);
+        // toast.error("Registrations are not open yet");
     };
 
   const [formData, setFormData] = useState({
@@ -165,7 +165,7 @@ const WorkshopForm = () => {
          <div className="mt-6 flex justify-center">
            <button
              onClick={handleContinue}
-             className="bg-purple-200 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
+             className="bg-green-400 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-colors duration-300"
            >
              Continue to Registration
            </button>

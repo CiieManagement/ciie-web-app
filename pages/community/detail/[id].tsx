@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import { db } from "../../../components/firebaseConfig";
 import { doc, getDoc } from "firebase/firestore";
+import { Navbar } from "@/components/navbar";
 
 const CommunityDetails = () => {
   const router = useRouter();
@@ -32,7 +33,9 @@ const CommunityDetails = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 to-pink-700 flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
+    <>
+      {/* <Navbar/> */}
+    <div className="min-h-screen bg-gradient-to-br from-indigo-300 to-white-700 flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
       <h1 className="text-5xl font-bold mb-4 text-center text-gray-800">
         {community.name}
       </h1>
@@ -74,7 +77,7 @@ const CommunityDetails = () => {
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {community.teamMembers.map((member: any, index: number) => (
-                  <div key={index} className="bg-gradient-to-br from-indigo-800 to-pink-800 p-4 rounded-2xl  shadow-md hover:shadow-lg transition">
+                  <div key={index} className="bg-gradient-to-br from-blue-600 to-pink-500 p-4 rounded-2xl  shadow-md hover:shadow-lg transition">  
                     <Image
                       src={"/anonymous_male.svg"}
                       width={100}
@@ -119,7 +122,8 @@ const CommunityDetails = () => {
         </div>
 
       </div>
-    </div>
+      </div>
+      </>
   );
 };
 

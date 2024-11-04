@@ -1,8 +1,7 @@
 import React, { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { useRouter } from "next/router";
 import { db } from "../../../components/firebaseConfig";
-import { collection, addDoc } from "firebase/firestore"; // Firestore methods for adding data
-import axios from "axios";
+import { collection, addDoc, getDocs, query, where } from "firebase/firestore"; // Firestore methods for adding data and querying
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -25,7 +24,7 @@ interface FormData {
   jiraExperience?: string;
   jenkinsExperience?: string;
   dockerExperience?: string;
-  projectDetails?:string;
+  projectDetails?: string;
   kubernetesExperience?: string;
 }
 
@@ -67,27 +66,41 @@ const Apply: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
+  // Function to check for existing email in Firestore
+  const checkEmailExists = async (email: string): Promise<boolean> => {
+    const q = query(collection(db, "applications"), where("email", "==", email));
+    const querySnapshot = await getDocs(q);
+    return !querySnapshot.empty; // Returns true if there are existing records
+  };
+
   // Handle form submission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      // Add form data to Firestore (replace 'applications' with your collection name)
+      const emailExists = await checkEmailExists(formData.email);
+      if (emailExists) {
+        toast.error("This email is already registered.");
+        return; // Stop submission if email exists
+      }
+
+      // Add form data to Firestore
       await addDoc(collection(db, "applications"), {
         ...formData,
         appliedAt: new Date(), // Store the timestamp of application
       });
 
       toast.success("Application Submitted successfully");
-
       setSuccessMessage("Application submitted successfully!");
-      const newFormData : FormData = {
+
+      // Reset the form data
+      setFormData({
         name: "",
         registrationNumber: "",
         email: "",
         phoneNumber: "",
-        year:0,
+        year: 0,
         course: "",
         branch: "",
         section: "",
@@ -102,10 +115,10 @@ const Apply: React.FC = () => {
         dockerExperience: "",
         projectDetails: "",
         kubernetesExperience: "",
-      }
-       // setFormData(newFormData);
+      });
     } catch (error) {
       console.error("Error submitting application: ", error);
+      toast.error("Error submitting application. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -115,6 +128,7 @@ const Apply: React.FC = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
 
  
     return (

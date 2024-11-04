@@ -92,7 +92,7 @@ const Index = () => {
   return (
     <div className="min-h-screen">
       <BackdropAnimation />
-      <div className="relative z-6 flex flex-col items-center text-center px-2 py-4">
+      <div className="relative z-10 flex flex-col items-center text-center px-4 py-8">
         <h1 className="text-4xl sm:text-5xl font-bold mb-10 tracking-wide">
           Our Communities
         </h1>

@@ -196,7 +196,7 @@ export default function DocsPage() {
                     />
                   </div>
                   <div className="flex flex-col place-content-center">
-                    <p className="font-semibold animate- text-red-600 m-1"> {workshop.about}</p>
+                    <p className="font-semibold animate- text-green-600 m-1"> {workshop.about}</p>
                     <h1 className="font-bold text-xl mb-1 text-center md:text-xl">
                       {workshop.name}
                     </h1>
