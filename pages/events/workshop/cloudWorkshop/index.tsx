@@ -45,62 +45,61 @@ const WorkshopForm = () => {
   };
 
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-  
-    try {
-      // Check if the email already exists in the "workshop" collection
-      const q = query(collection(db, "workshop"), where("email", "==", formData.email));
-      const p = query(collection(db, "workshop"), where("registrationNumber", "==", formData.registrationNumber));
-      const querySnapshot1 = await getDocs(q);
-      const querySnapshot2 = await getDocs(p);
-  
-      if (!querySnapshot1.empty || !querySnapshot2.empty) {
-        // If the email already exists, show an error message and stop submission
-        toast.error("You already submitted the form");
-        return;
-      }
-  
-      const dataToSubmit = {
-        ...formData,
-        appliedAt: new Date(), // Set the appliedAt field to the current date
-      };
-  
-      // Add the new document to the collection if email does not exist
-      await addDoc(collection(db, "workshop"), dataToSubmit);
-  
-      // Reset the form data and show success message
-      setFormData({
-        fullName: "",
-        registrationNumber: "",
-        year: "",
-        email: "",
-        phoneNumber: "",
-        course: "",
-        branch: "",
-        section: "",
-        awsAccount: "",
-        department: "Cloud",
-        cloud: "",
-        linuxExperience: "",
-        shellScripting: "",
-        githubActions: "",
-        ansibleExperience: "",
-        terraformExperience: "",
-        jiraExperience: "",
-        jenkinsExperience: "",
-        dockerExperience: "",
-        kubernetesExperience: "",
-      });
-      
-      setShowReminder(true); // Show the reminder modal
-      toast.success("Application Submitted successfully");
-  
-    } catch (error) {
-      console.error("Error adding document: ", error);
-      alert("Error submitting form!");
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    // Check if the email already exists in the "workshop" collection
+    const q = query(collection(db, "workshop"), where("email", "==", formData.email));
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // If the email already exists, show an error message and stop submission
+      toast.error("You already submitted the form with this email.");
+      return;
     }
-  };
+
+    const dataToSubmit = {
+      ...formData,
+      appliedAt: new Date(), // Set the appliedAt field to the current date
+    };
+
+    // Add the new document to the collection if email does not exist
+    await addDoc(collection(db, "workshop"), dataToSubmit);
+
+    // Reset the form data and show success message
+    setFormData({
+      fullName: "",
+      registrationNumber: "",
+      year: "",
+      email: "",
+      phoneNumber: "",
+      course: "",
+      branch: "",
+      section: "",
+      awsAccount: "",
+      department: "Cloud",
+      cloud: "",
+      linuxExperience: "",
+      shellScripting: "",
+      githubActions: "",
+      ansibleExperience: "",
+      terraformExperience: "",
+      jiraExperience: "",
+      jenkinsExperience: "",
+      dockerExperience: "",
+      kubernetesExperience: "",
+    });
+    
+    setShowReminder(true); // Show the reminder modal
+    toast.success("Application Submitted successfully");
+
+  } catch (error) {
+    console.error("Error adding document: ", error);
+    alert("Error submitting form!");
+  }
+};
+
 
   const closeReminder = () => {
     setShowReminder(false);
