@@ -109,17 +109,17 @@ const Strings = {
         //   end_date: "30 july 2024",
         //   link:"https://omnidev-courses.vercel.app/app"
         // },
-        1: {
-          name: "Cloud Learning Workshop",
-          image: "/cloud.jpg",
-          description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
-          // registration_date: "2024-11-04T12:00:00",
-          // print_start_date:"2024-11-04T12:00:00",
-          start_date: "8th Nov",
-          end_date: "9th Nov",
-          about:"Registrations are open from 4th Nov to 5th Nov until 6:00 PM",
-          link:"/events/workshop/cloudWorkshop"
-        },
+        // 1: {
+        //   name: "Cloud Learning Workshop",
+        //   image: "/cloud.jpg",
+        //   description: "In this workshop, we dive deep into ai technologies that are emerging nowadays",
+        //   // registration_date: "2024-11-04T12:00:00",
+        //   // print_start_date:"2024-11-04T12:00:00",
+        //   start_date: "8th Nov",
+        //   end_date: "9th Nov",
+        //   about:"Registrations are open from 4th Nov to 5th Nov until 6:00 PM",
+        //   link:"/events/workshop/cloudWorkshop"
+        // },
         // 2: {
         //   name: "AI and ML ",
         //   image: "/aiml.png",
