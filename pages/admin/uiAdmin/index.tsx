@@ -82,6 +82,7 @@ const CommunityPage = () => {
           if (coordinatorData.community === 'Ui/Ux') {
             setIsCoordinator(true);
           } else {
+            // setIsCoordinator(true);
             setErrorMessage('You are a coordinator, but you are in the wrong community.');
           }
         } else {

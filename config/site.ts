@@ -23,10 +23,10 @@ export const siteConfig = {
       label: "Reports",
       href: "/projects",
     },
-    {
-      label: "Verge",
-      href: "/verge",
-    },
+    // {
+    //   label: "Verge",
+    //   href: "/verge",
+    // },
     {
       label: "Events",
       href: "/events",
@@ -160,10 +160,10 @@ export const siteConfig = {
       label: "Reports",
       href: "/projects",
     },
-    {
-      label: "Verge",
-      href: "/verge",
-    },
+    // {
+    //   label: "Verge",
+    //   href: "/verge",
+    // },
     {
       label: "Events",
       href: "/events",
@@ -213,10 +213,10 @@ export const siteConfig = {
       label: "Reports",
       href: "/projects",
     },
-    {
-      label: "Verge",
-      href: "/verge",
-    },
+    // {
+    //   label: "Verge",
+    //   href: "/verge",
+    // },
     {
       label: "Events",
       href: "/events",
@@ -270,10 +270,10 @@ export const siteConfig = {
       label: "Reports",
       href: "/projects",
     },
-    {
-      label: "Verge",
-      href: "/verge",
-    },
+    // {
+    //   label: "Verge",
+    //   href: "/verge",
+    // },
     {
       label: "Events",
       href: "/events",

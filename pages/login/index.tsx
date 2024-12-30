@@ -20,6 +20,8 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isCoordinator, setIsCoordinator] = useState(false); // State to track login mode
+  const [community, setCommunity] = useState(''); // Additional input for coordinators
   const db = getFirestore(); // Initialize Firestore
 
   useEffect(() => {
@@ -32,25 +34,75 @@ const LoginPage = () => {
     }
   }, []);
 
-  const handleFirebaseLogin = async (email: string, password: string) => {
+  const handleFirebaseLogin = async () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+
+      if (isCoordinator) {
+        // Coordinator login flow
+        const coordinatorQuery = query(collection(db, 'coordinators'), where('email', '==', email));
+        const coordinatorSnapshot = await getDocs(coordinatorQuery);
+
+        if (!coordinatorSnapshot.empty) {
+          const coordinatorData = coordinatorSnapshot.docs[0].data();
+          const coordinatorCommunity = coordinatorData.community || community; // Use Firestore data or input
+
+          if (!coordinatorCommunity) {
+            toast.error('Please specify your community.', {
+              position: 'top-center',
+              autoClose: 5000,
+              theme: 'light',
+              transition: Slide,
+            });
+            return;
+          }
+
+          toast.success(`Logged in as coordinator successfully in ${coordinatorCommunity}!`, {
+            position: 'top-center',
+            autoClose: 3000,
+            theme: 'light',
+            transition: Slide,
+          });
+
+          // Redirect based on community value
+          switch (coordinatorCommunity.toLowerCase()) {
+            case 'cloud':
+              window.location.replace('/admin/cloudAdmin'); // Redirect to cloud community page
+              break;
+            case 'ai':
+              window.location.replace('/admin/aiAdmin'); // Redirect to AI community page
+              break;
+            case 'ui/ux':
+              window.location.replace('/admin/uiAdmin'); // Redirect to UI/Ux community page
+              break;
+            // Add more cases as necessary for other communities
+            default:
+              window.location.replace('/admin'); // Default redirect for coordinators
+          }
+          return; // Exit early if logged in as coordinator
+        } else {
+          toast.error('Coordinator not found. Please check your credentials.', {
+            position: 'top-center',
+            autoClose: 5000,
+            theme: 'light',
+            transition: Slide,
+          });
+          return;
+        }
+      }
+
+      // Regular user or admin login flow
 
       // Check for admin access
       if (admin.admins.includes(email)) {
         toast.success('Logged in as admin successfully!', {
           position: 'top-center',
           autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
           theme: 'light',
           transition: Slide,
         });
-        window.location.replace('./');
+        window.location.replace('/'); // Redirect to admin dashboard
         return; // Exit early if logged in as admin
       }
 
@@ -59,62 +111,17 @@ const LoginPage = () => {
         toast.success('Logged in successfully!', {
           position: 'top-center',
           autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
           theme: 'light',
           transition: Slide,
         });
-        window.location.replace('./'); // Redirect to user dashboard or main page
+        window.location.replace('/dashboard'); // Redirect to user dashboard or main page
         return; // Exit early if logged in as user
-      }
-
-      // Check for coordinator access
-      const coordinatorQuery = query(collection(db, 'coordinators'), where('email', '==', email)); // Query by email
-      const coordinatorSnapshot = await getDocs(coordinatorQuery);
-
-      if (!coordinatorSnapshot.empty) {
-        const coordinatorData = coordinatorSnapshot.docs[0].data(); // Get the first matching coordinator
-        const community = coordinatorData.community; // Get the community
-
-        toast.success(`Logged in as coordinator successfully in ${community}!`, {
-          position: 'top-center',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: 'light',
-          transition: Slide,
-        });
-
-        // Redirect based on community value
-        switch (community) {
-          case 'cloud':
-            window.location.replace('/admin/cloudAdmin'); // Redirect to cloud community page
-            break;
-          case 'AI':
-            window.location.replace('/admin/webAdmin'); // Redirect to AI community page
-            break;
-          // Add more cases as necessary for other communities
-          default:
-            window.location.replace('./'); // Default redirect
-        }
-        return; // Exit early if logged in as coordinator
       }
 
       // If no valid role found, show error
       toast.error('You are not a member of Ciie or invalid credentials.', {
         position: 'top-center',
         autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: 'light',
         transition: Slide,
       });
@@ -123,11 +130,6 @@ const LoginPage = () => {
       toast.error('Error logging in! Please check your credentials.', {
         position: 'top-center',
         autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
         theme: 'light',
         transition: Slide,
       });
@@ -154,9 +156,22 @@ const LoginPage = () => {
     }
   };
 
+  const toggleLoginMode = () => {
+    setIsCoordinator(!isCoordinator);
+    setEmail('');
+    setPassword('');
+    setCommunity('');
+    toast.info(`Switched to ${!isCoordinator ? 'Coordinator' : 'User'} login mode.`, {
+      position: 'top-center',
+      autoClose: 3000,
+      theme: 'light',
+      transition: Slide,
+    });
+  };
+
   return (
     <>
-      <div className="min-h-screen bg-gray-100 p-2 flex flex-col justify-center">
+      <div className="min-h-screen overflow-hidden bg-gray-100 p-2 flex flex-col justify-center">
         <div className="relative py-3 sm:max-w-xl p-2 sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-yellow-400 shadow-lg transform -skew-y-15 sm:skew-y-0 sm:-rotate-15 sm:rounded-3xl"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-teal-400 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
@@ -164,6 +179,9 @@ const LoginPage = () => {
             <div className="max-w-md mx-auto">
               <div>
                 <h1 className="mt-6 text-center text-3xl font-extrabold text-gray-900">CIIE</h1>
+                <p className="text-center text-sm text-gray-500">
+                  {isCoordinator ? 'Coordinator Login' : 'User Login'}
+                </p>
               </div>
               <form className="divide-y divide-gray-200">
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
@@ -177,7 +195,7 @@ const LoginPage = () => {
                           id="email"
                           name="email"
                           type="email"
-                          placeholder="email"
+                          placeholder="email@example.com"
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           autoComplete="email"
@@ -187,6 +205,30 @@ const LoginPage = () => {
                       </div>
                     </div>
                   </div>
+
+                  {/* Coordinator-specific community input */}
+                  {isCoordinator && (
+                    <div className="flex flex-wrap">
+                      <div className="w-full">
+                        <label htmlFor="community" className="block text-sm font-medium text-gray-700">
+                          Community
+                        </label>
+                        <div className="mt-1">
+                          <input
+                            id="community"
+                            name="community"
+                            type="text"
+                            placeholder="Enter your community (e.g., Cloud, AI)"
+                            value={community}
+                            onChange={(e) => setCommunity(e.target.value)}
+                            required={isCoordinator} // Fixed logic
+                            className="appearance-none block w-full px-3 py-2 border border-gray-200 bg-gray-100 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   <div className="flex flex-wrap">
                     <div className="w-full">
                       <label htmlFor="password" className="block text-sm font-medium text-gray-700">
@@ -197,7 +239,7 @@ const LoginPage = () => {
                           id="password"
                           name="password"
                           type={passwordVisible ? 'text' : 'password'}
-                          placeholder='password'
+                          placeholder="••••••••"
                           value={password}
                           onChange={(e) => setPassword(e.target.value)}
                           autoComplete="current-password"
@@ -215,17 +257,17 @@ const LoginPage = () => {
                           />
                         </button>
                       </div>
-                      <Link href="/resetPassword" className='text-sm'>
+                      <Link href="/resetPassword" className="text-sm text-indigo-600 hover:text-indigo-500">
                         Reset password
                       </Link>
                     </div>
                   </div>
                 </div>
                 <div className="pt-5">
-                  <div className="flex items-center justify-between">
+                  <div className="flex gap-5 items-center justify-between">
                     <div className="flex items-center">
-                      <Checkbox defaultChecked={rememberMe} onChange={handleRememberMe} />
-                      <label htmlFor="remember" className="ml-2 block text-sm text-gray-900">
+                      <Checkbox checked={rememberMe} onChange={handleRememberMe} />
+                      <label htmlFor="remember" className="block text-sm text-gray-900 ml-2">
                         Remember me
                       </label>
                     </div>
@@ -238,11 +280,19 @@ const LoginPage = () => {
                   <div className="mt-6">
                     <button
                       type="button"
-                      onClick={() => handleFirebaseLogin(email, password)}
+                      onClick={handleFirebaseLogin}
                       className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Sign in
                     </button>
+
+                    {/* Toggle login mode */}
+                    <div
+                      onClick={toggleLoginMode}
+                      className="text-blue-700 font-semibold mt-3 animate-pulse cursor-pointer text-center"
+                    >
+                      {isCoordinator ? 'Login as regular user' : 'Login as coordinator'}
+                    </div>
                   </div>
                 </div>
               </form>

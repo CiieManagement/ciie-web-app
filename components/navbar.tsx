@@ -364,7 +364,7 @@ export const Navbar = () => {
                         Configurations
                       </DropdownItem>
                     
-                                    {isCoordinator ? (
+                                    {/* {isCoordinator ? (
                                        <DropdownItem key="admin_section">
                                        {community === "Cloud" ? (
                                          <Link href="/admin/cloudAdmin">
@@ -382,13 +382,12 @@ export const Navbar = () => {
                                      </DropdownItem>
                                    ) : (
                                      <DropdownItem key="help_and_feedback">
-                                       {/* Add content for non-coordinator users here */}
-                                       {/* <a className="text-foreground">Help and Feedback</a> */}
+                                      
                                        <Link href="#">
                                        </Link>
                                      </DropdownItem>
                                    )}
-
+ */}
 
 
 
