@@ -35,7 +35,7 @@ import pather from "./pather.json";
 import { getFirestore } from 'firebase/firestore';
 import { collection, getDocs, query, where } from "@firebase/firestore";
 
-const SearchSuggestions = ({ suggestions, onSuggestionClick }) => {
+const SearchSuggestions = ({ suggestions, onSuggestionClick }: { suggestions: string[], onSuggestionClick: (suggestion: string) => void }) => {
   return (
     <ul className="absolute bg-gray-400/20 backdrop-blur-md mt-1 rounded-2xl shadow-lg max-h-48 overflow-y-auto z-50">
       {suggestions.map((suggestion, index) => (
@@ -128,10 +128,7 @@ export const Navbar = () => {
     checkCoordinator(email);
   },[email]);
 
-  useEffect(()=>{
-    console.log("coordinator is ",isCoordinator);
-    
-  })
+ 
   
 
 
@@ -167,15 +164,15 @@ export const Navbar = () => {
 
   const getSuggestionSource = (suggestion) => {
     const alumniNames = Object.values(allumni.alumni).map(
-      (person) => person.name
+      (person) => person
     );
     const facultyNames = Object.values(
       InternalFacultyData.InternalFacultyData
     ).map((person) => person.name);
-    const firstYearMembers = Object.values(Strings2.First_Year).map(
+    const firstYearMembers = Object.values(Strings2.Community[1]).map(
       (person) => person.name
     );
-    const secondYearMembers = Object.values(Strings2.Second_Year).map(
+    const secondYearMembers = Object.values(Strings2.Community[2]).map(
       (person) => person.name
     );
     const thirdYearMembers = Object.values(Strings2.Third_Year).map(
@@ -209,7 +206,7 @@ export const Navbar = () => {
     const facultyNames = Object.values(
       InternalFacultyData.InternalFacultyData
     ).map((person) => person.name);
-    const firstYearMembers = Object.values(Strings2.First_Year || {}).map(
+    const firstYearMembers = Object.values(Strings2.First_Year).map(
       (person) => person.name
     );
     const secondYearMembers = Object.values(Strings2.Second_Year || {}).map(

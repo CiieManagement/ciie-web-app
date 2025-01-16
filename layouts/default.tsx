@@ -14,7 +14,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 
-export default function DefaultLayout({
+export default function  DefaultLayout({
   children,
 }: {
   children: React.ReactNode;

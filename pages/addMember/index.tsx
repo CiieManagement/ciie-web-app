@@ -26,13 +26,16 @@ function AddMemberForm() {
     });
   };
 
-  const handleImageChange = (e: { target: { files: any[]; }; }) => {
-    const file = e.target.files[0];
-    setImageFile(file);
-    setFormData({
-      ...formData,
-      image: URL.createObjectURL(file), // Display image preview
-    });
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (files && files.length > 0) {
+      const file = files[0];
+      setImageFile(file);
+      setFormData({
+        ...formData,
+        image: URL.createObjectURL(file), // Display image preview
+      });
+    }
   };
 
   const handleSubmit = async (e: { preventDefault: () => void; }) => {

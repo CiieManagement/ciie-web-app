@@ -29,7 +29,7 @@ const LoginPage = () => {
     const storedPassword = localStorage.getItem('loginPassword');
     if (storedEmail) {
       setEmail(storedEmail);
-      setPassword(storedPassword);
+      setPassword(storedPassword || '');
       setRememberMe(true);
     }
   }, []);
