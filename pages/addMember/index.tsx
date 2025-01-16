@@ -14,6 +14,7 @@ function AddMemberForm() {
     linkedin: "",
     github: "",
     year: "First_Year",
+    
   });
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(false);

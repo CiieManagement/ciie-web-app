@@ -2,8 +2,6 @@ import React from 'react'
 import { VisionCard } from '@/components/widgets/aboutScreenCards'
 import { Strings } from '@/public/values/strings'
 import { Button } from '@nextui-org/react'
-import Link from 'next/link'
-import { IoMdExit } from 'react-icons/io'
 import DefaultLayout from '@/layouts/default'
 
 const Index = () => {
@@ -26,7 +24,8 @@ const Index = () => {
         </div>
       </div>
     </div>
-    {/* </DefaultLayout> */}
+  
+  //  </DefaultLayout>
   )
 }
 
