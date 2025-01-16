@@ -8,7 +8,7 @@ import DefaultLayout from '@/layouts/default'
 
 const Index = () => {
   return (
-    <DefaultLayout>
+    // <DefaultLayout>
     <div className="relative min-h-screen flex items-center justify-center py-12">
       <div className="relative z-10 flex flex-col items-center text-center px-4 py-8 bg-opacity-80 rounded-lg max-w-6xl">
         <h1 className="mt-4 text-left text-3xl font-bold mb-10 md:text-4xl">
@@ -26,7 +26,7 @@ const Index = () => {
         </div>
       </div>
     </div>
-    </DefaultLayout>
+    {/* </DefaultLayout> */}
   )
 }
 
