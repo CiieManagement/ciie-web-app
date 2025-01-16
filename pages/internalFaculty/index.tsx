@@ -4,7 +4,8 @@ import {InternalFaculty } from '@/components/widgets/aboutScreenCards';
 import { InternalFacultyData } from '@/public/values/InternalFaculty';
 import { allumni } from '@/public/values/allumni';
 import withAdminAuth from "@/components/withAdminAuth";
-import Navbar from '@/pages/navbar1';
+// import Navbar from '@/pages/navbar1';
+import {Navbar} from '@/components/navbar';
 import BackdropAnimation from '@/components/utils/backdrop_animation';
 import { ThemeSwitch } from '@/components/theme-switch';
 
