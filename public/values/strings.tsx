@@ -39,20 +39,16 @@ const Strings = {
       "“Empowering visionary entrepreneurs with cutting-edge resources and support to innovate, incubate, and shape the future at the CIIE Center for Innovation and Entrepreneurship”",
     image: "/teamwork.svg",
   },
-  missions: {
-    1: {
+  missions: [{
       text: "Empowering Innovators: Our mission is to empower innovators by providing them with the necessary tools, resources, and support to turn their ideas into successful ventures.",
       image: "/empower.svg",
-    },
-    2: {
+    },{
       text: "Fostering Collaboration: We aim to foster collaboration among entrepreneurs, investors, mentors, and industry experts to create a vibrant ecosystem",
       image: "/collaboration.svg",
-    },
-    3: {
+    },{
       text: "Cultivating Innovation: We cultivate innovation by encouraging experimentation, risk-taking, and a culture of continuous learning ",
       image: "/innovation.svg",
-    },
-  },
+    }],
   
   verge: {
     1: {
