@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { onAuthStateChanged, deleteUser, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
+import { onAuthStateChanged, deleteUser, reauthenticateWithCredential, EmailAuthProvider, sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../../components/firebaseConfig';
 import { Navbar } from "../../components/navbar";
 import toast, { Toaster } from 'react-hot-toast';
@@ -21,7 +21,7 @@ const MySetting = () => {
     return () => unsubscribe();
   }, []);
 
-  const reauthenticate = async (enteredPassword) => {
+  const reauthenticate = async (enteredPassword: string) => {
     console.log(enteredPassword); // For debugging purposes
     if (user) {
       const credential = EmailAuthProvider.credential(user.email, enteredPassword);
@@ -62,6 +62,17 @@ const MySetting = () => {
     }
   };
 
+  const handleResetPassword = async () => {
+    if (user) {
+      try {
+        await sendPasswordResetEmail(auth, user.email);
+        toast.success("Password reset email sent! Check your inbox.");
+      } catch (error) {
+        setError("Failed to send password reset email. Please try again.");
+      }
+    }
+  };
+
   return (
     <div className='flex flex-col items-center min-h-screen bg-gray-100'>
       <Navbar />
@@ -91,6 +102,15 @@ const MySetting = () => {
           >
             Delete my account
           </button>
+
+          {user && (
+            <button
+              onClick={handleResetPassword}
+              className='w-36 h-9 bg-blue-600 mt-6 rounded-lg text-white'
+            >
+              Reset Password
+            </button>
+          )}
         </div>
       </div>
       <Toaster />
