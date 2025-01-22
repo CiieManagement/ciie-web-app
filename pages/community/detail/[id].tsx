@@ -35,11 +35,11 @@ const CommunityDetails = () => {
   return (
     <>
       {/* <Navbar/> */}
-    <div className="min-h-screen bg-gradient-to-br from-indigo-300 to-white-700 flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
-      <h1 className="text-5xl font-bold mb-4 text-center text-gray-800">
+    <div className="min-h-screen  flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
+      <h1 className="text-5xl font-bold mb-4 text-center text-white text-gray-800">
         {community.name}
       </h1>
-      <p className="text-lg opacity-80 py-3 px-5 bg-black rounded-full text-center mb-6">
+      <p className="text-lg opacity-80 px-5 bg-black rounded-full text-center mb-6">
         {community.department || "N/A"}
       </p>
 
@@ -69,23 +69,24 @@ const CommunityDetails = () => {
         </div>
 
         {/* Team Members Section */}
-        <div className="flex flex-col md:items-center bg-gray-50 rounded-3xl shadow-lg p-6">
+        <div className="flex flex-col md:items-center  border-2 border-white rounded-3xl shadow-lg p-6">
           {community.teamMembers && community.teamMembers.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-2xl font-semibold text-center text-gray-800 mb-4">
+              <h3 className="text-2xl font-semibold text-center text-white text-gray-800 mb-4">
                 Team Members
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {community.teamMembers.map((member: any, index: number) => (
-                  <div key={index} className="bg-gradient-to-br from-blue-600 to-pink-500 p-4 rounded-2xl  shadow-md hover:shadow-lg transition">  
-                    <Image
-                      src={"/anonymous_male.svg"}
-                      width={100}
-                      height={100}
-                      layout="responsive"
-                      alt={""}
-                      className="mx-auto mb-4"
-                    />
+                  <div key={index} className="bbprder-2 border-white p-4 rounded-2xl  shadow-md hover:shadow-lg transition">  
+                   <Image
+                      src={ "/anonymous_male.svg"                     
+                     }
+                     width={100}
+                     height={100}
+                     layout="responsive"
+                     alt=""
+                     className="mx-auto mb-4"
+                        />
                     <h4 className="text-lg font-extrabold text-center">
                       {member.name}
                     </h4>
@@ -99,7 +100,7 @@ const CommunityDetails = () => {
                         </a>
                       )}
                       {member.github && (
-                        <a href={member.github} target="_blank" rel="noopener noreferrer">
+                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="bg-white rounded-full">
                           <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg" width={24} height={24} alt="GitHub" />
                         </a>
                       )}
