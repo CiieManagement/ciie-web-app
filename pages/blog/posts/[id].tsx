@@ -52,7 +52,7 @@ const BlogDetail = () => {
   return (
     <div className="flex flex-col min-h-screen overflow-hidden">
       <Navbar />
-      <div className="container mx-auto p-4 flex justify-center overflow-hidden">
+      <div className=" mx-auto p-4 flex justify-center overflow-hidden">
         <div className="w-full sm:w-11/12 md:w-9/12 lg:w-8/12 xl:w-7/12 2xl:w-6/12 mt-4 sm:mt-10 p-4 sm:p-6 border dark:bg-gray-800 dark:border-pink-600 rounded-lg shadow-md dark:shadow-[0_10px_20px_rgba(255,20,147,0.7)] dark:border-2 dark:border-opacity-50 overflow-x-auto">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4 text-indigo-600 dark:text-indigo-400 border-b-2 border-indigo-600 dark:border-indigo-400 pb-1 sm:pb-2">
             {blog.title}

@@ -314,13 +314,13 @@ export const Navbar = () => {
 
         {user ? (
           <Menu as="div" className="relative">
-            <Menu.Button className="flex flex-row items-center content-center bg-gray-300/20 rounded-xl">
+            <Menu.Button className="flex flex-row items-center content-center bg-gray-300/20 rounded-xl p-1">
               <Image
                 src={user.photoURL || "/anonymous_male.svg"}
                 width={40}
                 height={40}
                 alt=""
-                className="rounded-xl mb-3 ml-2 mr-2"
+                className="flex rounded-xl "
               />
               <span>{user.displayName}</span>
             </Menu.Button>

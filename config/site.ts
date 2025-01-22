@@ -187,7 +187,7 @@ export const siteConfig = {
     },
     {
       label: "Create Blog",
-      href: "/createBlog",
+      href: "/blog/createBlog",
     },
     
     {
@@ -244,7 +244,7 @@ export const siteConfig = {
     },
     {
       label: "Create Blog",
-      href: "/createBlog",
+      href: "/blog/createBlog",
     },
     {
       label: "Read Blogs",
@@ -280,7 +280,7 @@ export const siteConfig = {
     },
     {
       label: "Create Blog",
-      href: "/createBlog",
+      href: "/blog/createBlog",
     },
     {
       label: "Read Blogs",

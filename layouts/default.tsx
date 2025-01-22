@@ -23,14 +23,15 @@ export default function  DefaultLayout({
 
   return (
     <>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
         <ModalContent className="max-w-full h-screen overflow-auto w-auto md:w-3/4 lg:w-1/2">
           {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1">Web Design and development team</ModalHeader>
               <div className="flex flex-col md:flex-row gap-4">
-                <ModalBody className="flex-1 overflow-auto">
+                <ModalBody className="flex-1 overflow-auto ">
                   <strong>Web Development Team</strong>
+                  <hr />
                   <br />
                   <p>
                     <strong>Sahil Tiwari: </strong>
@@ -47,6 +48,7 @@ export default function  DefaultLayout({
                 </ModalBody>
                 <ModalBody className="flex overflow-auto">
                   <strong>Ui/Ux Team</strong>
+                  <hr />
                   <br />
                   <p>
                     <strong>Arjun Rai: </strong>
