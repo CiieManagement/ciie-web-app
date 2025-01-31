@@ -23,8 +23,6 @@ const CommunityDetails = () => {
     fetchCommunity();
   }, [id]);
 
-  if (!community) return <div className="text-center py-20">Loading...</div>;
-
   const handleApply = () => {
     router.push({
       pathname: "/community/apply",
@@ -32,99 +30,122 @@ const CommunityDetails = () => {
     });
   };
 
+  if (!community) return (
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="animate-pulse space-y-4">
+        <div className="h-12 bg-gray-200 rounded w-64 mx-auto"></div>
+        <div className="h-8 bg-gray-200 rounded w-48 mx-auto"></div>
+        <div className="h-96 bg-gray-100 rounded-xl mt-8"></div>
+      </div>
+    </div>
+  );
+
   return (
-    <>
-      {/* <Navbar/> */}
-    <div className="min-h-screen  flex flex-col items-center max-w-7xl mx-auto py-10 px-4">
-      <h1 className="text-5xl font-bold mb-4 text-center text-white text-gray-800">
-        {community.name}
-      </h1>
-      <p className="text-lg opacity-80 px-5 bg-black rounded-full text-center mb-6">
-        {community.department || "N/A"}
-      </p>
+    <div className="min-h-screen bg-gray-50">
+      {/* <Navbar /> */}
+      
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Community Header */}
+        <header className="text-center mb-16">
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+            {community.name}
+          </h1>
+          <span className="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">
+            {community.department || "Undergraduate Program"}
+          </span>
+        </header>
 
-      <div className="flex flex-col md:grid grid-cols-2 gap-10">
-
-        {/* Coordinator Section */}
-        <div className="flex flex-col mx-5 md:mx-0 max-w-lg items-center space-y-6 mb-8">
-          {community.personalImage && (
-            <Image
-              src={community.personalImage}
-              alt={community.name}
-              width={200}
-              height={200}
-              layout="responsive"
-              className="rounded-full mb-5 shadow-lg object-cover w-full max-w-xs"
-            />
-          )}
-          <div className="text-center">
-            <h2 className="text-2xl font-semibold">Course Coordinator</h2>
-            <p className="mb-2 text-white font-bold">Dr. {community.faculty}</p>
-            <div className="border-2 p-2 rounded-lg">
-            <p className="opacity-80 font-mono font-semibold text-justify mx-4 leading-relaxed">
-              {community.personalThoughts}
-            </p>
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Coordinator Section */}
+          <section className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="flex flex-col items-center space-y-6">
+              <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-indigo-100">
+                <Image
+                  src={community.personalImage || (community.gender === "male" 
+                    ? "/anonymous_male.svg" 
+                    : "/anonymous_female.svg")}
+                  alt={community.name}
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+              
+              <div className="text-center">
+                <h2 className="text-lg font-semibold text-gray-500 mb-2">
+                  Course Coordinator
+                </h2>
+                <p className="text-xl font-bold text-gray-900 mb-4">
+                  Dr. {community.faculty}
+                </p>
+                <div className="prose bg-gray-50 p-6 rounded-xl">
+                  <blockquote className="text-gray-600 italic">
+                    "{community.personalThoughts}"
+                  </blockquote>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </section>
 
-        {/* Team Members Section */}
-        <div className="flex flex-col md:items-center  border-2 border-white rounded-3xl shadow-lg p-6">
-          {community.teamMembers && community.teamMembers.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-2xl font-semibold text-center text-white text-gray-800 mb-4">
-                Team Members
-              </h3>
+          {/* Team Members Section */}
+          <section className="bg-white rounded-2xl shadow-lg p-8">
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+              Leadership Team
+            </h3>
+            
+            {community.teamMembers?.length > 0 && (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {community.teamMembers.map((member: any, index: number) => (
-                  <div key={index} className="bbprder-2 border-white p-4 rounded-2xl  shadow-md hover:shadow-lg transition">  
-                   <Image
-                      src={ "/anonymous_male.svg"                     
-                     }
-                     width={100}
-                     height={100}
-                     layout="responsive"
-                     alt=""
-                     className="mx-auto mb-4"
-                        />
-                    <h4 className="text-lg font-extrabold text-center">
+                {community.teamMembers.map((member: any) => (
+                  <div key={member.name} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors">
+                    <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4">
+                      <Image
+                        src={member.image || "/anonymous_male.svg"}
+                        alt={member.name}
+                        layout="fill"
+                        objectFit="cover"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-gray-900">
                       {member.name}
                     </h4>
-                    <p className="font-semibold text-sm text-white text-center">
-                      {member.role}
-                    </p>
-                    <div className="flex justify-center mt-2 space-x-3">
+                    <p className="text-sm text-gray-600 mb-2">{member.role}</p>
+                    <div className="flex space-x-3">
                       {member.linkedin && (
-                        <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
-                          <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c9/Linkedin.svg" width={24} height={24} alt="LinkedIn" />
+                        <a href={member.linkedin} target="_blank" rel="noopener" className="text-gray-400 hover:text-indigo-600">
+                          <span className="sr-only">LinkedIn</span>
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                          </svg>
                         </a>
                       )}
                       {member.github && (
-                        <a href={member.github} target="_blank" rel="noopener noreferrer" className="bg-white rounded-full">
-                          <Image src="https://upload.wikimedia.org/wikipedia/commons/c/c2/GitHub_Invertocat_Logo.svg" width={24} height={24} alt="GitHub" />
+                        <a href={member.github} target="_blank" rel="noopener" className="text-gray-400 hover:text-gray-600">
+                          <span className="sr-only">GitHub</span>
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                            <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd"/>
+                          </svg>
                         </a>
                       )}
                     </div>
                   </div>
                 ))}
               </div>
+            )}
+
+            <div className="mt-12 text-center">
+              <button
+                onClick={handleApply}
+                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-semibold rounded-full hover:from-indigo-700 hover:to-indigo-600 transition-all shadow-lg hover:shadow-indigo-200"
+              >
+                Apply Now
+                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </button>
             </div>
-          )}
-
-          {/* Apply Button */}
-          <div className="text-center mt-10">
-            <button
-              onClick={handleApply}
-              className="px-6 py-2 bg-indigo-500 text-white rounded-full hover:bg-indigo-600 hover:scale-105 transition transform"
-            >
-              Apply for {community.name}
-            </button>
-          </div>
+          </section>
         </div>
-
-      </div>
-      </div>
-      </>
+      </main>
+    </div>
   );
 };
 
