@@ -79,7 +79,7 @@ const CommunityDetails = () => {
                 </p>
                 <div className="prose bg-gray-50 p-6 rounded-xl">
                   <blockquote className="text-gray-600 italic">
-                    "{community.personalThoughts}"
+                    {community.personalThoughts}
                   </blockquote>
                 </div>
               </div>

@@ -182,7 +182,7 @@ const CreateCommunity = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Coordinator's Statement
+                  Coordinator Statement
                 </label>
                 <textarea
                   value={personalThoughts}
@@ -224,7 +224,7 @@ const CreateCommunity = () => {
 
               <div className="space-y-2">
                 <label className="block text-sm font-medium text-gray-700">
-                  Coordinator's Image
+                  Coordinator Image
                 </label>
                 <div className="relative group border-2 border-dashed border-gray-300 rounded-xl h-40 flex items-center justify-center hover:border-indigo-500 transition-colors">
                   <input
