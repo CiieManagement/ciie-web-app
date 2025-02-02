@@ -1,204 +1,216 @@
-import React, { useState } from "react";
-import { db, storage } from '../../components/firebaseConfig'; // Adjust the import path as necessary
-import { collection, addDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import Image from "next/image";
+"use client";
+import React, { useState, useEffect } from "react";
+import { collection, getDocs, addDoc } from "firebase/firestore";
+import { db } from "@/components/firebaseConfig";
+import { getStorage, ref, uploadString, getDownloadURL } from "firebase/storage";
 
-function AddMemberForm() {
-  const [formData, setFormData] = useState({
-    name: "",
-    domain: "",
-    image: "",
-    description: "",
-    gender: "",
-    linkedin: "",
-    github: "",
-    year: "First_Year",
-    
-  });
-  const [imageFile, setImageFile] = useState(null);
+const AddTeamMembers = () => {
+  const [teamMembers, setTeamMembers] = useState([
+    { name: "", role: "", github: "", linkedin: "", gender: "", photo: "", department: "" },
+  ]);
+  const [departments, setDepartments] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
+  const storage = getStorage();
 
-  const handleChange = (e: { target: { name: any; value: any; }; }) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "communities"));
+        const departmentNames: string[] = querySnapshot.docs.map(doc => doc.data().department);
+        setDepartments(departmentNames);
+      } catch (error) {
+        console.error("Error fetching departments: ", error);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
+
+  const addTeamMember = () => {
+    setTeamMembers([...teamMembers, { name: "", role: "", github: "", linkedin: "", gender: "", photo: "", department: "" }]);
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (files && files.length > 0) {
-      const file = files[0];
-      setImageFile(file);
-      setFormData({
-        ...formData,
-        image: URL.createObjectURL(file), // Display image preview
-      });
+  const removeTeamMember = (index: number) => {
+    const updatedMembers = [...teamMembers];
+    updatedMembers.splice(index, 1);
+    setTeamMembers(updatedMembers);
+  };
+
+  const handleTeamMemberPhotoChange = async (index: number, file: File | null) => {
+    if (!file) return;
+
+    try {
+      const storageRef = ref(storage, `teamMembers/${Date.now()}_${file.name}`);
+      const reader = new FileReader();
+
+      reader.onloadend = async () => {
+        const base64String = reader.result as string;
+
+        const updatedMembers = [...teamMembers];
+        updatedMembers[index].photo = base64String;
+        setTeamMembers([...updatedMembers]);
+
+        await uploadString(storageRef, base64String, "data_url");
+        const downloadURL = await getDownloadURL(storageRef);
+
+        updatedMembers[index].photo = downloadURL;
+        setTeamMembers([...updatedMembers]);
+      };
+
+      reader.readAsDataURL(file);
+    } catch (error) {
+      console.error("Error uploading file: ", error);
     }
   };
 
-  const handleSubmit = async (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     setLoading(true);
     try {
-      let imageUrl = '';
-      if (imageFile) {
-        const imageRef = ref(storage, `core-members/${imageFile.name}`);
-        await uploadBytes(imageRef, imageFile);
-        imageUrl = await getDownloadURL(imageRef);
-      }
+      const promises = teamMembers.map(async (member) => {
+        if (!member.photo) {
+          throw new Error("Please upload a photo for all members.");
+        }
 
-      const newMemberData = { ...formData, image: imageUrl };
+        const docRef = await addDoc(collection(db, "teamMembers"), {
+          ...member,
+          timestamp: new Date(),
+        });
 
-      await addDoc(collection(db, 'core-members'), newMemberData);
-      alert("Member added successfully!");
-      setFormData({
-        name: "",
-        domain: "",
-        image: "",
-        description: "",
-        gender: "",
-        linkedin: "",
-        github: "",
-        year: "First_Year",
+        return docRef.id;
       });
-      setImageFile(null);
+
+      await Promise.all(promises);
+      alert("Team members added successfully!");
+
+      setTeamMembers([{ name: "", role: "", github: "", linkedin: "", gender: "", photo: "", department: "" }]);
     } catch (error) {
-      console.error('Error adding member:', error);
-      alert('Failed to add member');
+      console.error("Error adding team members:", error);
+      alert(error.message || "Error adding team members.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto bg-black p-6 rounded-md shadow-md">
-      <h2 className="text-xl font-bold mb-4">Add New Member</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium">Name</label>
-          <input
-          title="name"
-            type="text"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Domain</label>
-          <input
-          title="domain"
-            type="text"
-            name="domain"
-            value={formData.domain}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Image</label>
-          <input
-          title="image"
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleImageChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        {imageFile && (
-          <div className="mt-2">
-            <Image
-              src={formData.image}
-              alt="Preview"
-              height={200}
-              width={100}
-              className="max-w-full h-auto rounded-md"
-            />
-          </div>
-        )}
-        <div>
-          <label className="block text-sm font-medium">Description</label>
-          <textarea
-          title="decription"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Gender</label>
-          <select
-          title="gender"
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          >
-            <option value="">Select Gender</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
-        <div>
-          <label className="block text-sm font-medium">LinkedIn URL</label>
-          <input
-          title="linkedin"
-            type="text"
-            name="linkedin"
-            value={formData.linkedin}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">GitHub URL</label>
-          <input
-          title="github"
-            type="text"
-            name="github"
-            value={formData.github}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium">Year</label>
-          <select
-          title="year"
-            name="year"
-            value={formData.year}
-            onChange={handleChange}
-            required
-            className="w-full mt-1 p-2 border border-gray-300 rounded-md"
-          >
-            <option value="First_Year">First Year</option>
-            <option value="Second_Year">Second Year</option>
-            <option value="Third_Year">Third Year</option>
-          </select>
-        </div>
-        <button
-          type="submit"
-          className="w-full mt-4 p-2 bg-blue-500 text-white rounded-md"
-          disabled={loading}
-        >
-          {loading ? 'Adding...' : 'Add Member'}
-        </button>
-      </form>
-    </div>
-  );
-}
+    <section className="min-h-screen w-full bg-gradient-to-r from-gray-500 to-red-100 flex justify-center items-center p-4">
+      <div className="w-full max-w-6xl bg-white shadow-2xl rounded-xl p-4">
+        <h2 className="text-3xl font-bold text-gray-900 text-center mb-6">Add Team Members</h2>
 
-export default AddMemberForm;
+        {teamMembers.map((member, index) => (
+          <div key={index} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 bg-gray-50 p-6 rounded-lg shadow-md mb-4">
+            <input
+              type="text"
+              placeholder="Full Name"
+              value={member.name}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].name = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            />
+
+            <select
+              value={member.role}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].role = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="">Select Role</option>
+              <option value="Student">Student</option>
+              <option value="Coordinator">Coordinator</option>
+              <option value="Team Member">Team Member</option>
+            </select>
+
+            <select
+              value={member.department}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].department = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="">Select Department</option>
+              {departments.map((dept, idx) => (
+                <option key={idx} value={dept}>{dept}</option>
+              ))}
+            </select>
+
+            <input
+              type="text"
+              placeholder="GitHub URL"
+              value={member.github}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].github = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            />
+
+            <input
+              type="text"
+              placeholder="LinkedIn URL"
+              value={member.linkedin}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].linkedin = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            />
+
+            <input
+              type="file"
+              onChange={(e) => handleTeamMemberPhotoChange(index, e.target.files?.[0] || null)}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            />
+
+            {member.photo && (
+              <img src={member.photo} alt="Preview" className="mt-2 h-24 w-24 object-cover rounded-lg shadow-md border" />
+            )}
+
+            <select
+              value={member.gender}
+              onChange={(e) => {
+                const updatedMembers = [...teamMembers];
+                updatedMembers[index].gender = e.target.value;
+                setTeamMembers(updatedMembers);
+              }}
+              className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-purple-500"
+            >
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+
+            <button
+              type="button"
+              onClick={() => removeTeamMember(index)}
+              className="w-full bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+            >
+              Remove Member
+            </button>
+          </div>
+        ))}
+
+        <div className="flex justify-between mt-6">
+          <button onClick={addTeamMember} className="bg-blue-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-600">
+            Add Team Member
+          </button>
+
+          <button onClick={handleSubmit} disabled={loading} className="bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-green-600">
+            {loading ? "Submitting..." : "Submit"}
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AddTeamMembers;

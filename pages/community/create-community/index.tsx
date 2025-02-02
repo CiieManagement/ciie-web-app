@@ -3,6 +3,15 @@ import { db, storage } from "../../../components/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
+interface TeamMember {
+  name: string;
+  role: string;
+  github: string;
+  linkedin: string;
+  photo: string;
+  gender: string;
+}
+
 const CreateCommunity = () => {
   const [name, setName] = useState("");
   const [department, setDepartment] = useState("");
@@ -11,7 +20,7 @@ const CreateCommunity = () => {
   const [personalThoughts, setPersonalThoughts] = useState("");
   const [communityImage, setCommunityImage] = useState<File | null>(null);
   const [personalImage, setPersonalImage] = useState<File | null>(null);
-  const [teamMembers, setTeamMembers] = useState<string[]>([]);
+  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -60,7 +69,6 @@ const CreateCommunity = () => {
         personalThoughts,
         communityLogoUrl,
         personalImageUrl,
-        teamMembers
       });
 
       alert('Community created successfully!');
@@ -82,11 +90,30 @@ const CreateCommunity = () => {
   };
 
   const addTeamMember = () => {
-    setTeamMembers([...teamMembers, '']);
+    setTeamMembers([...teamMembers, {
+      name: '',
+      role: '',
+      github: '',
+      linkedin: '',
+      photo: '',
+      gender: ''
+    }]);
+    
   };
 
   const removeTeamMember = (index: number) => {
     setTeamMembers(teamMembers.filter((_, i) => i !== index));
+  };
+
+  const handleTeamMemberPhotoChange = (index: number, file: File) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      const updatedMembers = [...teamMembers];
+      updatedMembers[index].photo = base64String;
+      setTeamMembers(updatedMembers);
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -154,8 +181,8 @@ const CreateCommunity = () => {
                 }}
                 rows={4}
                 className={`w-full px-4 py-3 border ${
-                  errors.description ? 'border-red-500' : 'border-gray-300'
-                } rounded-lg focus:ring-2 focus:ring-indigo-500`}
+                    errors.description ? 'border-red-500' : 'border-gray-300'
+                  } rounded-lg focus:ring-2 focus:ring-indigo-500`}
               />
               {errors.description && <p className="text-red-500 text-sm mt-1">{errors.description}</p>}
             </div>
@@ -208,7 +235,7 @@ const CreateCommunity = () => {
                 <div className="relative group border-2 border-dashed border-gray-300 rounded-xl h-40 flex items-center justify-center hover:border-indigo-500 transition-colors">
                   <input
                     type="file"
-                    onChange={(e) => setCommunityImage(e.target.files![0])}
+                    onChange={(e) => setCommunityImage(e.target.files?.[0] || null)}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <div className="text-center p-4">
@@ -229,7 +256,7 @@ const CreateCommunity = () => {
                 <div className="relative group border-2 border-dashed border-gray-300 rounded-xl h-40 flex items-center justify-center hover:border-indigo-500 transition-colors">
                   <input
                     type="file"
-                    onChange={(e) => setPersonalImage(e.target.files![0])}
+                    onChange={(e) => setPersonalImage(e.target.files?.[0] || null)}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                   />
                   <div className="text-center p-4">
@@ -264,25 +291,125 @@ const CreateCommunity = () => {
               </button>
             </div>
 
-            {teamMembers.map((member, index) => (
-              <div key={index} className="flex items-center justify-between">
-                <input
-                  type="text"
-                  value={member}
-                  onChange={(e) => {
-                    const updatedMembers = [...teamMembers];
-                    updatedMembers[index] = e.target.value;
-                    setTeamMembers(updatedMembers);
-                  }}
-                  placeholder="Enter member name"
-                  className="w-full px-4 py-2 mt-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
-                />
+          {teamMembers.map((member, index) => (
+              <div key={index} className="space-y-4 mb-6 p-4 border rounded-lg">
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Name *
+                    </label>
+                    <input
+                      type="text"
+                      value={member.name}
+                      onChange={(e) => {
+                        const updated = [...teamMembers];
+                        updated[index].name = e.target.value;
+                        setTeamMembers(updated);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Role *
+                    </label>
+                    <input
+                      type="text"
+                      value={member.role}
+                      onChange={(e) => {
+                        const updated = [...teamMembers];
+                        updated[index].role = e.target.value;
+                        setTeamMembers(updated);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      GitHub URL
+                    </label>
+                    <input
+                      type="url"
+                      value={member.github}
+                      onChange={(e) => {
+                        const updated = [...teamMembers];
+                        updated[index].github = e.target.value;
+                        setTeamMembers(updated);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      LinkedIn URL
+                    </label>
+                    <input
+                      type="url"
+                      value={member.linkedin}
+                      onChange={(e) => {
+                        const updated = [...teamMembers];
+                        updated[index].linkedin = e.target.value;
+                        setTeamMembers(updated);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Gender *
+                    </label>
+                    <select
+                      value={member.gender}
+                      onChange={(e) => {
+                        const updated = [...teamMembers];
+                        updated[index].gender = e.target.value;
+                        setTeamMembers(updated);
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    >
+                      <option value="">Select Gender</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Photo
+                    </label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          handleTeamMemberPhotoChange(index, file);
+                        }
+                      }}
+                      className="w-full px-4 py-2 border border-gray-300 rounded-lg"
+                    />
+                    {member.photo && (
+                      <img 
+                        src={member.photo} 
+                        alt="Preview" 
+                        className="mt-2 h-20 w-20 object-cover rounded"
+                      />
+                    )}
+                  </div>
+                </div>
+
                 <button
                   type="button"
                   onClick={() => removeTeamMember(index)}
-                  className="text-red-500 hover:text-red-700 ml-4"
+                  className="text-red-500 hover:text-red-700"
                 >
-                  Remove
+                  Remove Member
                 </button>
               </div>
             ))}

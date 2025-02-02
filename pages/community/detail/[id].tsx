@@ -2,54 +2,67 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { db } from "../../../components/firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
-import { Navbar } from "@/components/navbar";
+import { doc, getDoc, collection, query, where, getDocs, orderBy } from "firebase/firestore";
+import Link from "next/link";
 
 const CommunityDetails = () => {
   const router = useRouter();
   const { id } = router.query;
   const [community, setCommunity] = useState<any | null>(null);
+  const [teamMembers, setTeamMembers] = useState<any[]>([]);
 
   useEffect(() => {
+    console.log("Fetched Team Members:", teamMembers);
+    
     const fetchCommunity = async () => {
       if (id) {
         const docRef = doc(db, "communities", id);
         const docSnap = await getDoc(docRef);
+
         if (docSnap.exists() && docSnap.data()) {
           setCommunity(docSnap.data());
+
+          // Fetch team members based on the department and order by timestamp
+          const teamMembersRef = collection(db, "teamMembers");
+          const q = query(
+            teamMembersRef, 
+            where("department", "==", docSnap.data().department), 
+            orderBy("timestamp", "asc") // Sorting by timestamp (earliest first)
+          );
+
+          const teamMembersSnap = await getDocs(q);
+          const members = teamMembersSnap.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+            timestamp: doc.data().timestamp ? doc.data().timestamp.toDate() : null, // Convert Firestore Timestamp to JS Date
+          }));
+
+          setTeamMembers(members);
         }
       }
     };
+
     fetchCommunity();
   }, [id]);
 
-  const handleApply = () => {
-    router.push({
-      pathname: "/community/apply",
-      query: { department: community.department },
-    });
-  };
-
-  if (!community) return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="animate-pulse space-y-4">
-        <div className="h-12 bg-gray-200 rounded w-64 mx-auto"></div>
-        <div className="h-8 bg-gray-200 rounded w-48 mx-auto"></div>
-        <div className="h-96 bg-gray-100 rounded-xl mt-8"></div>
+  if (!community) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-pulse space-y-4">
+          <div className="h-12 bg-gray-200 rounded w-64 mx-auto"></div>
+          <div className="h-8 bg-gray-200 rounded w-48 mx-auto"></div>
+          <div className="h-96 bg-gray-100 rounded-xl mt-8"></div>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* <Navbar /> */}
-      
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Community Header */}
         <header className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {community.name}
-          </h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">{community.name}</h1>
           <span className="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full text-sm font-medium">
             {community.department || "Undergraduate Program"}
           </span>
@@ -69,18 +82,11 @@ const CommunityDetails = () => {
                   objectFit="cover"
                 />
               </div>
-              
               <div className="text-center">
-                <h2 className="text-lg font-semibold text-gray-500 mb-2">
-                  Course Coordinator
-                </h2>
-                <p className="text-xl font-bold text-gray-900 mb-4">
-                  Dr. {community.faculty}
-                </p>
+                <h2 className="text-lg font-semibold text-gray-500 mb-2">Course Coordinator</h2>
+                <p className="text-xl font-bold text-gray-900 mb-4">Dr. {community.faculty}</p>
                 <div className="prose bg-gray-50 p-6 rounded-xl">
-                  <blockquote className="text-gray-600 italic">
-                    {community.personalThoughts}
-                  </blockquote>
+                  <blockquote className="text-gray-600 italic">{community.personalThoughts}</blockquote>
                 </div>
               </div>
             </div>
@@ -88,25 +94,23 @@ const CommunityDetails = () => {
 
           {/* Team Members Section */}
           <section className="bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
-              Leadership Team
-            </h3>
-            
-            {community.teamMembers?.length > 0 && (
+            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Core Team</h3>
+
+            {teamMembers.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {community.teamMembers.map((member: any) => (
-                  <div key={member.name} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors">
+                {teamMembers.map((member: any) => (
+                  <div key={member.id} className="flex flex-col items-center p-4 bg-gray-50 rounded-xl hover:bg-indigo-50 transition-colors">
                     <div className="relative w-24 h-24 rounded-full overflow-hidden mb-4">
                       <Image
-                        src={member.image || "/anonymous_male.svg"}
+                        src={member.photo || (member.gender === "male" 
+                          ? "/anonymous_male.svg" 
+                          : "/anonymous_female.svg")}
                         alt={member.name}
                         layout="fill"
                         objectFit="cover"
                       />
                     </div>
-                    <h4 className="text-lg font-semibold text-gray-900">
-                      {member.name}
-                    </h4>
+                    <h4 className="text-lg font-semibold text-gray-900">{member.name}</h4>
                     <p className="text-sm text-gray-600 mb-2">{member.role}</p>
                     <div className="flex space-x-3">
                       {member.linkedin && (
@@ -129,20 +133,15 @@ const CommunityDetails = () => {
                   </div>
                 ))}
               </div>
+            ) : (
+              <p className="text-center text-gray-500">No team members found.</p>
             )}
+            <Link href={"/community/apply"}>
+              <button className="items-center border-2 px-4 rounded-lg text-gray-400 border-gray-300 mt-10">Join us</button>
+              </Link>
 
-            <div className="mt-12 text-center">
-              <button
-                onClick={handleApply}
-                className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-indigo-600 to-indigo-500 text-white font-semibold rounded-full hover:from-indigo-700 hover:to-indigo-600 transition-all shadow-lg hover:shadow-indigo-200"
-              >
-                Apply Now
-                <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </div>
           </section>
+
         </div>
       </main>
     </div>

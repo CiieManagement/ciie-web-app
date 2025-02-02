@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { db } from "@/components/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
+import { Navbar } from "@/components/navbar";
 
 const CommunityPage = () => {
   const router = useRouter();
@@ -37,11 +38,12 @@ const CommunityPage = () => {
   return (
     <div className="min-h-screen relative">
       <BackdropAnimation />
+      <Navbar/>
       
       <div className="relative z-10 container mx-auto px-4 py-12">
         {/* Header Section */}
         <div className="mb-16 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-500 mb-4">
             Our Communities
           </h1>
           <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto">
