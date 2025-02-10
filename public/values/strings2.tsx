@@ -58,14 +58,7 @@ const Strings2 = {
         "My time at CIIE - SRM University sharpened my skills in data analysis, innovation, teamwork, and collaborative problem-solving. I excel in building strong relationships and driving business growth through effective data analysis and a customer-centric approach. I aim to leverage my experiences to make a tangible impact in the tech industry, focusing on data analysis excellence and business development strategies.",
       
       },
-      8: {
-        name: "Dr. Kamaljit Singh",
-        domain: "Data Analyst",
-        image: "/community_page/web.jpg",
-        description:
-        "My time at CIIE - SRM University sharpened my skills in data analysis, innovation, teamwork, and collaborative problem-solving. I excel in building strong relationships and driving business growth through effective data analysis and a customer-centric approach. I aim to leverage my experiences to make a tangible impact in the tech industry, focusing on data analysis excellence and business development strategies.",
-       
-      },
+     
       9: {
         name: "Dr. Sachin Malik",
         domain: "Data Analyst",
