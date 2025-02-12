@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+ 
 import {
   Navbar,
   NavbarBrand,
@@ -16,7 +17,7 @@ import { onAuthStateChanged, signOut } from "@firebase/auth";
 import { auth } from "../components/firebaseConfig";
 import { ThemeSwitch } from "@/components/theme-switch";
 
-export default function App() {
+export default function navbar() {
   const [username, setUsername] = useState("");
   const [activeLink, setActiveLink] = useState("");
 

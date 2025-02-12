@@ -317,17 +317,17 @@ export const Navbar = () => {
             <Menu.Button className="flex flex-row items-center content-center bg-gray-300/20 rounded-xl p-1">
               <Image
                 src={user.photoURL || "/anonymous_male.svg"}
-                width={40}
-                height={40}
+                width={34}
+                height={34}
                 alt=""
-                className="flex rounded-xl "
+                className="flex rounded-xl  "
               />
               <span>{user.displayName}</span>
             </Menu.Button>
 
             <Menu.Items className="absolute right-1 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
               <Menu.Item>
-                {({ active }) => (
+                {({ focus }) => (
                   <Dropdown>
                     <DropdownMenu aria-label="Profile Actions" variant="flat">
                       <DropdownItem key="profile" className="h-14 gap-2">
